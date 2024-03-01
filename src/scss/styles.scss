@@ -29,9 +29,27 @@ $screen-xl-min: 2400px;
 
 
 // Код Нади 
+.container-fluid-quote  {
+    padding-top: 4rem;
+    padding-bottom: 4rem; 
+    background-color: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);     
+  }
 
+.row-quote {
+    max-width: 95%;
+    margin: 0 auto; 
+}
 
+.quote__text {
+    color: white;
+    text-align: center;
+}
 
+.author {
+    color: white;
+    text-align: center;
+}
 
 // Код Насти
 
