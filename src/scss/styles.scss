@@ -39,3 +39,35 @@ $screen-xl-min: 2400px;
 
 
 // Код Тани
+
+.radio_hide {
+  display: none;
+}
+
+.custom-radio {
+  display: inline-block;
+  width: 5rem;
+  height: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  color: red;
+}
+
+
+//.task_form__header
+//.task_name
+//.task_description
+//.dead_line
+//.priority
+//.btn_high
+//.btn_medium
+//.btn_low
+//.life_part
+//.btn_personal
+//.btn_work
+//.btn_study
+//.btn_health
+//.btn_finance
+//.btn_other
+//.save_task__btn

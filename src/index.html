@@ -6,17 +6,102 @@
     <title>To-Do Health</title>
   </head>
   <body>
-    <div class="container py-4 px-3 mx-auto">
-      <h1>Hello, Bootstrap and Webpack!</h1>
-      <button class="btn btn-primary">Primary button</button>
-    </div>
     <header>
       <!-- меню -->
       <!-- кнопка добавления задачи -->
+      <button
+        class="add_task btn"
+        data-bs-toggle="modal"
+        data-bs-target="#taskModal"
+      >
+        Добавить задачу
+      </button>
     </header>
     <main>
       <!-- форма добавления задачи -->
+      <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title fs-5" id="exampleModalLabel">Новая задача</h3>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-floating">
+                    <label for="task_name" class="help_text-grey">Название</label>
+                    <input type="text" id="task_name" class="form-control task_name" />
+                  </div>
+                  <div class="form-floating">
+                    <label for="task_description" class="help_text-grey">Описание</label>
+                    <textarea
+                      type="text"
+                      id="task_description"
+                      class="form-control task_description"
+                    >
+                    </textarea>
+                  </div>
+                  <div class="dead_line">
+                    <p class="task_form__header">Саок выполнения</p>
+                    <input type="date" class="end_date help_text-grey" />
+                    <input type="time" class="end_time help_text-grey" />
+                  </div>
+                  <div class="priority">
+                    <p class="task_form__header">Приоритет</p>
+                    <label for="priority_btn-high">
+                      <input id="priority_btn-high" type="radio" class="radio_hide btn_high" name="prioritybtn" value="high" />
+                      <span class="custom-radio">Высокий</span>
+                    </label>
+                    <label for="priority_btn-medium">
+                      <input id="priority_btn-medium" type="radio" class="radio_hide btn_medium" name="prioritybtn" value="medium" />
+                      <span class="custom-radio">Средний</span>
+                    </label>
+                    <label for="priority_btn-low">
+                      <input id="priority_btn-low" type="radio" class="radio_hide btn_low" name="prioritybtn" value="low" />
+                      <span class="custom-radio">Низкий</span>
+                    </label>
+                  </div>
+                  <div class="life_part">
+                    <p class="task_form__header">Тип задачи</p>
+                    <label for="part_btn-personal">
+                      <input id="part_btn-personal" type="radio" class="radio_hide btn_personal" name="lifepartbtn" value="personal"/>
+                      <span class="custom-radio">Личное</span>
+                    </label>
+                    <label for="part_btn-work">
+                      <input id="part_btn-work" type="radio" class="radio_hide btn_work" name="lifepartbtn" value="work" />
+                      <span class="custom-radio">Работа</span>
+                    </label>
+                    <label for="part_btn-study">
+                      <input id="part_btn-study" type="radio" class="radio_hide btn_study" name="lifepartbtn" value="study" />
+                      <span class="custom-radio">Учеба</span>
+                    </label>
+                    <label for="part_btn-health">
+                      <input id="part_btn-health" type="radio" class="radio_hide btn_health" name="lifepartbtn" value="health" />
+                      <span class="custom-radio">Здоровье</span>
+                    </label>
+                    <label for="part_btn-finance">
+                      <input id="part_btn-finance" type="radio" class="radio_hide btn_finance" name="lifepartbtn" value="finance" />
+                      <span class="custom-radio">Финансы</span>
+                    </label>
+                    <label for="part_btn-other">
+                      <input id="part_btn-other" type="radio" class="radio_hide btn_other" name="lifepartbtn" value="other" />
+                      <span class="custom-radio">Другое</span>
+                    </label>
+                  </div>
+                  <button class="save_task__btn">Сохранить</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- задачи -->
+      <div class="tasks_container"></div>
       <!-- мотивационные фразы -->
       <!-- рецепты -->
     </main>

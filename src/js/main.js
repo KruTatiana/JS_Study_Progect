@@ -5,7 +5,9 @@ import '../scss/styles.scss'
 import * as bootstrap from 'bootstrap'
 
 //переменные для элементов DOM
-
+const addTaskBtn = document.querySelector('.add_task');
+const taskName = document.getElementById('task_name');
+const taskDescription = document.getElementById('task_description');
 
 
 //Код Веры
