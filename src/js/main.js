@@ -4,6 +4,10 @@ import '../scss/styles.scss'
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
+//Import moment library
+var moment = require('moment');
+moment().format();
+
 //переменные для элементов DOM
 const addTaskBtn = document.querySelector('.add_task');
 const taskName = document.getElementById('task_name');
