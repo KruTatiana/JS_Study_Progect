@@ -5,6 +5,15 @@
 
 // Переменные для цвета
 
+$white: #ffffff;
+$purple1: #C4C8ff;
+$purple2:#939CFF;
+$purple3: #6271FF;
+$blue1: #3145FF;
+$blue2: #001AFF;
+$blue3: #00189D;
+$blue4: #00165D;
+
 // Переменные для общих стилей
 
 
@@ -29,9 +38,27 @@ $screen-xl-min: 2400px;
 
 
 // Код Нади 
+.container-fluid-quote  {
+    padding-top: 4rem;
+    padding-bottom: 4rem; 
+    background-color: $blue4;
+    background: linear-gradient(90deg, $blue4 0%, $blue3 0%, rgba(0,212,255,1) 100%);     
+  }
 
+.row-quote {
+    max-width: 95%;
+    margin: 0 auto; 
+}
 
+.quote__text {
+    color: $white;
+    text-align: center;
+}
 
+.author {
+    color: $white;
+    text-align: center;
+}
 
 // Код Насти
 
