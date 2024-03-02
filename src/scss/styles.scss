@@ -72,29 +72,145 @@ $screen-xl-min: 2400px;
 }
 
 .custom-radio {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 5rem;
   height: 2rem;
-  border: 1px solid #ccc;
+  border: 2px solid;
   border-radius: 6px;
   cursor: pointer;
-  color: red;
+  color: $blue4;
+  justify-content: center;
+  align-items: center;
 }
 
+.tasks_container{
+  margin: 5% 8% 3%;
+  border: solid 2px $purple1;
+  border-radius: 6px;
+}
 
-//.task_form__header
-//.task_name
-//.task_description
-//.dead_line
-//.priority
-//.btn_high
-//.btn_medium
-//.btn_low
-//.life_part
-//.btn_personal
-//.btn_work
-//.btn_study
-//.btn_health
-//.btn_finance
-//.btn_other
-//.save_task__btn
+.add_task{
+  width: 80%;
+  height: 3em;
+  border: solid 2px $purple1;
+}
+
+.add_task:hover{
+  outline: none;
+  background-color: $purple3;
+}
+
+.btn_close-custom{
+  background-color: $white;
+}
+
+.modal_header-custom{
+  background-color: $blue3;
+  color: $white;
+}
+
+.task_form__header{
+  margin-top: 5%;
+  color: $blue3;
+}
+
+.task_name,.task_description{
+  margin-top: 5%;
+  border-color: $purple2;
+  border-width: 2px;
+  outline: none;
+}
+
+.task_name{
+  height: 50px;
+}
+
+.task_description{
+  overflow: hidden;
+  height: 200px;
+}
+
+.task_name:focus,.task_description:focus{
+  box-shadow: none;
+  border-color: $blue3;
+}
+
+.help_text-grey, .task_name::placeholder, .task_description::placeholder{
+  color: $purple1;
+}
+
+.end_date,.end_time{
+  outline: none;
+  border: solid $purple2 2px;
+  border-radius: 6px;
+  height: 40px;
+  text-align: center;
+}
+
+.end_time{
+  margin-left: 3%;
+  width: 90px;
+}
+
+.btn_high{
+  width: 100%;
+  border-color: $blue3;
+}
+
+.btn_high:hover{
+  border-color: none;
+  background-color: $blue3;
+  color: $white;
+}
+
+.btn_medium{
+  width: 100%;
+  border-color: $blue2;
+}
+
+.btn_medium:hover{
+  border-color: none;
+  background-color: $blue2;
+  color: $white;
+}
+
+.btn_low{
+  width: 100%;
+  border-color: $purple3;
+}
+
+.btn_low:hover{
+  border-color: none;
+  background-color: $purple3;
+}
+
+.life_part__btn{
+  width: 100%;
+  margin-top: 2%;
+  border-color: $purple2;
+}
+
+.life_part__btn:hover{
+  border-color: none;
+  background-color: $purple2;
+}
+
+.save_task__btn{
+  width: 100%;
+  margin-top: 5%;
+  height: 3em;
+  background-color: $blue3;
+  color: $white;
+}
+
+.save_task__btn:hover{
+  outline: none;
+  background-color: $blue4;
+  color:$white;
+}
+
+.basis_btn{
+  flex-basis: 28%;
+}
