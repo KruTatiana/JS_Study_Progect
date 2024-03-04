@@ -4,7 +4,7 @@
 // Шрифты
 
 // Переменные для цвета
-
+$black: black;
 $white: #ffffff;
 $purple1: #c4c8ff;
 $purple2: #939cff;
@@ -57,6 +57,30 @@ $screen-xl-min: 2400px;
     color: $white;
     text-align: center;
 }
+
+.openRegistrationButton {
+    border-style: none;
+    color: $black
+}
+
+.btn-outline-primary:hover{
+    background-color: $purple3;
+color: $black;
+  }
+
+  .save_user__btn{
+    width: 100%;
+    margin-top: 5%;
+    height: 3em;
+    background-color: $blue3;
+    color: $white;
+  }
+  
+  .save_user__btn:hover{
+    outline: none;
+    background-color: $blue4;
+    color:$white;
+  }
 
 // Код Насти
 
