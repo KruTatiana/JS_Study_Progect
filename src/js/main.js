@@ -51,6 +51,52 @@ window.addEventListener('load', () => {
   });
 
 
+  function makeUsersList() {
+  /*let usersArray = [
+    {
+        "name": "Alexandra",
+        "nickname": "User1",
+        "url": "accets/User1.svg",
+      },
+      {
+        "name": "Valery",
+        "nickname": "User2",
+        "url": "accets/User2.svg",
+      },
+      {
+        "name": "Bob",
+        "nickname": "User2",
+        "url": "accets/User3.svg",
+      },
+  ];*/
+  let usersArray = [];
+  let stringifyUsers = JSON.stringify(usersArray);
+  localStorage.setItem('key', stringifyUsers);
+  console.log('Новый пользователь был записан в Local Storage.');
+
+
+  let inputName = document.getElementById('user_name').value;
+  //let stringifyInputName = JSON.stringify(inputName);
+  let inputNickname = document.getElementById('nick_name').value;
+  //let stringifyInputNickname = JSON.stringify(inputNickname);
+  //localStorage.setItem('name', stringifyInputName );
+ //localStorage.setItem('nickname', stringifyInputNickname);
+ usersArray.push(inputName);
+ localStorage.setItem('name', stringifyUsers);
+ /*const json = {
+    "name": user_name,
+    "nickname": nick_name,
+};*/
+  }
+
+  document.querySelector('.save_user__btn').addEventListener('click', makeUsersList);
+
+//function showRegistrationForm() {
+//    document.getElementById('registrationForm').style.display = 'block';
+//  }
+  //window.onload = showRegistrationForm();
+
+
 // Код Насти
 
 
