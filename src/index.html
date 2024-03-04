@@ -105,6 +105,43 @@
         Добавить задачу
       </button>
     </div>
+      <!-- форма регистрации -->
+      <button
+      type="button"
+        class="btn btn-outline-primary openRegistrationButton tasks_container w-25 h-75 p-3 d-flex flex-column align-items-center"
+        data-bs-toggle="modal"
+        data-bs-target="#registrationForm"
+        id="openRegistration"
+      >
+        Открыть форму регистрации</button>
+      <div id="registrationForm" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header modal_header-custom">
+              <h3 class="modal-title fs-5" id="exampleModalLabel">Войдите или зарегистрируйтесь</h3>
+              <button
+                type="button"
+                class="btn-close btn_close-custom"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+              <div class="modal-body">
+                <form>
+                    <input type="text" id="task_name user_name" class= "form-control task_name user_name" placeholder="Ваше имя" />
+                    <input
+                      type="text"
+                      id="task_name nick_name"
+                      class="form-control task_name nickname"
+                      placeholder="Ваш никнейм"
+                    />
+                  <button class="save_user__btn btn">Сохранить</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- рецепты -->
     </main>
     <footer></footer>
