@@ -62,7 +62,6 @@ window.addEventListener('load', () => {
   let stringifyInputNickname = JSON.stringify(nickNames);
   localStorage.setItem('nickname', stringifyInputNickname);
 
- console.log('Новый пользователь был записан в Local Storage.');
   }
 
   document.querySelector('.save_user__btn').addEventListener('click', makeUsersList);
