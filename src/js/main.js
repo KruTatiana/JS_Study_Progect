@@ -34,7 +34,6 @@ function makeQuote() {
     console.log('Произошла ошибка');
   });
 }
-
 window.addEventListener('load', () => {
 	makeQuote();
   });
