@@ -117,7 +117,6 @@ color: $black;
 
 .add_task{
   width: 80%;
-  height: 3em;
   border: solid 2px $purple1;
 }
 
@@ -183,10 +182,18 @@ color: $black;
   border-color: $blue3;
 }
 
-.btn_high:hover{
+.btn_high:hover, input[type="radio"]:checked + .btn_high{
   border-color: none;
   background-color: $blue3;
   color: $white;
+}
+
+.high_lable{
+  width: 10%;
+  border: none;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background-color: $blue3;
 }
 
 .btn_medium{
@@ -194,10 +201,18 @@ color: $black;
   border-color: $blue2;
 }
 
-.btn_medium:hover{
+.btn_medium:hover, input[type="radio"]:checked + .btn_medium{
   border-color: none;
   background-color: $blue2;
   color: $white;
+}
+
+.medium_lable{
+  width: 10%;
+  border: none;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background-color: $blue2;
 }
 
 .btn_low{
@@ -205,8 +220,16 @@ color: $black;
   border-color: $purple3;
 }
 
-.btn_low:hover{
+.btn_low:hover, input[type="radio"]:checked + .btn_low{
   border-color: none;
+  background-color: $purple3;
+}
+
+.low_lable{
+  width: 10%;
+  border: none;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
   background-color: $purple3;
 }
 
@@ -216,7 +239,7 @@ color: $black;
   border-color: $purple2;
 }
 
-.life_part__btn:hover{
+.life_part__btn:hover, input[type="radio"]:checked + .life_part__btn{
   border-color: none;
   background-color: $purple2;
 }
@@ -237,4 +260,28 @@ color: $black;
 
 .basis_btn{
   flex-basis: 28%;
+}
+
+.tasks_list{
+  width: 80%;
+  margin-bottom: 4%;
+}
+
+.new_task_element {
+  display: flex;
+  width: 100%;
+  border: solid 2px $purple1;
+  border-radius: 6px;
+}
+
+.task_chekbox{
+  display: block;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.content_task_box{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
