@@ -52,27 +52,27 @@ window.addEventListener('load', () => {
 
 
   function makeUsersList(event) {
-  let inputName = document.getElementById('task_name user_name');
-  let inputNickname = document.getElementById('task_name nick_name');
-  let users = {
-    name: inputName.value,
-    nickname: inputNickname.value,
-  };
-  let stringifyusers = JSON.stringify(users);
-  localStorage.setItem('user', stringifyusers);
-
- console.log('Новый пользователь был записан в Local Storage.');
-
- let pictureSet = document.querySelector('.picture');
-  let nicknameSet = document.querySelector('.nickname');
-
-  nicknameSet.innerHTML = users.nickname;
-  let userImg = `./accets/User${Math.ceil(Math.random()*3-1)}.svg`;
-  pictureSet.setAttribute('src', userImg);
-  event.preventDefault();
-  }
-
-  document.querySelector('.save_user__btn').addEventListener('click', makeUsersList);
+    let inputName = document.getElementById('task_name user_name');
+    let inputNickname = document.getElementById('task_name nick_name');
+    let users = {
+      name: inputName.value,
+      nickname: inputNickname.value,
+    };
+    let stringifyusers = JSON.stringify(users);
+    localStorage.setItem('user', stringifyusers);
+  
+   console.log('Новый пользователь был записан в Local Storage.');
+  
+   let pictureSet = document.querySelector('.picture');
+    let nicknameSet = document.querySelector('.nickname_result');
+  
+    nicknameSet.textContent = users.nickname;
+    let userImg = `./accets/User${Math.ceil(Math.random()*3-1)}.svg`;
+    pictureSet.setAttribute('src', userImg);
+    event.preventDefault();
+    }
+  
+    document.querySelector('.save_user__btn').addEventListener('click', makeUsersList);
 
   
 
