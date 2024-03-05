@@ -230,20 +230,15 @@ function setDeadline() {
 }
 
 class taskCard {
-    constructor(name, description, deadline, color, lifepart, deadlineDate) {
+    constructor(name, description, deadline, color, lifepart) {
         this.name = name;
         this.description = description;
         this.deadline = deadline;
         this.color = color;
         this.lifePart = lifepart;
-        this.deadlineDate = deadlineDate;
     }
 
-    makeObj() {
-        taskMemoryObj.name = this.name;
-        taskMemoryObj.description = this.description;
-        taskMemoryObj.deadline;
-    }
+    makeObj() {}
 
     createTask() {
         this.element = document.createElement("div");
@@ -268,7 +263,7 @@ class taskCard {
         this.descriptionEl.setAttribute("class", "description_text");
         this.priorityLifeEl.setAttribute("class", this.color);
         this.contentBoxEl.setAttribute("class", "content_task_box");
-        this.partLifeEl.innerText = this.lifePart;
+        this.partLifeEl.textContent = this.lifePart;
         this.nameEl.innerText = this.name;
         this.descriptionEl.innerText = this.description;
         this.deadlineEl.innerText = this.deadline;
@@ -417,15 +412,7 @@ function setChecked(check) {
 saveTaskBtn.addEventListener("click", () => {
     setPriorityColor();
     setPartStr();
-    setDeadline();
-    let taskObject = new taskCard(
-        taskName.value,
-        taskDescription.value,
-        deadline,
-        priorityColor,
-        partStr,
-        deadlineDate.value
-    );
+    let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr);
     taskObject.createTask();
     taskObject.makeObj();
     setTaskObjectToStorage();
