@@ -68,7 +68,7 @@ calories.textContent = 0;
 function closeFox(){
 	getFox.src ='';
 }
-document.getElementById('close').addEventListener('click', closeFox);
+document.getElementById('close').addEventListener('click', closeFox);// надо в девелоп заменить кавычки в close ''
 // Код Нади
 function makeQuote() {
 	fetch('https://stoic.tekloon.net/stoic-quote')
