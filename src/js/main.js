@@ -51,20 +51,32 @@ window.addEventListener('load', () => {
   });
 
 
-  function makeUsersList() {
-  let inputName = document.getElementById('user_name');
-  let names = {name: inputName.value};
-  let stringifyInputName = JSON.stringify(names);
-  localStorage.setItem('name', stringifyInputName);
+  function makeUsersList(event) {
+  let inputName = document.getElementById('task_name user_name');
+  let inputNickname = document.getElementById('task_name nick_name');
+  let users = {
+    name: inputName.value,
+    nickname: inputNickname.value,
+  };
+  let stringifyusers = JSON.stringify(users);
+  localStorage.setItem('user', stringifyusers);
 
-  let inputNickname = document.getElementById('nick_name');
-  let nickNames = {nickname: inputNickname.value};
-  let stringifyInputNickname = JSON.stringify(nickNames);
-  localStorage.setItem('nickname', stringifyInputNickname);
+ console.log('Новый пользователь был записан в Local Storage.');
 
+ let pictureSet = document.querySelector('.picture');
+  let nicknameSet = document.querySelector('.nickname');
+
+  nicknameSet.innerHTML = users.nickname;
+  let userImg = `./accets/User${Math.ceil(Math.random()*3-1)}.svg`;
+  pictureSet.setAttribute('src', userImg);
+  event.preventDefault();
   }
 
   document.querySelector('.save_user__btn').addEventListener('click', makeUsersList);
+
+  
+
+
 
 //function showRegistrationForm() {
 //    document.getElementById('registrationForm').style.display = 'block';
