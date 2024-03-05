@@ -1,13 +1,30 @@
 //Import our custom CSS
 import "../scss/styles.scss";
+import "../scss/styles.scss";
 // Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap'
+import * as bootstrap from "bootstrap";
 
 //Import moment library
+var moment = require("moment");
 var moment = require("moment");
 moment().format();
 
 //переменные для элементов DOM
+const saveTaskBtn = document.querySelector(".save_task__btn");
+const tasksList = document.querySelector(".tasks_list");
+const taskName = document.getElementById("task_name");
+const taskDescription = document.getElementById("task_description");
+const deadlineDate = document.querySelector(".end_date");
+const deadlineTime = document.querySelector(".end_time");
+const todayDate = document.querySelector(".today_date");
+let ingridients = document.getElementById("ingridients");
+let sugar = document.getElementById("sugar");
+let iron = document.getElementById("iron");
+let vitaminC = document.getElementById("vitaminC");
+let calories = document.getElementById("calories");
+let calcium = document.getElementById("calcium");
+let getFox = document.getElementById("getFox");
+let close = document.getElementById("close");
 const saveTaskBtn = document.querySelector(".save_task__btn");
 const tasksList = document.querySelector(".tasks_list");
 const taskName = document.getElementById("task_name");
@@ -95,34 +112,20 @@ function makeQuote() {
             console.log("Произошла ошибка");
         });
 }
-
 window.addEventListener("load", () => {
     makeQuote();
 });
 
-function makeUsersList(event) {
-    let inputName = document.getElementById("task_name user_name");
-    let inputNickname = document.getElementById("task_name nick_name");
-    let users = {
-        name: inputName.value,
-        nickname: inputNickname.value,
-    };
-    let stringifyusers = JSON.stringify(users);
-    localStorage.setItem("user", stringifyusers);
+function makeUsersList() {
+    let inputName = document.getElementById("user_name");
+    let names = { name: inputName.value };
+    let stringifyInputName = JSON.stringify(names);
+    localStorage.setItem("name", stringifyInputName);
 
-    console.log("Новый пользователь был записан в Local Storage.");
-
-    let pictureSet = document.querySelector(".picture");
-    let nicknameSet = document.querySelector(".nickname_result");
-
-    nicknameSet.textContent = users.nickname;
-    let userImg = `./accets/User${Math.ceil(Math.random()*3-1)}.svg`;
-    
-    // const myIcon = new Image();
-    // myIcon.src = Icon;
-    // pictureSet.appendChild(myIcon);
-    pictureSet.setAttribute('src', userImg);
-    event.preventDefault();
+    let inputNickname = document.getElementById("nick_name");
+    let nickNames = { nickname: inputNickname.value };
+    let stringifyInputNickname = JSON.stringify(nickNames);
+    localStorage.setItem("nickname", stringifyInputNickname);
 }
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
