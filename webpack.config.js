@@ -52,7 +52,13 @@ module.exports = {
             loader: 'sass-loader'
           }
         ]
-      }
+      },
+    //   {
+    //     test: /\.(gif|png|jpg|jpeg|svg)$/i,
+    //     //type: 'asset/resource',
+    //    // loader: 'file-loader'
+        
+    // },  
     ]
   }
 }
