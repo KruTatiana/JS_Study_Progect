@@ -1,7 +1,9 @@
 //Import our custom CSS
 import "../scss/styles.scss";
 // Import all of Bootstrap's JS
-import * as bootstrap from "bootstrap";
+import * as bootstrap from 'bootstrap'
+
+//import Icon from '../accets/User2.svg';
 
 //Import moment library
 var moment = require("moment");
@@ -116,8 +118,12 @@ function makeUsersList(event) {
     let nicknameSet = document.querySelector(".nickname_result");
 
     nicknameSet.textContent = users.nickname;
-    let userImg = `./accets/User${Math.ceil(Math.random() * 3 - 1)}.svg`;
-    pictureSet.setAttribute("src", userImg);
+    let userImg = `./accets/User${Math.ceil(Math.random()*3-1)}.svg`;
+    
+    // const myIcon = new Image();
+    // myIcon.src = Icon;
+    // pictureSet.appendChild(myIcon);
+    pictureSet.setAttribute('src', userImg);
     event.preventDefault();
 }
 

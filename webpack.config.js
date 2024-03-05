@@ -53,10 +53,12 @@ module.exports = {
           }
         ]
       },
-      {
-        test: /\.(jpg|png|svg|jpeg|gif)$/,
-        type: 'aссets/'
-    }
+    //   {
+    //     test: /\.(gif|png|jpg|jpeg|svg)$/i,
+    //     //type: 'asset/resource',
+    //    // loader: 'file-loader'
+        
+    // },  
     ]
   }
 }
