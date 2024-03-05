@@ -231,6 +231,7 @@ class taskCard {
         this.checkEl.setAttribute("type", "checkbox");
         this.checkEl.setAttribute("class", "task_checkbox");
         this.checkEl.setAttribute("id", this.id);
+        this.checkEl.setAttribute("onclick", "addCheck(this)");
         this.partLifeEl.setAttribute("class", "part_life_element");
         this.nameEl.setAttribute("class", "task_name_text");
         this.descriptionEl.setAttribute("class", "description_text");
