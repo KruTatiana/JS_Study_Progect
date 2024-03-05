@@ -328,6 +328,7 @@ class taskCard {
     // showTask(){
 
     // }
+<<<<<<< HEAD
 }
 
 function checkStorage() {
@@ -410,6 +411,8 @@ function addCheck(el) {
             }
         });
     }
+=======
+>>>>>>> a98bec6 (fixed doubled code)
 }
 
 saveTaskBtn.addEventListener("click", () => {
