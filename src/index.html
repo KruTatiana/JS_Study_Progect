@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>To-Do Health</title>
-  </head>
-  <body>
-    <header>
-      <!-- меню -->
-    </header>
-    <main>
-      <!-- мотивационные фразы -->
-      <div class="container-fluid container-fluid-quote">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>To-Do Health</title>
+    </head>
+    <body>
+        <header>
+            <!-- меню -->
+        </header>
+
+        <main>
+            <!-- мотивационные фразы -->
+            <div class="container-fluid container-fluid-quote">
         <div class="row row-quote">
           <div class="col col-quote">
       <div class="quote__text" id="quote"></div>
       <p>
       <div class="author" id="author"></div></p>
       </div></div></div>
-      <!-- форма добавления задачи -->
-      <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+            <!-- форма добавления задачи -->
+            <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header modal_header-custom">
@@ -94,6 +95,104 @@
           </div>
         </div>
       </div>
+
+            <div
+                class="d-flex flex-column flex-shrink-0 p-3 bg-body-white menu-container"
+            >
+                <p class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+                    <img src="" class="bi pe-none me-2 profile-img"/>
+                    <span class="fs-4 profile">Профиль</span>
+                </p>
+                <hr />
+                <ul class="nav nav-pills flex-column mb-auto" id="menuListContainer">
+                    <li class="nav-item">
+                        <p class="nav-link tasksLink active-link" id="anyTask">Все задачи</p>
+                    </li>
+                    <li>
+                        <p   class="nav-link tasksLink simpleLink" id="activeTask">Активные</p>
+                    </li>
+                    <li>
+                        <p   class="nav-link tasksLink simpleLink" id="completeTask">Завершенные</p>
+                    </li>
+                    <li>
+                        <p   class="nav-link tasksLink simpleLink" id="delayedTask">Отложенные</p>
+                    </li>
+                    <hr />
+                    <li>
+                        <p
+                            class="nav-link dropdown-toggle"
+                            data-bs-toggle="collapse"
+                            href="#categoryCollapse"
+                            aria-expanded="false"
+                            aria-controls="categoryCollapse"
+                        >
+                            Категории
+                        </p>
+                        <div class="collapse" id="categoryCollapse">
+                            <ul class="nav nav-pills flex-column mb-auto collapse-list">
+                                <li>
+                                    <p   class="nav-link tasksLink categoryLink" id="privateTask">Личное</p>
+                                </li>
+                                <li>
+                                    <p   class="nav-link tasksLink categoryLink" id="jobTask">Работа</p>
+                                </li>
+                                <li>
+                                    <p   class="nav-link tasksLink categoryLink" id="studyTask">Учеба</p>
+                                </li>
+                                <li>
+                                    <p   class="nav-link tasksLink categoryLink" id="healthTask">
+                                        Здоровье
+                                    </p>
+                                </li>
+                                <li>
+                                    <p   class="nav-link tasksLink categoryLink" id="financeTask">
+                                        Финансы
+                                    </p>
+                                </li>
+                                <li>
+                                    <p   class="nav-link tasksLink categoryLink" id="otherTask">Другое</p>
+                                </li>
+                            </ul>
+                            <hr />
+                        </div>
+                    </li>
+                    <li>
+                        <p
+                            class="nav-link dropdown-toggle"
+                            data-bs-toggle="collapse"
+                            href="#priorityCollapse"
+                            aria-expanded="false"
+                            aria-controls="priorityCollapse"
+                        >
+                            Приоритет
+                        </p>
+                        <div class="collapse" id="priorityCollapse">
+                            <ul class="nav nav-pills flex-column mb-auto collapse-list">
+                                <li>
+                                    <p   class="nav-link tasksLink priorityLink" id="highPrioirtyTask">
+                                        Высокий
+                                    </p>
+                                </li>
+                                <li>
+                                    <p   class="nav-link tasksLink priorityLink" id="midPrioirtyTask">
+                                        Средний
+                                    </p>
+                                </li>
+                                <li>
+                                    <p   class="nav-link tasksLink priorityLink" id="lowPrioirtyTask">
+                                        Низкий
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+                <hr />
+                <button class="btn btn-primary btn-exit" type="button">Придумать кнопку</button>
+            </div>
+
+    </body>
       <!-- задачи -->
       <div class="tasks_container w-25 h-75 p-3 d-flex flex-column align-items-center">
         <div><h4>Сегодня</h4><div class="today_date"></div>
@@ -172,8 +271,6 @@
                   <th id="vitaminC" scope="row">0</th>
                   <th id="calories" scope="row">0</th>
                   <th id="calcium" scope="row">0</th>
-                 
-                
               </tbody>
             </table>
       </div>

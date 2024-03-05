@@ -1,11 +1,10 @@
 //Import our custom CSS
-import '../scss/styles.scss'
-
+import "../scss/styles.scss";
 // Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap'
+import * as bootstrap from "bootstrap";
 
 //Import moment library
-var moment = require('moment');
+var moment = require("moment");
 moment().format();
 
 //переменные для элементов DOM
@@ -35,6 +34,7 @@ let close = document.getElementById('close');
 // const partOther = document.getElementById('part_btn-other');
 
 //Код Веры
+
 function onBtnClick(){
 	let ingridientsValue = ingridients.value;
   //const API = 'https://api.edamam.com/api/nutrition-data?app_id=d7be0f59&app_key=7670b7efd74aa8278e4343bfd8644a49&nutrition-type=cooking&ingr=1%20onion'
@@ -89,6 +89,12 @@ window.addEventListener('load', () => {
 	makeQuote();
   });
 
+document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
+
+//function showRegistrationForm() {
+//    document.getElementById('registrationForm').style.display = 'block';
+//  }
+//window.onload = showRegistrationForm();
 
   function makeUsersList() {
   let inputName = document.getElementById('user_name');
@@ -113,7 +119,42 @@ window.addEventListener('load', () => {
 
 // Код Насти
 
+const tasksLinks = document.getElementsByClassName("tasksLink");
 
+const menuListContainer = document.getElementById("menuListContainer");
+
+// добавить заголовок на стринцу !!
+const title = document.getElementById("title");
+
+menuListContainer.addEventListener("click", function (evt) {
+    const eventTarget = evt.target;
+    // получание на стрианице группы задач
+    // получить коллекцию из всех задач tasks !!
+    // for (let i = 0; i < tasks.length; i += 1) {
+    // const task=tasks[i]
+    //     if (task.classList.contains(eventTarget.id)) {
+    //         task.classList.remove("disabled");
+    //     } else {
+    //         task.classList.add("disabled");
+    //     }
+    // }
+    // отображаем в меню выбранный раздел
+    for (let i = 0; i < tasksLinks.length; i += 1) {
+        if (tasksLinks[i].id === eventTarget.id) {
+            tasksLinks[i].classList.add("active-link");
+        } else {
+            tasksLinks[i].classList.remove("active-link");
+        }
+    }
+    // отображаем в заголовке выбранный раздел
+    // if (eventTarget.id === "anyTask" || eventTarget.classList.contains("categoryLink")) {
+    //     title.textContent = eventTarget.textContent;
+    // } else if (eventTarget.classList.contains("simpleLink")) {
+    //     title.textContent = eventTarget.textContent + " задачи";
+    // } else if (eventTarget.classList.contains("priorityLink")) {
+    //     title.textContent = eventTarget.textContent + " приоритет";
+    // }
+});
 
 // Код Тани
 
@@ -219,3 +260,4 @@ saveTaskBtn.addEventListener('click', () =>{
 	taskObject.createTask();
 	//taskObject.makeObj();
 })
+
