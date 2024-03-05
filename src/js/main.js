@@ -68,14 +68,14 @@ function onBtnClickCleaner() {
 }
 document.getElementById("button_cleaner").addEventListener("click", onBtnClickCleaner);
 
-function getrandomFox() {
+function getRandomFox() {
     let API = `https://randomfox.ca/floof/`;
 
     let randomFox = fetch(API)
         .then((res) => res.json())
         .then((data) => (getFox.src = data.image));
 }
-document.getElementById("seeFox").addEventListener("click", getrandomFox);
+document.getElementById("seeFox").addEventListener("click", getRandomFox);
 function closeFox() {
     getFox.src = "";
 }
