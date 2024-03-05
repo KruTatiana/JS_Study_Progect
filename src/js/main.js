@@ -116,6 +116,7 @@ window.addEventListener('load', () => {
 //   getSavedList();
 //   input.value = '';
 // }
+
 todayDate.innerText = moment().format("LL");
 document.getElementById('task_making_form').addEventListener('submit', function(event) {
   event.preventDefault();
@@ -124,6 +125,7 @@ document.getElementById('task_making_form').addEventListener('submit', function(
 let priorityColor;
 let partStr;
 let deadline;
+let taskMemoryObj;
 
 function setPriorityColor(){
 	let priorityElements = document.forms.taskMaking.elements.prioritybtn;
@@ -152,16 +154,19 @@ function setDeadline() {
 } 
 
 class taskCard {
-	constructor(name, description, deadline, color, lifepart){
+	constructor(name, description, deadline, color, lifepart, deadlineDate){
 		this.name = name;
 		this.description = description;
 		this.deadline = deadline;
 		this.color = color;
 		this.lifePart = lifepart;
+		this.deadlineDate = deadlineDate;
 	}
 
 	makeObj(){
-
+		taskMemoryObj.name = this.name;
+		taskMemoryObj.description = this.description;
+		taskMemoryObj.deadline
 	}
 
 	createTask(){
@@ -187,7 +192,7 @@ class taskCard {
 		this.descriptionEl.setAttribute('class', 'description_text');
 		this.priorityLifeEl.setAttribute('class', this.color);
 		this.contentBoxEl.setAttribute('class','content_task_box')
-		this.partLifeEl.textContent  = this.lifePart;
+		this.partLifeEl.innerText  = this.lifePart;
 		this.nameEl.innerText = this.name;
 		this.descriptionEl.innerText = this.description;
 		this.deadlineEl.innerText = this.deadline;
@@ -201,7 +206,8 @@ class taskCard {
 saveTaskBtn.addEventListener('click', () =>{
 	setPriorityColor();
 	setPartStr();
-	let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr);
+	setDeadline();
+	let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr, deadlineDate.value);
 	taskObject.createTask();
 	//taskObject.makeObj();
 })
