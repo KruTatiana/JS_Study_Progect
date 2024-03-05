@@ -113,9 +113,9 @@ function makeUsersList(event) {
     console.log("Новый пользователь был записан в Local Storage.");
 
     let pictureSet = document.querySelector(".picture");
-    let nicknameSet = document.querySelector(".nickname");
+    let nicknameSet = document.querySelector(".nickname_result");
 
-    nicknameSet.innerHTML = users.nickname;
+    nicknameSet.textContent = users.nickname;
     let userImg = `./accets/User${Math.ceil(Math.random() * 3 - 1)}.svg`;
     pictureSet.setAttribute("src", userImg);
     event.preventDefault();
