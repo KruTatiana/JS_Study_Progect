@@ -3,8 +3,6 @@ import "../scss/styles.scss";
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
-//import Icon from '../accets/User2.svg';
-
 //Import moment library
 var moment = require("moment");
 moment().format();
