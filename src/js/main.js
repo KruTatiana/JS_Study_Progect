@@ -60,18 +60,18 @@ function onBtnClickCleaner() {
 }
 document.getElementById("button_cleaner").addEventListener("click", onBtnClickCleaner);
 
-function getRandomFox() {
+function getrandomFox() {
     let API = `https://randomfox.ca/floof/`;
 
     let randomFox = fetch(API)
         .then((res) => res.json())
         .then((data) => (getFox.src = data.image));
 }
-document.getElementById("seeFox").addEventListener("click", getRandomFox);
+document.getElementById("seeFox").addEventListener("click", getrandomFox);
 function closeFox() {
     getFox.src = "";
 }
-document.getElementById("close").addEventListener("click", closeFox); // надо в девелоп заменить кавычки в close ''
+document.getElementById("close").addEventListener("click", closeFox);
 // Код Нади
 function makeQuote() {
     fetch("https://stoic.tekloon.net/stoic-quote")
@@ -122,21 +122,29 @@ function makeUsersList() {
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
 
-function setUserWhenLoadpage() {
-    let usersJSON = localStorage.getItem("user");
-    if (usersJSON) {
-        let usersObject = JSON.parse(usersJSON);
-        let pictureSet = document.querySelector(".profile-img");
-        let nicknameSet = document.querySelector(".nickname_result");
-        nicknameSet.innerHTML = usersObject.nickname;
-        let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
-        pictureSet.setAttribute("src", userImg);
-    } else {
-        new bootstrap.Modal(document.getElementById("registrationForm")).show();
-    }
+//function showRegistrationForm() {
+//    document.getElementById('registrationForm').style.display = 'block';
+//  }
+//window.onload = showRegistrationForm();
+
+function makeUsersList() {
+    let inputName = document.getElementById("user_name");
+    let names = { name: inputName.value };
+    let stringifyInputName = JSON.stringify(names);
+    localStorage.setItem("name", stringifyInputName);
+
+    let inputNickname = document.getElementById("nick_name");
+    let nickNames = { nickname: inputNickname.value };
+    let stringifyInputNickname = JSON.stringify(nickNames);
+    localStorage.setItem("nickname", stringifyInputNickname);
 }
 
-window.onload = setUserWhenLoadpage();
+document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
+
+//function showRegistrationForm() {
+//    document.getElementById('registrationForm').style.display = 'block';
+//  }
+//window.onload = showRegistrationForm();
 
 // Код Насти
 
@@ -192,23 +200,42 @@ let priorityColor;
 let partStr;
 let deadline;
 
-//класс для сборки карточек задач
+function setPriorityColor() {
+    let priorityElements = document.forms.taskMaking.elements.prioritybtn;
+    for (let i of priorityElements) {
+        if (i.checked == true) {
+            priorityColor = `${i.value}_lable`;
+        }
+    }
+}
+
+function setPartStr() {
+    let partElements = document.forms.taskMaking.elements.lifepartbtn;
+    for (let el of partElements) {
+        if (el.checked == true) {
+            let currentSpan = el.nextElementSibling;
+            partStr = currentSpan.textContent;
+        }
+    }
+}
+
+function setDeadline() {
+    let startDate = moment();
+    //let startTime
+    let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
+    deadline = taskDeadlinDate.diff(startDate, "ч.");
+}
 
 class taskCard {
-    constructor(name, description, deadline, color, lifepart, deadlineDate) {
+    constructor(name, description, deadline, color, lifepart) {
         this.name = name;
         this.description = description;
         this.deadline = deadline;
         this.color = color;
         this.lifePart = lifepart;
-        this.deadlineDate = deadlineDate;
     }
 
-    makeObj() {
-        taskMemoryObj.name = this.name;
-        taskMemoryObj.description = this.description;
-        taskMemoryObj.deadline;
-    }
+    makeObj() {}
 
     createTask() {
         this.element = document.createElement("div");
@@ -233,7 +260,7 @@ class taskCard {
         this.descriptionEl.setAttribute("class", "description_text");
         this.priorityLifeEl.setAttribute("class", this.color);
         this.contentBoxEl.setAttribute("class", "content_task_box");
-        this.partLifeEl.innerText = this.lifePart;
+        this.partLifeEl.textContent = this.lifePart;
         this.nameEl.innerText = this.name;
         this.descriptionEl.innerText = this.description;
         this.deadlineEl.innerText = this.deadline;
@@ -245,15 +272,7 @@ class taskCard {
 saveTaskBtn.addEventListener("click", () => {
     setPriorityColor();
     setPartStr();
-    setDeadline();
-    let taskObject = new taskCard(
-        taskName.value,
-        taskDescription.value,
-        deadline,
-        priorityColor,
-        partStr,
-        deadlineDate.value
-    );
+    let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr);
     taskObject.createTask();
     //taskObject.makeObj();
 });
