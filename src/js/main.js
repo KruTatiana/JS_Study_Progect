@@ -4,6 +4,8 @@ import '../scss/styles.scss'
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
+//import Icon from '../accets/User2.svg';
+
 //Import moment library
 var moment = require('moment');
 moment().format();
@@ -16,6 +18,14 @@ const taskDescription = document.getElementById('task_description');
 const deadlineDate = document.querySelector('.end_date');
 const deadlineTime = document.querySelector('.end_time');
 const todayDate = document.querySelector('.today_date');
+let ingridients = document.getElementById('ingridients');
+let sugar = document.getElementById('sugar');
+let iron = document.getElementById('iron');
+let vitaminC = document.getElementById('vitaminC');
+let calories = document.getElementById('calories');
+let calcium = document.getElementById('calcium');
+let getFox = document.getElementById('getFox');
+let close = document.getElementById('close');
 // const priorityHigh = document.getElementById('priority_btn-high');
 // const priorityMedium = document.getElementById('priority_btn-medium');
 // const priorityLow = document.getElementById('priority_btn-low');
@@ -30,6 +40,16 @@ const todayDate = document.querySelector('.today_date');
 
 
 
+  function getrandomFox(){
+  let API = `https://randomfox.ca/floof/`;
+  
+  let randomFox = fetch(API).then((res) => res.json()).then((data) => getFox.src =data.image);
+	}
+	document.getElementById('seeFox').addEventListener('click', getrandomFox);
+function closeFox(){
+	getFox.src ='';
+}
+document.getElementById('close').addEventListener('click', closeFox);
 // Код Нади
 function makeQuote() {
 	fetch('https://stoic.tekloon.net/stoic-quote')
@@ -51,45 +71,36 @@ window.addEventListener('load', () => {
   });
 
 
-  function makeUsersList() {
-  /*let usersArray = [
-    {
-        "name": "Alexandra",
-        "nickname": "User1",
-        "url": "accets/User1.svg",
-      },
-      {
-        "name": "Valery",
-        "nickname": "User2",
-        "url": "accets/User2.svg",
-      },
-      {
-        "name": "Bob",
-        "nickname": "User2",
-        "url": "accets/User3.svg",
-      },
-  ];*/
-  let usersArray = [];
-  let stringifyUsers = JSON.stringify(usersArray);
-  localStorage.setItem('key', stringifyUsers);
-  console.log('Новый пользователь был записан в Local Storage.');
+  function makeUsersList(event) {
+    let inputName = document.getElementById('task_name user_name');
+    let inputNickname = document.getElementById('task_name nick_name');
+    let users = {
+      name: inputName.value,
+      nickname: inputNickname.value,
+    };
+    let stringifyusers = JSON.stringify(users);
+    localStorage.setItem('user', stringifyusers);
+  
+   console.log('Новый пользователь был записан в Local Storage.');
+  
+   let pictureSet = document.querySelector('.picture');
+    let nicknameSet = document.querySelector('.nickname_result');
+  
+    nicknameSet.textContent = users.nickname;
+    let userImg = `./accets/User${Math.ceil(Math.random()*3-1)}.svg`;
+    
+    // const myIcon = new Image();
+    // myIcon.src = Icon;
+    // pictureSet.appendChild(myIcon);
+    pictureSet.setAttribute('src', userImg);
+    event.preventDefault();
+    }
+  
+    document.querySelector('.save_user__btn').addEventListener('click', makeUsersList);
+
+  
 
 
-  let inputName = document.getElementById('user_name').value;
-  //let stringifyInputName = JSON.stringify(inputName);
-  let inputNickname = document.getElementById('nick_name').value;
-  //let stringifyInputNickname = JSON.stringify(inputNickname);
-  //localStorage.setItem('name', stringifyInputName );
- //localStorage.setItem('nickname', stringifyInputNickname);
- usersArray.push(inputName);
- localStorage.setItem('name', stringifyUsers);
- /*const json = {
-    "name": user_name,
-    "nickname": nick_name,
-};*/
-  }
-
-  document.querySelector('.save_user__btn').addEventListener('click', makeUsersList);
 
 //function showRegistrationForm() {
 //    document.getElementById('registrationForm').style.display = 'block';
