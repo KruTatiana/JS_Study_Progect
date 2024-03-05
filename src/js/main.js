@@ -22,7 +22,8 @@ let iron = document.getElementById('iron');
 let vitaminC = document.getElementById('vitaminC');
 let calories = document.getElementById('calories');
 let calcium = document.getElementById('calcium');
-let getRandomRecipes = document.getElementById('getRandomRecipes');
+let getFox = document.getElementById('getFox');
+let close = document.getElementById('close');
 // const priorityHigh = document.getElementById('priority_btn-high');
 // const priorityMedium = document.getElementById('priority_btn-medium');
 // const priorityLow = document.getElementById('priority_btn-low');
@@ -57,14 +58,17 @@ calories.textContent = 0;
   ingridients.value = '';
   }
   document.getElementById('button_cleaner').addEventListener('click', onBtnClickCleaner);
-/*
-  function getRecipies(){
-  let API = `https://api.spoonacular.com/recipes/random?number=1&limitLicense=true&apiKey=618b54d6b79d47e8a682a33d950e7d44`;
+
+  function getrandomFox(){
+  let API = `https://randomfox.ca/floof/`;
   
-  let recipeResult = fetch(API).then((res) => res.json()).then((data) => getRandomRecipes.textContent = data.recipes.originalName);
+  let randomFox = fetch(API).then((res) => res.json()).then((data) => getFox.src =data.image);
 	}
-	getRecipies();
-*/
+	document.getElementById('seeFox').addEventListener('click', getrandomFox);
+function closeFox(){
+	getFox.src ='';
+}
+document.getElementById('close').addEventListener('click', closeFox);
 // Код Нади
 function makeQuote() {
 	fetch('https://stoic.tekloon.net/stoic-quote')
