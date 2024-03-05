@@ -1,11 +1,9 @@
 //Import our custom CSS
 import "../scss/styles.scss";
-import "../scss/styles.scss";
 // Import all of Bootstrap's JS
 import * as bootstrap from "bootstrap";
 
 //Import moment library
-var moment = require("moment");
 var moment = require("moment");
 moment().format();
 
