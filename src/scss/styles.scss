@@ -35,13 +35,12 @@ $screen-xl-min: 2400px;
 
 // Код Веры
 
-#getRandomRecipes{
-  width: 30vw;
+#getRandomRecipes {
+    width: 30vw;
 }
 
-
-// Код Нади 
-.container-fluid-quote  {
+// Код Нади
+.container-fluid-quote {
     padding-top: 4rem;
     padding-bottom: 4rem;
     background-color: $blue4;
@@ -66,28 +65,27 @@ $screen-xl-min: 2400px;
 .openRegistrationButton {
     border-style: none;
 
-    color: $black
+    color: $black;
 }
 
-.btn-outline-primary:hover{
+.btn-outline-primary:hover {
     background-color: $purple3;
-color: $black;
-  }
+    color: $black;
+}
 
-  .save_user__btn{
+.save_user__btn {
     width: 100%;
     margin-top: 5%;
     height: 3em;
     background-color: $blue3;
     color: $white;
-  }
-  
-  .save_user__btn:hover{
+}
+
+.save_user__btn:hover {
     outline: none;
     background-color: $blue4;
-    color:$white;
-  }
-
+    color: $white;
+}
 
 // Код Насти
 
@@ -210,7 +208,7 @@ color: $black;
 .task_description {
     overflow: hidden;
     height: 200px;
-
+}
 
 .task_name:focus,
 .task_description:focus {
@@ -289,7 +287,6 @@ input[type="radio"]:checked + .btn_low {
     background-color: $purple3;
 }
 
-
 .low_lable {
     width: 10%;
     border: none;
@@ -324,30 +321,30 @@ input[type="radio"]:checked + .life_part__btn {
     color: $white;
 }
 
-.basis_btn{
-  flex-basis: 28%;
+.basis_btn {
+    flex-basis: 28%;
 }
 
-.tasks_list{
-  width: 80%;
-  margin-bottom: 4%;
+.tasks_list {
+    width: 80%;
+    margin-bottom: 4%;
 }
 
 .new_task_element {
-  display: flex;
-  width: 100%;
-  border: solid 2px $purple1;
-  border-radius: 6px;
+    display: flex;
+    width: 100%;
+    border: solid 2px $purple1;
+    border-radius: 6px;
 }
 
-.task_chekbox{
-  display: block;
-  margin-left: 10px;
-  margin-right: 20px;
+.task_chekbox {
+    display: block;
+    margin-left: 10px;
+    margin-right: 20px;
 }
 
-.content_task_box{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.content_task_box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
