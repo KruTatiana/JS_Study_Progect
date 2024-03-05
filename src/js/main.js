@@ -16,13 +16,11 @@ const deadlineDate = document.querySelector('.end_date');
 const deadlineTime = document.querySelector('.end_time');
 const todayDate = document.querySelector('.today_date');
 let ingridients = document.getElementById('ingridients');
-let button = document.getElementById('button');
 let sugar = document.getElementById('sugar');
 let iron = document.getElementById('iron');
 let vitaminC = document.getElementById('vitaminC');
 let calories = document.getElementById('calories');
 let calcium = document.getElementById('calcium');
-let analysisForm = document.getElementById('AnalysisForm');
 // const priorityHigh = document.getElementById('priority_btn-high');
 // const priorityMedium = document.getElementById('priority_btn-medium');
 // const priorityLow = document.getElementById('priority_btn-low');
@@ -45,6 +43,7 @@ function onBtnClick(){
   let vitaminCResult = fetch(API).then((res) => res.json()).then((data) => vitaminC.textContent = Math.ceil(data.totalNutrients.VITC.quantity));
   let calciumCResult = fetch(API).then((res) => res.json()).then((data) => calcium.textContent = Math.ceil(data.totalNutrients.CA.quantity));
 	}
+	document.getElementById('button_find').addEventListener('click', onBtnClick);
   
   function onBtnClickCleaner(){
    
@@ -55,7 +54,7 @@ calories.textContent = 0;
   calcium.textContent = 0;
   ingridients.value = '';
   }
-
+  document.getElementById('button_cleaner').addEventListener('click', onBtnClickCleaner);
 
 // Код Нади
 function makeQuote() {
