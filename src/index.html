@@ -191,14 +191,54 @@
                 <hr />
                 <button class="btn btn-primary btn-exit" type="button">Придумать кнопку</button>
             </div>
-
-            <!-- задачи -->
-            <div class="tasks_container w-25 h-75 p-3 d-flex flex-column align-items-center">
-                <h4>Сегодня<span class="today_date"></span></h4>
-                <button class="add_task btn" data-bs-toggle="modal" data-bs-target="#taskModal">Добавить задачу</button>
+              <div class="modal-body">
+                <form>
+                    <input type="text" id="task_name user_name" class= "form-control task_name user_name" placeholder="Ваше имя" />
+                    <input
+                      type="text"
+                      id="task_name nick_name"
+                      class="form-control task_name nickname"
+                      placeholder="Ваш никнейм"
+                    />
+                  <button class="save_user__btn btn">Сохранить</button>
+                </form>
+              </div>
             </div>
-            <!-- рецепты -->
-        </main>
-        <footer></footer>
-    </body>
+          </div>
+        </div>
+      </div>
+      <!-- рецепты-->
+      <div id="edamam-badge" data-color="white"></div>
+      <div class="container">
+          <div class="el e1-1">
+              
+          <input type="text" id="ingridients" placeholder="1 apple">
+          <button onclick="onBtnClick()" id="button" type="button" class="btn btn-primary">Найти</button>
+          <button onclick="onBtnClickCleaner()" id="button" type="button" class="btn btn-primary">Очистить форму</button>
+        </div>
+          <table class="table">
+              <thead>
+                <tr class="table-info">
+                  <th scope="col">sugar (g)</th>
+                  <th scope="col">iron (mg)</th>
+                  <th scope="col">vitaminC (mg)</th>
+                  <th scope="col">Calories</th>
+                  <th scope="col">Calcium (mg)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th id="sugar" scope="row">0</th>
+                  <th id="iron" scope="row">0</th>
+                  <th id="vitaminC" scope="row">0</th>
+                  <th id="calories" scope="row">0</th>
+                  <th id="calcium" scope="row">0</th>
+                 
+                
+              </tbody>
+            </table>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
 </html>
