@@ -294,6 +294,7 @@ class taskCard {
     // showTask(){
 
     // }
+<<<<<<< HEAD
 }
 
 //вызов JSON из LocalStorage с проверкой на наличие в нем данных
@@ -427,6 +428,8 @@ function setChecked(check) {
             window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
         }
     }
+=======
+>>>>>>> a98bec6 (fixed doubled code)
 }
 
 //кнопка "сохранить задачу" из формы добавления задачи
