@@ -60,14 +60,14 @@ function onBtnClickCleaner() {
 }
 document.getElementById("button_cleaner").addEventListener("click", onBtnClickCleaner);
 
-function getRandomFox() {
+function getrandomFox() {
     let API = `https://randomfox.ca/floof/`;
 
     let randomFox = fetch(API)
         .then((res) => res.json())
         .then((data) => (getFox.src = data.image));
 }
-document.getElementById("seeFox").addEventListener("click", getRandomFox);
+document.getElementById("seeFox").addEventListener("click", getrandomFox);
 function closeFox() {
     getFox.src = "";
 }
@@ -122,21 +122,29 @@ function makeUsersList() {
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
 
-function setUserWhenLoadpage() {
-    let usersJSON = localStorage.getItem("user");
-    if (usersJSON) {
-        let usersObject = JSON.parse(usersJSON);
-        let pictureSet = document.querySelector(".profile-img");
-        let nicknameSet = document.querySelector(".nickname_result");
-        nicknameSet.innerHTML = usersObject.nickname;
-        let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
-        pictureSet.setAttribute("src", userImg);
-    } else {
-        new bootstrap.Modal(document.getElementById("registrationForm")).show();
-    }
+//function showRegistrationForm() {
+//    document.getElementById('registrationForm').style.display = 'block';
+//  }
+//window.onload = showRegistrationForm();
+
+function makeUsersList() {
+    let inputName = document.getElementById("user_name");
+    let names = { name: inputName.value };
+    let stringifyInputName = JSON.stringify(names);
+    localStorage.setItem("name", stringifyInputName);
+
+    let inputNickname = document.getElementById("nick_name");
+    let nickNames = { nickname: inputNickname.value };
+    let stringifyInputNickname = JSON.stringify(nickNames);
+    localStorage.setItem("nickname", stringifyInputNickname);
 }
 
-window.onload = setUserWhenLoadpage();
+document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
+
+//function showRegistrationForm() {
+//    document.getElementById('registrationForm').style.display = 'block';
+//  }
+//window.onload = showRegistrationForm();
 
 // Код Насти
 
@@ -310,6 +318,7 @@ class taskCard {
         this.checkEl.setAttribute("type", "checkbox");
         this.checkEl.setAttribute("class", "task_checkbox");
         this.checkEl.setAttribute("id", this.id);
+        this.checkEl.setAttribute("onclick", "addCheck(this)");
         this.partLifeEl.setAttribute("class", "part_life_element");
         this.nameEl.setAttribute("class", "task_name_text");
         this.descriptionEl.setAttribute("class", "description_text");
@@ -484,12 +493,3 @@ saveTaskBtn.addEventListener("click", () => {
     deadlineDate.value = "";
     deadlineTime.value = "";
 });
-
-//Clean LokalStorage
-
-const clearLocalStorage = () => {
-    window.localStorage.clear();
-    console.log("Local Storage очищен.");
-};
-
-document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
