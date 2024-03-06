@@ -334,7 +334,18 @@ function addCheck(el) {
 saveTaskBtn.addEventListener("click", () => {
     setPriorityColor();
     setPartStr();
-    let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr);
+    setDeadline();
+    setId();
+    let taskObject = new taskCard(
+        taskName.value,
+        taskDescription.value,
+        deadline,
+        priorityColor,
+        partStr,
+        deadlineDate.value,
+        deadlineTime.value,
+        taskId
+    );
     taskObject.createTask();
     taskObject.makeObj();
     setTaskObjectToStorage();
