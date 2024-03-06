@@ -60,14 +60,14 @@ function onBtnClickCleaner() {
 }
 document.getElementById("button_cleaner").addEventListener("click", onBtnClickCleaner);
 
-function getrandomFox() {
+function getRandomFox() {
     let API = `https://randomfox.ca/floof/`;
 
     let randomFox = fetch(API)
         .then((res) => res.json())
         .then((data) => (getFox.src = data.image));
 }
-document.getElementById("seeFox").addEventListener("click", getrandomFox);
+document.getElementById("seeFox").addEventListener("click", getRandomFox);
 function closeFox() {
     getFox.src = "";
 }
@@ -92,7 +92,7 @@ window.addEventListener("load", () => {
     makeQuote();
 });
 
-function makeUsersList(event) {
+function makeUsersList() {
     let inputName = document.getElementById("task_name user_name");
     let inputNickname = document.getElementById("task_name nick_name");
     let randNumb = Math.ceil(Math.random() * 3);
@@ -109,7 +109,7 @@ function makeUsersList(event) {
 
     console.log("Новый пользователь был записан в Local Storage.");
 
-    let pictureSet = document.querySelector(".picture");
+    let pictureSet = document.querySelector(".profile-img");
     let nicknameSet = document.querySelector(".nickname_result");
 
     let usersJSON = localStorage.getItem("user");
@@ -118,22 +118,22 @@ function makeUsersList(event) {
     nicknameSet.innerHTML = usersObject.nickname;
     let userImg = `./accets/User${randNumb}.svg`;
     pictureSet.setAttribute("src", userImg);
-    event.preventDefault();
 }
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
 
 function setUserWhenLoadpage() {
-    let pictureSet = document.querySelector(".profile-img");
-    let nicknameSet = document.querySelector(".nickname_result");
-
     let usersJSON = localStorage.getItem("user");
-    let usersObject = JSON.parse(usersJSON);
-
-    nicknameSet.innerHTML = usersObject.nickname;
-    //nicknameSet.innerHTML = users.nickname;
-    let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
-    pictureSet.setAttribute("src", userImg);
+    if (usersJSON) {
+        let usersObject = JSON.parse(usersJSON);
+        let pictureSet = document.querySelector(".profile-img");
+        let nicknameSet = document.querySelector(".nickname_result");
+        nicknameSet.innerHTML = usersObject.nickname;
+        let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
+        pictureSet.setAttribute("src", userImg);
+    } else {
+        new bootstrap.Modal(document.getElementById("registrationForm")).show();
+    }
 }
 
 window.onload = setUserWhenLoadpage();
@@ -355,7 +355,8 @@ function checkStorage() {
 function setDeadline() {
     let startDate = moment();
     let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
-    deadline = taskDeadlinDate.diff(startDate, "ч.");
+    deadline = taskDeadlinDate.diff(startDate, "hours");
+    console.log(deadline);
 }
 
 function setTaskObjectToStorage() {
@@ -426,21 +427,39 @@ function setId() {
     window.localStorage.setItem("idArray", JSON.stringify(idArray));
 }
 
-//Проблема подключения динамических чекбоксов!
+//подключение динамических чекбоксов
 
-document.querySelector(".task_checkbox").addEventListener("checked", (el) => {
-    let checkboxId = el.id;
-    arrayFromStorage = localStorage.getItem("tasksStorage");
-    arrayFromStorage = JSON.parse(arrayFromStorage);
-    for (let obj of arrayFromStorage) {
-        obj.forEach((date) => {
-            if (date.id == checkboxId) {
-                date.checkbox = "checked";
+taskList.onclick = function (event) {
+    let target = event.target;
+    if (target.type != "checkbox") return;
+    setChecked(target);
+};
+
+function setChecked(check) {
+    let checkboxСond = check.checked;
+    let checkboxId = check.id;
+    if (checkboxСond == true) {
+        arrayFromStorage = localStorage.getItem("tasksStorage");
+        arrayFromStorage = JSON.parse(arrayFromStorage);
+        for (let obj of arrayFromStorage) {
+            if (obj.id == checkboxId) {
+                obj.checkbox = "checked";
             }
-        });
-        window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
+            window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
+        }
+    } else if (checkboxСond == false) {
+        arrayFromStorage = localStorage.getItem("tasksStorage");
+        arrayFromStorage = JSON.parse(arrayFromStorage);
+        for (let obj of arrayFromStorage) {
+            if (obj.id == checkboxId) {
+                delete obj.checkbox;
+            }
+            window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
+        }
     }
-});
+}
+
+//кнопка "сохранить задачу" из формы добавления задачи
 
 saveTaskBtn.addEventListener("click", () => {
     setPriorityColor();
