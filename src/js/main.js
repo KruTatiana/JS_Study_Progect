@@ -260,7 +260,89 @@ class taskCard {
     // showTask(){
 
     // }
-<<<<<<< HEAD
+}
+
+function checkStorage() {
+    arrayFromStorage = localStorage.getItem("tasksStorage");
+    arrayFromStorage = arrayFromStorage ? JSON.parse(arrayFromStorage) : [];
+}
+
+function setDeadline() {
+    let startDate = moment();
+    let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
+    deadline = taskDeadlinDate.diff(startDate, "ч.");
+}
+
+function setTaskObjectToStorage() {
+    checkStorage();
+    arrayFromStorage.push(taskMemoryObj);
+    window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
+}
+
+function getTaskList() {
+    setDeadline();
+    checkStorage();
+    for (let obj of arrayFromStorage) {
+        let cardObject = new taskCard(
+            obj.name,
+            obj.description,
+            deadline,
+            obj.color,
+            obj.lifePart,
+            obj.deadlineDate,
+            obj.deadlineTime,
+            obj.id,
+            obj.checkbox
+        );
+        cardObject.createTask();
+    }
+}
+getTaskList();
+
+function setPriorityColor() {
+    let priorityElements = document.forms.taskMaking.elements.prioritybtn;
+    for (let i of priorityElements) {
+        if (i.checked == true) {
+            priorityColor = `${i.value}_lable`;
+            i.checked = "";
+            i.checked = "";
+        }
+    }
+}
+
+function setPartStr() {
+    let partElements = document.forms.taskMaking.elements.lifepartbtn;
+    for (let el of partElements) {
+        if (el.checked == true) {
+            let currentSpan = el.nextElementSibling;
+            partStr = currentSpan.textContent;
+            el.checked = "";
+            el.checked = "";
+        }
+    }
+}
+
+function setId() {
+    let idArray = localStorage.getItem("idArray");
+    idArray = idArray ? JSON.parse(idArray) : [];
+    if (idArray.length == 0) {
+        taskId = "taskId1";
+    } else {
+        taskId = `taskId${idArray.length}`;
+    }
+    idArray.push(taskId);
+}
+
+function addCheck(el) {
+    let checkboxId = el.id;
+    checkStorage();
+    for (let obj of arrayFromStorage) {
+        obj.forEach((date) => {
+            if (date.id == checkboxId) {
+                date.checkbox = "checked";
+            }
+        });
+    }
 }
 
 //вызов JSON из LocalStorage с проверкой на наличие в нем данных
@@ -421,3 +503,26 @@ const clearLocalStorage = () => {
 };
 
 document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
+saveTaskBtn.addEventListener("click", () => {
+    setPriorityColor();
+    setPartStr();
+    setDeadline();
+    setId();
+    let taskObject = new taskCard(
+        taskName.value,
+        taskDescription.value,
+        deadline,
+        priorityColor,
+        partStr,
+        deadlineDate.value,
+        deadlineTime.value,
+        taskId
+    );
+    taskObject.createTask();
+    taskObject.makeObj();
+    setTaskObjectToStorage();
+    taskName.value = "";
+    taskDescription.value = "";
+    deadlineDate.value = "";
+    deadlineTime.value = "";
+});
