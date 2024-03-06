@@ -478,6 +478,15 @@ function setId() {
         taskId = `taskId${idArray.length}`;
     }
     idArray.push(taskId);
+    let idArray = localStorage.getItem("idArray");
+    idArray = idArray ? JSON.parse(idArray) : [];
+    if (idArray.length == 0) {
+        taskId = "taskId1";
+    } else {
+        let num = idArray.length + 1;
+        taskId = `taskId${num}`;
+    }
+    idArray.push(taskId);
 }
 
 function addCheck(el) {
@@ -495,7 +504,32 @@ function addCheck(el) {
 saveTaskBtn.addEventListener("click", () => {
     setPriorityColor();
     setPartStr();
-    let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr);
+    setDeadline();
+    setId();
+    let taskObject = new taskCard(
+        taskName.value,
+        taskDescription.value,
+        deadline,
+        priorityColor,
+        partStr,
+        deadlineDate.value,
+        deadlineTime.value,
+        taskId
+    );
     taskObject.createTask();
-    //taskObject.makeObj();
+    taskObject.makeObj();
+    setTaskObjectToStorage();
+    taskName.value = "";
+    taskDescription.value = "";
+    deadlineDate.value = "";
+    deadlineTime.value = "";
 });
+
+//Clean LokalStorage
+
+const clearLocalStorage = () => {
+    window.localStorage.clear();
+    console.log("Local Storage очищен.");
+};
+
+document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
