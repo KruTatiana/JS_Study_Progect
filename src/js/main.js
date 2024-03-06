@@ -93,19 +93,19 @@ window.addEventListener("load", () => {
 });
 
 function makeUsersList(event) {
-  let inputName = document.getElementById('task_name user_name');
-  let inputNickname = document.getElementById('task_name nick_name');
-  let randNumb = Math.ceil(Math.random()*3);
-  
-  let users = {
-    name: inputName.value,
-    nickname: inputNickname.value,
-    pictureNumber: randNumb,
-  };
-  let stringifyusers = JSON.stringify(users);
-  localStorage.setItem('user', stringifyusers);
-  localStorage.removeItem('tasksStorage');
-  localStorage.removeItem('idArray');
+    let inputName = document.getElementById("task_name user_name");
+    let inputNickname = document.getElementById("task_name nick_name");
+    let randNumb = Math.ceil(Math.random() * 3);
+
+    let users = {
+        name: inputName.value,
+        nickname: inputNickname.value,
+        pictureNumber: randNumb,
+    };
+    let stringifyusers = JSON.stringify(users);
+    localStorage.setItem("user", stringifyusers);
+    localStorage.removeItem("tasksStorage");
+    localStorage.removeItem("idArray");
 
     console.log("Новый пользователь был записан в Local Storage.");
 
@@ -130,6 +130,22 @@ function setUserWhenLoadpage() {
     nicknameSet.innerHTML = usersObject.nickname;
     let userImg = `./accets/User${randNumb}.svg`;
     pictureSet.setAttribute("src", userImg);
+}
+
+document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
+
+function setUserWhenLoadpage() {
+    let usersJSON = localStorage.getItem("user");
+    if (usersJSON) {
+        let usersObject = JSON.parse(usersJSON);
+        let pictureSet = document.querySelector(".profile-img");
+        let nicknameSet = document.querySelector(".nickname_result");
+        nicknameSet.innerHTML = usersObject.nickname;
+        let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
+        pictureSet.setAttribute("src", userImg);
+    } else {
+        new bootstrap.Modal(document.getElementById("registrationForm")).show();
+    }
 }
 
 window.onload = setUserWhenLoadpage();
