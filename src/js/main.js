@@ -478,15 +478,6 @@ function setId() {
         taskId = `taskId${idArray.length}`;
     }
     idArray.push(taskId);
-    let idArray = localStorage.getItem("idArray");
-    idArray = idArray ? JSON.parse(idArray) : [];
-    if (idArray.length == 0) {
-        taskId = "taskId1";
-    } else {
-        let num = idArray.length + 1;
-        taskId = `taskId${num}`;
-    }
-    idArray.push(taskId);
 }
 
 function addCheck(el) {
