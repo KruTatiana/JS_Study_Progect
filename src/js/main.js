@@ -169,20 +169,6 @@ menuListContainer.addEventListener("click", function (evt) {
 
 // Код Тани
 
-// function getTaskObj() {
-//   const input = document.getElementById('form_task');
-//   let x = input.value;
-//   if(x.trim() !== ''){
-//     let tasksArray = window.localStorage.getItem("tasksArray");
-//     tasksArray = tasksArray ? JSON.parse(tasksArray) : [];
-//     tasksArray.push(input.value);
-//     window.localStorage.setItem("tasksArray",JSON.stringify(tasksArray));
-//   }
-//   list.innerHTML = '';
-//   getSavedList();
-//   input.value = '';
-// }
-
 todayDate.innerText = moment().format("LL");
 document.getElementById("task_making_form").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -193,79 +179,7 @@ let partStr;
 let deadline;
 let taskMemoryObj = {};
 let taskId;
-let arrayFromStorage
-
-function getTasksStorage() {
-	const JSONarray = window.localStorage.getItem('tasksStorage');
-	arrayFromStorage = JSON.parse(JSONarray);
-}
-
-function setTaskObjectToStorage() {
-	getTasksStorage()
-	arrayFromStorage.push(taskMemoryObj);
-	window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
-}
-
-(function() {
-  let tasksStorage = localStorage.getItem('tasksStorage');
-	tasksStorage = tasksStorage ? JSON.parse(tasksStorage) : [];
-	for (let obj of tasksStorage){
-		obj.forEach(date => {
-			let cardObject = new taskCard (date.name, date.description, date.color, date.lifePart, date.deadlineDate, date.deadlineTime, date.id, date.checkbox);
-			cardObject.createTask();
-			});
-		}
-});
-
-function setPriorityColor() {
-    let priorityElements = document.forms.taskMaking.elements.prioritybtn;
-    for (let i of priorityElements) {
-        if (i.checked == true) {
-            priorityColor = `${i.value}_lable`;
-			i.checked = '';
-        }
-    }
-}
-
-function setPartStr() {
-    let partElements = document.forms.taskMaking.elements.lifepartbtn;
-    for (let el of partElements) {
-        if (el.checked == true) {
-            let currentSpan = el.nextElementSibling;
-            partStr = currentSpan.textContent;
-			el.checked ='';
-        }
-    }
-}
-
-function setDeadline() {
-	let startDate = moment();
-	let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
-	deadline = taskDeadlinDate.diff(startDate, 'ч.')
-} 
-
-function setId() {
-	let idArray = localStorage.getItem('idArray');
-	idArray = idArray ? JSON.parse(idArray) : [];
-	if (idArray.length == 0) {
-		taskId = 'taskId1';
-	}else{
-		taskId = `taskId${idArray.length}`;
-		}
-	idArray.push(taskId);
-}
-
-function addCheck(el) {
-	let checkboxId = el.id;
-	getTasksStorage();
-	for (let obj of arrayFromStorage){
-		obj.forEach(date => {
-			if (date.id == checkboxId){
-				date.checkbox = "checked";
-			}
-		});
-	}
-}
+let arrayFromStorage;
 
 class taskCard {
 	constructor(name, description, deadline, color, lifepart, deadlineDate, deadlineTime, id, checkbox){
@@ -330,10 +244,80 @@ class taskCard {
 		}
 	}
 
-
 	// showTask(){
 
 	// }
+}
+
+function checkStorage() {
+	arrayFromStorage = localStorage.getItem('tasksStorage');
+	arrayFromStorage = arrayFromStorage ? JSON.parse(arrayFromStorage) : [];
+}
+
+function setDeadline() {
+	let startDate = moment();
+	let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
+	deadline = taskDeadlinDate.diff(startDate, 'ч.')
+} 
+
+function setTaskObjectToStorage() {
+	checkStorage();
+	arrayFromStorage.push(taskMemoryObj);
+	window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
+}
+
+function getTaskList() {
+	setDeadline();
+  checkStorage();
+	for (let obj of arrayFromStorage){
+			let cardObject = new taskCard (obj.name, obj.description, deadline, obj.color, obj.lifePart, obj.deadlineDate, obj.deadlineTime, obj.id, obj.checkbox);
+			cardObject.createTask();
+		}
+	}
+	getTaskList();
+
+function setPriorityColor() {
+    let priorityElements = document.forms.taskMaking.elements.prioritybtn;
+    for (let i of priorityElements) {
+        if (i.checked == true) {
+            priorityColor = `${i.value}_lable`;
+			i.checked = '';
+        }
+    }
+}
+
+function setPartStr() {
+    let partElements = document.forms.taskMaking.elements.lifepartbtn;
+    for (let el of partElements) {
+        if (el.checked == true) {
+            let currentSpan = el.nextElementSibling;
+            partStr = currentSpan.textContent;
+			el.checked ='';
+        }
+    }
+}
+
+function setId() {
+	let idArray = localStorage.getItem('idArray');
+	idArray = idArray ? JSON.parse(idArray) : [];
+	if (idArray.length == 0) {
+		taskId = 'taskId1';
+	}else{
+		taskId = `taskId${idArray.length}`;
+		}
+	idArray.push(taskId);
+}
+
+function addCheck(el) {
+	let checkboxId = el.id;
+	checkStorage();
+	for (let obj of arrayFromStorage){
+		obj.forEach(date => {
+			if (date.id == checkboxId){
+				date.checkbox = "checked";
+			}
+		});
+	}
 }
 
 saveTaskBtn.addEventListener('click', () =>{
