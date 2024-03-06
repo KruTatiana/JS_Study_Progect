@@ -292,7 +292,6 @@ function setPriorityColor() {
         if (i.checked == true) {
             priorityColor = `${i.value}_lable`;
             i.checked = "";
-            i.checked = "";
         }
     }
 }
@@ -303,7 +302,6 @@ function setPartStr() {
         if (el.checked == true) {
             let currentSpan = el.nextElementSibling;
             partStr = currentSpan.textContent;
-            el.checked = "";
             el.checked = "";
         }
     }
