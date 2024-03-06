@@ -103,9 +103,12 @@ window.addEventListener("load", () => {
 function makeUsersList(event) {
     let inputName = document.getElementById("task_name user_name");
     let inputNickname = document.getElementById("task_name nick_name");
+    let randNumb = Math.ceil(Math.random() * 3 - 1);
+
     let users = {
         name: inputName.value,
         nickname: inputNickname.value,
+        pictureNumber: randNumb,
     };
     let stringifyusers = JSON.stringify(users);
     localStorage.setItem("user", stringifyusers);
@@ -122,11 +125,26 @@ function makeUsersList(event) {
 }
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
+//window.onload = makeUsersList();
+
+function setUserWhenLoadpage() {
+    let pictureSet = document.querySelector(".profile-img");
+    let nicknameSet = document.querySelector(".nickname_result");
+
+    let usersJSON = localStorage.getItem("user");
+    let usersObject = JSON.parse(usersJSON);
+
+    nicknameSet.innerHTML = usersObject.nickname;
+    //nicknameSet.innerHTML = users.nickname;
+    let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
+    pictureSet.setAttribute("src", userImg);
+}
+
+window.onload = setUserWhenLoadpage();
 
 //function showRegistrationForm() {
 //    document.getElementById('registrationForm').style.display = 'block';
 //  }
-//window.onload = showRegistrationForm();
 
 // Код Насти
 
