@@ -403,7 +403,32 @@ function setChecked(check) {
 saveTaskBtn.addEventListener("click", () => {
     setPriorityColor();
     setPartStr();
-    let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr);
+    setDeadline();
+    setId();
+    let taskObject = new taskCard(
+        taskName.value,
+        taskDescription.value,
+        deadline,
+        priorityColor,
+        partStr,
+        deadlineDate.value,
+        deadlineTime.value,
+        taskId
+    );
     taskObject.createTask();
-    //taskObject.makeObj();
+    taskObject.makeObj();
+    setTaskObjectToStorage();
+    taskName.value = "";
+    taskDescription.value = "";
+    deadlineDate.value = "";
+    deadlineTime.value = "";
 });
+
+//Clean LokalStorage
+
+const clearLocalStorage = () => {
+    window.localStorage.clear();
+    console.log("Local Storage очищен.");
+};
+
+document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
