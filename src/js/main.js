@@ -438,3 +438,12 @@ saveTaskBtn.addEventListener("click", () => {
     taskObject.createTask();
     //taskObject.makeObj();
 });
+
+//Clean LokalStorage
+
+const clearLocalStorage = () => {
+    window.localStorage.clear();
+    console.log("Local Storage очищен.");
+};
+
+document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
