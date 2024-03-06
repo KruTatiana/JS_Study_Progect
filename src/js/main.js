@@ -247,7 +247,6 @@ class taskCard {
     // showTask(){
 
     // }
-<<<<<<< HEAD
 }
 
 function checkStorage() {
