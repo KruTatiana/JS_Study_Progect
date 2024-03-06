@@ -482,3 +482,12 @@ saveTaskBtn.addEventListener("click", () => {
     deadlineDate.value = "";
     deadlineTime.value = "";
 });
+
+//Clean LokalStorage
+
+const clearLocalStorage = () => {
+    window.localStorage.clear();
+    console.log("Local Storage очищен.");
+};
+
+document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
