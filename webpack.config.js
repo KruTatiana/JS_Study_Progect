@@ -4,6 +4,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -21,7 +22,15 @@ module.exports = {
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new MomentLocalesPlugin({
       localesToKeep: ['es-us', 'ru'],
-    })
+    }),
+    new CopyPlugin({
+        patterns: [
+            {
+              from: path.resolve(__dirname, 'src/accets'),
+              to:   path.resolve(__dirname, 'dist/accets')
+            }
+          ]
+        })
   ],
   module: {
     rules: [
