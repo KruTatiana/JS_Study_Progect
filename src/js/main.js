@@ -182,16 +182,19 @@ let taskId;
 let arrayFromStorage;
 
 class taskCard {
-    constructor(name, description, deadline, color, lifepart, deadlineDate, deadlineTime, id, checkbox) {
+    constructor(name, description, deadline, color, lifepart, deadlineDate) {
         this.name = name;
         this.description = description;
         this.deadline = deadline;
         this.color = color;
         this.lifePart = lifepart;
         this.deadlineDate = deadlineDate;
-        this.deadlineTime = deadlineTime;
-        this.id = id;
-        this.checkbox = checkbox;
+    }
+
+    makeObj() {
+        taskMemoryObj.name = this.name;
+        taskMemoryObj.description = this.description;
+        taskMemoryObj.deadline;
     }
 
     createTask() {
@@ -207,16 +210,12 @@ class taskCard {
         this.element.appendChild(this.priorityLifeEl);
         this.element.appendChild(this.checkEl);
         this.element.appendChild(this.contentBoxEl);
-        this.contentBoxEl.appendChild(this.partLifeEl);
         this.contentBoxEl.appendChild(this.nameEl);
         this.contentBoxEl.appendChild(this.descriptionEl);
         this.element.appendChild(this.deadlineEl);
         this.element.setAttribute("class", "new_task_element");
         this.checkEl.setAttribute("type", "checkbox");
         this.checkEl.setAttribute("class", "task_checkbox");
-        this.checkEl.setAttribute("id", this.id);
-        this.checkEl.setAttribute("onclick", "addCheck(this)");
-        this.partLifeEl.setAttribute("class", "part_life_element");
         this.nameEl.setAttribute("class", "task_name_text");
         this.descriptionEl.setAttribute("class", "description_text");
         this.priorityLifeEl.setAttribute("class", this.color);
@@ -417,16 +416,13 @@ saveTaskBtn.addEventListener("click", () => {
     setPriorityColor();
     setPartStr();
     setDeadline();
-    setId();
     let taskObject = new taskCard(
         taskName.value,
         taskDescription.value,
         deadline,
         priorityColor,
         partStr,
-        deadlineDate.value,
-        deadlineTime.value,
-        taskId
+        deadlineDate.value
     );
     taskObject.createTask();
     taskObject.makeObj();
