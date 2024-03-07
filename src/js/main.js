@@ -169,10 +169,14 @@ menuListContainer.addEventListener("click", function (evt) {
 
 // Код Тани
 
+//вывод в список задач сегодняшней даты
+
 todayDate.innerText = moment().format("LL");
 document.getElementById("task_making_form").addEventListener("submit", function (event) {
     event.preventDefault();
 });
+
+//глобальные переменные
 
 let priorityColor;
 let partStr;
@@ -180,6 +184,8 @@ let deadline;
 let taskMemoryObj = {};
 let taskId;
 let arrayFromStorage;
+
+//класс для сборки карточек задач
 
 class taskCard {
 	constructor(name, description, deadline, color, lifepart, deadlineDate, deadlineTime, id, checkbox){
@@ -215,7 +221,6 @@ class taskCard {
 		this.checkEl.setAttribute('type','checkbox');
 		this.checkEl.setAttribute('class','task_checkbox');
 		this.checkEl.setAttribute('id',this.id);
-		this.checkEl.setAttribute('onclick', 'addCheck(this)');
 		this.partLifeEl.setAttribute('class','part_life_element')
 		this.nameEl.setAttribute('class','task_name_text');
 		this.descriptionEl.setAttribute('class', 'description_text');
@@ -249,16 +254,22 @@ class taskCard {
 	// }
 }
 
+//вызов JSON из LocalStorage с проверкой на наличие в нем данных
+
 function checkStorage() {
 	arrayFromStorage = localStorage.getItem('tasksStorage');
 	arrayFromStorage = arrayFromStorage ? JSON.parse(arrayFromStorage) : [];
 }
+
+//Расчет даты дедлайна задачи
 
 function setDeadline() {
 	let startDate = moment();
 	let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
 	deadline = taskDeadlinDate.diff(startDate, 'ч.')
 } 
+
+
 
 function setTaskObjectToStorage() {
 	checkStorage();
@@ -306,20 +317,25 @@ function setId() {
 		let num = idArray.length+1
 		taskId = `taskId${num}`;
 		}
-	idArray.push(taskId);
+		idArray.push(taskId);
+	  window.localStorage.setItem("idArray", JSON.stringify(idArray));
 }
 
-function addCheck(el) {
+//Проблема подключения динамических чекбоксов!
+
+document.querySelector('.task_checkbox').addEventListener('checked', (el) => {
 	let checkboxId = el.id;
-	checkStorage();
+	arrayFromStorage = localStorage.getItem('tasksStorage');
+	arrayFromStorage = JSON.parse(arrayFromStorage);
 	for (let obj of arrayFromStorage){
 		obj.forEach(date => {
 			if (date.id == checkboxId){
 				date.checkbox = "checked";
 			}
 		});
+		window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
 	}
-}
+})
 
 saveTaskBtn.addEventListener('click', () =>{
 	setPriorityColor();
