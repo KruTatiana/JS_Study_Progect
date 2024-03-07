@@ -68,16 +68,14 @@ function onBtnClickCleaner() {
 }
 document.getElementById("button_cleaner").addEventListener("click", onBtnClickCleaner);
 
-function getrandomFox() {
-    let API = `https://randomfox.ca/floof/`;
-
-    let randomFox = fetch(API)
-        .then((res) => res.json())
-        .then((data) => (getFox.src = data.image));
-}
-document.getElementById("seeFox").addEventListener("click", getrandomFox);
-function closeFox() {
-    getFox.src = "";
+  function getRandomFox(){
+  let API = `https://randomfox.ca/floof/`;
+  
+  let randomFox = fetch(API).then((res) => res.json()).then((data) => getFox.src =data.image);
+	}
+	document.getElementById('seeFox').addEventListener('click', getRandomFox);
+function closeFox(){
+	getFox.src ='';
 }
 document.getElementById("close").addEventListener("click", closeFox);
 // Код Нади
@@ -103,30 +101,51 @@ window.addEventListener("load", () => {
 function makeUsersList(event) {
   let inputName = document.getElementById('task_name user_name');
   let inputNickname = document.getElementById('task_name nick_name');
+  let randNumb = Math.ceil(Math.random()*3-1);
+  
   let users = {
     name: inputName.value,
     nickname: inputNickname.value,
+    pictureNumber: randNumb,
   };
   let stringifyusers = JSON.stringify(users);
   localStorage.setItem('user', stringifyusers);
 
  console.log('Новый пользователь был записан в Local Storage.');
 
- let pictureSet = document.querySelector('.picture');
+ let pictureSet = document.querySelector('.profile-img');
   let nicknameSet = document.querySelector('.nickname_result');
 
-  nicknameSet.innerHTML = users.nickname;
-  let userImg = `./accets/User${Math.ceil(Math.random()*3-1)}.svg`;
+  let usersJSON = localStorage.getItem('user');
+  let usersObject = JSON.parse(usersJSON);
+  
+  nicknameSet.innerHTML = usersObject.nickname;
+  let userImg = `./accets/User${randNumb}.svg`;
   pictureSet.setAttribute('src', userImg);
   event.preventDefault();
   }
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
+//window.onload = makeUsersList();
+
+function setUserWhenLoadpage() {
+  let pictureSet = document.querySelector('.profile-img');
+  let nicknameSet = document.querySelector('.nickname_result');
+
+  let usersJSON = localStorage.getItem('user');
+  let usersObject = JSON.parse(usersJSON);
+  
+  nicknameSet.innerHTML = usersObject.nickname;
+  //nicknameSet.innerHTML = users.nickname;
+  let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
+  pictureSet.setAttribute('src', userImg);
+}
+
+window.onload = setUserWhenLoadpage();
 
 //function showRegistrationForm() {
 //    document.getElementById('registrationForm').style.display = 'block';
 //  }
-//window.onload = showRegistrationForm();
 
 // Код Насти
 
