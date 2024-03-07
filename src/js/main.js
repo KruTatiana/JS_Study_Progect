@@ -103,7 +103,7 @@ window.addEventListener("load", () => {
 function makeUsersList(event) {
   let inputName = document.getElementById('task_name user_name');
   let inputNickname = document.getElementById('task_name nick_name');
-  let randNumb = Math.ceil(Math.random()*3-1);
+  let randNumb = Math.ceil(Math.random()*3);
   
   let users = {
     name: inputName.value,
@@ -128,26 +128,25 @@ function makeUsersList(event) {
   }
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
-//window.onload = makeUsersList();
+
+
 
 function setUserWhenLoadpage() {
-  let pictureSet = document.querySelector('.profile-img');
-  let nicknameSet = document.querySelector('.nickname_result');
-
   let usersJSON = localStorage.getItem('user');
-  let usersObject = JSON.parse(usersJSON);
-  
-  nicknameSet.innerHTML = usersObject.nickname;
-  //nicknameSet.innerHTML = users.nickname;
-  let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
-  pictureSet.setAttribute('src', userImg);
+  if (usersJSON) { 
+    let usersObject = JSON.parse(usersJSON);
+    let pictureSet = document.querySelector('.profile-img');
+    let nicknameSet = document.querySelector('.nickname_result');
+    nicknameSet.innerHTML = usersObject.nickname;
+    let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
+    pictureSet.setAttribute('src', userImg);
+  } else
+  {
+     new bootstrap.Modal(document.getElementById('registrationForm')).show(); 
+  } 
 }
 
 window.onload = setUserWhenLoadpage();
-
-//function showRegistrationForm() {
-//    document.getElementById('registrationForm').style.display = 'block';
-//  }
 
 // Код Насти
 
