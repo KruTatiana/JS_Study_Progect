@@ -352,10 +352,14 @@ class taskCard {
     // }
 }
 
+//вызов JSON из LocalStorage с проверкой на наличие в нем данных
+
 function checkStorage() {
     arrayFromStorage = localStorage.getItem("tasksStorage");
     arrayFromStorage = arrayFromStorage ? JSON.parse(arrayFromStorage) : [];
 }
+
+//Расчет даты дедлайна задачи
 
 function setDeadline() {
     let startDate = moment();
@@ -416,7 +420,8 @@ function setId() {
     if (idArray.length == 0) {
         taskId = "taskId1";
     } else {
-        taskId = `taskId${idArray.length}`;
+        let num = idArray.length + 1;
+        taskId = `taskId${num}`;
     }
     idArray.push(taskId);
 }
