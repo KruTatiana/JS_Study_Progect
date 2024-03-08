@@ -15,6 +15,7 @@ const taskDescription = document.getElementById("task_description");
 const deadlineDate = document.querySelector(".end_date");
 const deadlineTime = document.querySelector(".end_time");
 const todayDate = document.querySelector(".today_date");
+const taskList = document.querySelector(".tasks_list");
 let ingridients = document.getElementById("ingridients");
 let sugar = document.getElementById("sugar");
 let iron = document.getElementById("iron");
@@ -23,15 +24,6 @@ let calories = document.getElementById("calories");
 let calcium = document.getElementById("calcium");
 let getFox = document.getElementById("getFox");
 let close = document.getElementById("close");
-// const priorityHigh = document.getElementById('priority_btn-high');
-// const priorityMedium = document.getElementById('priority_btn-medium');
-// const priorityLow = document.getElementById('priority_btn-low');
-// const partPersonal = document.getElementById('part_btn-personal');
-// const partWork = document.getElementById('part_btn-work');
-// const partStudy = document.getElementById('part_btn-study');
-// const partHealth = document.getElementById('part_btn-health');
-// const partFinance = document.getElementById('part_btn-finance');
-// const partOther = document.getElementById('part_btn-other');
 
 //Код Веры
 
@@ -247,6 +239,40 @@ class taskCard {
             this.checkEl.setAttribute("checked", "checked");
         }
     }
+	createTask(){
+		this.element = document.createElement('div');
+		this.priorityLifeEl = document.createElement('div');
+		this.partLifeEl = document.createElement('div');
+		this.checkEl = document.createElement('input');
+		this.contentBoxEl = document.createElement('div');
+		this.nameEl = document.createElement('p');
+		this.descriptionEl = document.createElement('p');
+        this.deadlineEl = document.createElement('div');
+		tasksList.appendChild(this.element);
+		this.element.appendChild(this.priorityLifeEl);
+		this.element.appendChild(this.checkEl);
+		this.element.appendChild(this.contentBoxEl);
+		this.contentBoxEl.appendChild(this.partLifeEl);
+		this.contentBoxEl.appendChild(this.nameEl);
+		this.contentBoxEl.appendChild(this.descriptionEl);
+		this.element.appendChild(this.deadlineEl);
+		this.element.setAttribute('class','new_task_element');
+		this.checkEl.setAttribute('type','checkbox');
+		this.checkEl.setAttribute('class','task_checkbox');
+		this.checkEl.setAttribute('id',this.id);
+		this.partLifeEl.setAttribute('class','part_life_element')
+		this.nameEl.setAttribute('class','task_name_text');
+		this.descriptionEl.setAttribute('class', 'description_text');
+		this.priorityLifeEl.setAttribute('class', this.color);
+		this.contentBoxEl.setAttribute('class','content_task_box');
+		this.partLifeEl.innerText  = this.lifePart;
+		this.nameEl.innerText = this.name;
+		this.descriptionEl.innerText = this.description;
+		this.deadlineEl.innerText = this.deadline;
+		if(this.checkbox == "checked") {
+			this.checkEl.setAttribute('checked','checked');
+		}
+	}
 
     makeObj() {
         taskMemoryObj.name = this.name;
@@ -281,12 +307,21 @@ function setDeadline() {
     let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
     deadline = taskDeadlinDate.diff(startDate, "ч.");
 }
+	let startDate = moment();
+	let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
+	deadline = taskDeadlinDate.diff(startDate, 'hours');
+    console.log(deadline);
+}
+
+//Сохранение пареметров задачи в LocalStorage
 
 function setTaskObjectToStorage() {
     checkStorage();
     arrayFromStorage.push(taskMemoryObj);
     window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
 }
+
+//функция для создания новой карточки задачи
 
 function getTaskList() {
     setDeadline();
@@ -307,6 +342,16 @@ function getTaskList() {
     }
 }
 getTaskList();
+	setDeadline();
+    checkStorage();
+	for (let obj of arrayFromStorage){
+			let cardObject = new taskCard (obj.name, obj.description, deadline, obj.color, obj.lifePart, obj.deadlineDate, obj.deadlineTime, obj.id, obj.checkbox);
+			cardObject.createTask();
+		}
+	}
+	getTaskList();
+
+//Функция для генерации переменной приоритета из данных формы
 
 function setPriorityColor() {
     let priorityElements = document.forms.taskMaking.elements.prioritybtn;
@@ -317,6 +362,8 @@ function setPriorityColor() {
     }
 }
 
+//Функция для генерации переменной сферы жизни из данных формы
+
 function setPartStr() {
     let partElements = document.forms.taskMaking.elements.lifepartbtn;
     for (let el of partElements) {
@@ -326,6 +373,8 @@ function setPartStr() {
         }
     }
 }
+
+//Функция для генерации уникального id для каждой задачи
 
 function setId() {
     let idArray = localStorage.getItem("idArray");
@@ -338,6 +387,16 @@ function setId() {
     }
     idArray.push(taskId);
     window.localStorage.setItem("idArray", JSON.stringify(idArray));
+	let idArray = localStorage.getItem('idArray');
+	idArray = idArray ? JSON.parse(idArray) : [];
+	if (idArray.length == 0) {
+		taskId = 'taskId1';
+	}else{
+		let num = idArray.length+1
+		taskId = `taskId${num}`;
+		}
+		idArray.push(taskId);
+	window.localStorage.setItem("idArray", JSON.stringify(idArray));
 }
 
 //Проблема подключения динамических чекбоксов!
@@ -355,11 +414,63 @@ document.querySelector(".task_checkbox").addEventListener("checked", (el) => {
         window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
     }
 });
+//подключение динамических чекбоксов
 
-saveTaskBtn.addEventListener("click", () => {
-    setPriorityColor();
-    setPartStr();
-    let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr);
-    taskObject.createTask();
-    //taskObject.makeObj();
-});
+taskList.onclick = function(event) {
+    let target = event.target;
+    if (target.type != 'checkbox') return;
+    setChecked(target);
+}
+
+function setChecked(check) {
+    let checkboxСond = check.checked;
+    let checkboxId = check.id;
+    if (checkboxСond == true){
+	arrayFromStorage = localStorage.getItem('tasksStorage');
+	arrayFromStorage = JSON.parse(arrayFromStorage);
+	for (let obj of arrayFromStorage){
+		if (obj.id == checkboxId){
+			obj.checkbox = "checked";
+		}
+	window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
+    }
+	}else if (checkboxСond == false){
+    arrayFromStorage = localStorage.getItem('tasksStorage');
+	arrayFromStorage = JSON.parse(arrayFromStorage);
+	for (let obj of arrayFromStorage){
+		if (obj.id == checkboxId){
+			delete obj.checkbox;
+		}
+	window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
+    }
+}
+}
+
+//кнопка "сохранить задачу" из формы добавления задачи
+
+saveTaskBtn.addEventListener('click', () =>{
+	setPriorityColor();
+	setPartStr();
+	setDeadline();
+	setId();
+	let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr, deadlineDate.value, deadlineTime.value, taskId);
+	taskObject.createTask();
+	taskObject.makeObj();
+	setTaskObjectToStorage();
+	taskName.value = '';
+	taskDescription.value = '';
+	deadlineDate.value = '';
+	deadlineTime.value = '';
+})
+
+
+//Clean LokalStorage
+
+const clearLocalStorage = () => {
+	window.localStorage.clear();
+	console.log('Local Storage очищен.');
+};
+
+document.querySelector('.b-18').addEventListener('click', clearLocalStorage);
+
+
