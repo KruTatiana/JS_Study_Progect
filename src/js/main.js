@@ -102,6 +102,8 @@ function makeUsersList(event) {
   };
   let stringifyusers = JSON.stringify(users);
   localStorage.setItem('user', stringifyusers);
+  localStorage.removeItem('tasksStorage');
+  localStorage.removeItem('idArray');
 
  console.log('Новый пользователь был записан в Local Storage.');
 
