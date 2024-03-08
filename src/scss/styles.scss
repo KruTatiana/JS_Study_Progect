@@ -202,12 +202,13 @@ $screen-xl-min: 2400px;
 }
 
 .task_name {
-    height: 50px;
+    height: 3rem;
 }
 
 .task_description {
     overflow: hidden;
-    height: 200px;
+    height: 3rem;
+    padding-top: 0.6rem;
 }
 
 .task_name:focus,
@@ -337,14 +338,35 @@ input[type="radio"]:checked + .life_part__btn {
     border-radius: 6px;
 }
 
-.task_chekbox {
+.task_checkbox {
+    width: 1.5em;
     display: block;
-    margin-left: 10px;
-    margin-right: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .content_task_box {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin-right: 8%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.part_life_element {
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: $purple2;
+    border-radius: 6px;
+    color: $blue4;
+}
+
+.task_name_text,.description_text {
+    margin-top: 2%;
+    margin-bottom: 0;
+}
+
+.task_name_text {
+    font-weight: bolder;
 }
