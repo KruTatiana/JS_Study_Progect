@@ -95,7 +95,7 @@ window.addEventListener("load", () => {
 function makeUsersList(event) {
     let inputName = document.getElementById("task_name user_name");
     let inputNickname = document.getElementById("task_name nick_name");
-    let randNumb = Math.ceil(Math.random() * 3 - 1);
+    let randNumb = Math.ceil(Math.random() * 3);
 
     let users = {
         name: inputName.value,
