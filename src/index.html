@@ -25,12 +25,6 @@
           <div class="modal-content">
             <div class="modal-header modal_header-custom">
               <h3 class="modal-title fs-5" id="exampleModalLabel">Новая задача</h3>
-              <!-- <button
-                type="button"
-                class="btn-close btn_close-custom"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button> -->
             </div>
               <div class="modal-body">
                 <form id="task_making_form" name="taskMaking">
@@ -40,6 +34,7 @@
                       id="task_description"
                       class="form-control task_description"
                       placeholder="Описание"
+                      maxlength="20"
                     ></textarea>
                   <div class="dead_line">
                     <p class="task_form__header">Срок выполнения</p>
