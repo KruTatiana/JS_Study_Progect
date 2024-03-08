@@ -92,7 +92,7 @@ window.addEventListener("load", () => {
     makeQuote();
 });
 
-function makeUsersList(event) {
+function makeUsersList() {
   let inputName = document.getElementById('task_name user_name');
   let inputNickname = document.getElementById('task_name nick_name');
   let randNumb = Math.ceil(Math.random()*3);
@@ -112,11 +112,13 @@ function makeUsersList(event) {
     let pictureSet = document.querySelector(".picture");
     let nicknameSet = document.querySelector(".nickname_result");
 
-    nicknameSet.innerHTML = users.nickname;
-    let userImg = `./accets/User${Math.ceil(Math.random() * 3 - 1)}.svg`;
-    pictureSet.setAttribute("src", userImg);
-    event.preventDefault();
-}
+  let usersJSON = localStorage.getItem('user');
+  let usersObject = JSON.parse(usersJSON);
+  
+  nicknameSet.innerHTML = usersObject.nickname;
+  let userImg = `./accets/User${randNumb}.svg`;
+  pictureSet.setAttribute('src', userImg);
+  }
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
 
