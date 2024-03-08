@@ -90,7 +90,7 @@ window.addEventListener("load", () => {
     makeQuote();
 });
 
-function makeUsersList(event) {
+function makeUsersList() {
   let inputName = document.getElementById('task_name user_name');
   let inputNickname = document.getElementById('task_name nick_name');
   let randNumb = Math.ceil(Math.random()*3);
@@ -116,7 +116,6 @@ function makeUsersList(event) {
   nicknameSet.innerHTML = usersObject.nickname;
   let userImg = `./accets/User${randNumb}.svg`;
   pictureSet.setAttribute('src', userImg);
-  event.preventDefault();
   }
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
