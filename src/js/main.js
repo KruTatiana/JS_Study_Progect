@@ -104,14 +104,19 @@ function makeUsersList(event) {
     };
     let stringifyusers = JSON.stringify(users);
     localStorage.setItem("user", stringifyusers);
+    localStorage.removeItem("tasksStorage");
+    localStorage.removeItem("idArray");
 
     console.log("Новый пользователь был записан в Local Storage.");
 
     let pictureSet = document.querySelector(".picture");
     let nicknameSet = document.querySelector(".nickname_result");
 
-    nicknameSet.innerHTML = users.nickname;
-    let userImg = `./accets/User${Math.ceil(Math.random() * 3 - 1)}.svg`;
+    let usersJSON = localStorage.getItem("user");
+    let usersObject = JSON.parse(usersJSON);
+
+    nicknameSet.innerHTML = usersObject.nickname;
+    let userImg = `./accets/User${randNumb}.svg`;
     pictureSet.setAttribute("src", userImg);
     event.preventDefault();
 }
