@@ -371,3 +371,39 @@ input[type="radio"]:checked + .life_part__btn {
 .task_name_text {
     font-weight: bolder;
 }
+
+.part_life_element {
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: $purple2;
+    border-radius: 6px;
+    color: $blue4;
+}
+
+.task_name_text,
+.description_text {
+    margin-top: 2%;
+    margin-bottom: 0;
+}
+
+.task_name_text {
+    font-weight: bolder;
+}
+
+.part_life_element {
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: $purple2;
+    border-radius: 6px;
+    color: $blue4;
+}
+
+.task_name_text,
+.description_text {
+    margin-top: 2%;
+    margin-bottom: 0;
+}
+
+.task_name_text {
+    font-weight: bolder;
+}
