@@ -305,7 +305,6 @@ class taskCard {
         this.checkEl.setAttribute("type", "checkbox");
         this.checkEl.setAttribute("class", "task_checkbox");
         this.checkEl.setAttribute("id", this.id);
-        this.checkEl.setAttribute("onclick", "addCheck(this)");
         this.partLifeEl.setAttribute("class", "part_life_element");
         this.nameEl.setAttribute("class", "task_name_text");
         this.descriptionEl.setAttribute("class", "description_text");
@@ -360,6 +359,8 @@ function setTaskObjectToStorage() {
     window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
 }
 
+//функция для создания новой карточки задачи
+
 function getTaskList() {
     setDeadline();
     checkStorage();
@@ -380,6 +381,8 @@ function getTaskList() {
 }
 getTaskList();
 
+//Функция для генерации переменной приоритета из данных формы
+
 function setPriorityColor() {
     let priorityElements = document.forms.taskMaking.elements.prioritybtn;
     for (let i of priorityElements) {
@@ -389,6 +392,8 @@ function setPriorityColor() {
         }
     }
 }
+
+//Функция для генерации переменной сферы жизни из данных формы
 
 function setPartStr() {
     let partElements = document.forms.taskMaking.elements.lifepartbtn;
@@ -401,6 +406,8 @@ function setPartStr() {
     }
 }
 
+//Функция для генерации уникального id для каждой задачи
+
 function setId() {
     let idArray = localStorage.getItem("idArray");
     idArray = idArray ? JSON.parse(idArray) : [];
@@ -411,19 +418,24 @@ function setId() {
         taskId = `taskId${num}`;
     }
     idArray.push(taskId);
+    window.localStorage.setItem("idArray", JSON.stringify(idArray));
 }
 
-function addCheck(el) {
+//Проблема подключения динамических чекбоксов!
+
+document.querySelector(".task_checkbox").addEventListener("checked", (el) => {
     let checkboxId = el.id;
-    checkStorage();
+    arrayFromStorage = localStorage.getItem("tasksStorage");
+    arrayFromStorage = JSON.parse(arrayFromStorage);
     for (let obj of arrayFromStorage) {
         obj.forEach((date) => {
             if (date.id == checkboxId) {
                 date.checkbox = "checked";
             }
         });
+        window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
     }
-}
+});
 
 saveTaskBtn.addEventListener("click", () => {
     setPriorityColor();
@@ -448,3 +460,12 @@ saveTaskBtn.addEventListener("click", () => {
     deadlineDate.value = "";
     deadlineTime.value = "";
 });
+
+//Clean LokalStorage
+
+const clearLocalStorage = () => {
+    window.localStorage.clear();
+    console.log("Local Storage очищен.");
+};
+
+document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
