@@ -218,7 +218,11 @@ class taskCard {
 		this.contentBoxEl = document.createElement('div');
 		this.nameEl = document.createElement('p');
 		this.descriptionEl = document.createElement('p');
+        this.rightEl = document.createElement('div');
         this.deadlineEl = document.createElement('div');
+        this.deadlineText = document.createElement('p');
+        this.deadlineHours = document.createElement('p');
+        this.buttonClean = document.createElement('input');
 		tasksList.appendChild(this.element);
 		this.element.appendChild(this.priorityLifeEl);
 		this.element.appendChild(this.checkEl);
@@ -226,20 +230,30 @@ class taskCard {
 		this.contentBoxEl.appendChild(this.partLifeEl);
 		this.contentBoxEl.appendChild(this.nameEl);
 		this.contentBoxEl.appendChild(this.descriptionEl);
-		this.element.appendChild(this.deadlineEl);
-		this.element.setAttribute('class','new_task_element');
+		this.element.appendChild(this.rightEl);
+        this.rightEl.appendChild(this.deadlineEl);
+        this.rightEl.appendChild(this.buttonClean);
+        this.deadlineEl.appendChild(this.deadlineText);
+        this.deadlineEl.appendChild(this.deadlineHours);
+        this.element.setAttribute('class','new_task_element');
 		this.checkEl.setAttribute('type','checkbox');
 		this.checkEl.setAttribute('class','task_checkbox');
 		this.checkEl.setAttribute('id',this.id);
-		this.partLifeEl.setAttribute('class','part_life_element')
+		this.partLifeEl.setAttribute('class','part_life_element');
 		this.nameEl.setAttribute('class','task_name_text');
 		this.descriptionEl.setAttribute('class', 'description_text');
 		this.priorityLifeEl.setAttribute('class', this.color);
 		this.contentBoxEl.setAttribute('class','content_task_box');
-		this.partLifeEl.innerText  = this.lifePart;
+        this.deadlineEl.setAttribute('class','deadline_el');
+        this.rightEl.setAttribute('class','right_el');
+        this.buttonClean.setAttribute('type', 'image');
+        this.buttonClean.setAttribute('src', '.././accets/icontrash.svg');
+        this.buttonClean.setAttribute('class','button_trash');
+    	this.partLifeEl.innerText  = this.lifePart;
 		this.nameEl.innerText = this.name;
 		this.descriptionEl.innerText = this.description;
-		this.deadlineEl.innerText = this.deadline;
+        this.deadlineText.innerText = 'Осталось';
+		this.deadlineHours.innerText = `${this.deadline} ч.`;
 		if(this.checkbox == "checked") {
 			this.checkEl.setAttribute('checked','checked');
 		}
@@ -273,11 +287,11 @@ function checkStorage() {
 
 //Расчет даты дедлайна задачи
 
-function setDeadline() {
+function setDeadline(date, time) {
 	let startDate = moment();
-	let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
+	let taskDeadlinDate = moment(`${date}T${time}`);
 	deadline = taskDeadlinDate.diff(startDate, 'hours');
-    console.log(deadline);
+    return deadline;
 }
 
 //Сохранение пареметров задачи в LocalStorage
@@ -288,17 +302,17 @@ function setTaskObjectToStorage() {
 	window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
 }
 
-//функция для создания новой карточки задачи
+//функция для создания карточек задач при загрузке страницы
 
 function getTaskList() {
-	setDeadline();
     checkStorage();
 	for (let obj of arrayFromStorage){
+            setDeadline(obj.deadlineDate, obj.deadlineTime);
 			let cardObject = new taskCard (obj.name, obj.description, deadline, obj.color, obj.lifePart, obj.deadlineDate, obj.deadlineTime, obj.id, obj.checkbox);
 			cardObject.createTask();
 		}
 	}
-	getTaskList();
+getTaskList();
 
 //Функция для генерации переменной приоритета из данных формы
 
@@ -377,7 +391,7 @@ function setChecked(check) {
 saveTaskBtn.addEventListener('click', () =>{
 	setPriorityColor();
 	setPartStr();
-	setDeadline();
+	setDeadline(deadlineDate.value,deadlineTime.value);
 	setId();
 	let taskObject = new taskCard(taskName.value, taskDescription.value, deadline, priorityColor, partStr, deadlineDate.value, deadlineTime.value, taskId);
 	taskObject.createTask();
