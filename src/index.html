@@ -25,6 +25,12 @@
           <div class="modal-content">
             <div class="modal-header modal_header-custom">
               <h3 class="modal-title fs-5" id="exampleModalLabel">Новая задача</h3>
+              <button
+                type="button"
+                class="btn-close btn_close-custom"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
               <div class="modal-body">
                 <form id="task_making_form" name="taskMaking">
@@ -36,6 +42,7 @@
                       placeholder="Описание"
                       maxlength="20"
                     ></textarea>
+                    <div class="form_error"></div>
                   <div class="dead_line">
                     <p class="task_form__header">Срок выполнения</p>
                     <input type="date" class="end_date help_text-grey" />
@@ -83,7 +90,7 @@
                       <span class="custom-radio life_part__btn">Другое</span>
                     </label>
                   </div>
-                  <button class="save_task__btn btn" data-bs-dismiss="modal">Сохранить</button>
+                  <button class="save_task__btn btn">Сохранить</button>
                 </form>
               </div>
             </div>
@@ -198,6 +205,7 @@
         class="add_task btn"
         data-bs-toggle="modal"
         data-bs-target="#taskModal"
+        disabled
       >
         Добавить задачу
       </button>

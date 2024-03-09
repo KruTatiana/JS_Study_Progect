@@ -212,48 +212,53 @@ class taskCard {
 
 	createTask(){
 		this.element = document.createElement('div');
-		this.priorityLifeEl = document.createElement('div');
-		this.partLifeEl = document.createElement('div');
+        this.priorityLifeEl = document.createElement('div');
 		this.checkEl = document.createElement('input');
 		this.contentBoxEl = document.createElement('div');
 		this.nameEl = document.createElement('p');
 		this.descriptionEl = document.createElement('p');
         this.rightEl = document.createElement('div');
-        this.deadlineEl = document.createElement('div');
-        this.deadlineText = document.createElement('p');
-        this.deadlineHours = document.createElement('p');
         this.buttonClean = document.createElement('input');
 		tasksList.appendChild(this.element);
 		this.element.appendChild(this.priorityLifeEl);
 		this.element.appendChild(this.checkEl);
 		this.element.appendChild(this.contentBoxEl);
-		this.contentBoxEl.appendChild(this.partLifeEl);
+        if(!isNaN(this.deadline)){
+            this.deadlineEl = document.createElement('div');
+            this.deadlineText = document.createElement('p');
+            this.deadlineHours = document.createElement('p');
+            this.rightEl.appendChild(this.deadlineEl);
+            this.deadlineEl.appendChild(this.deadlineText);
+            this.deadlineEl.appendChild(this.deadlineHours);
+            this.deadlineEl.setAttribute('class','deadline_el');
+            this.deadlineText.innerText = 'Осталось';
+            this.deadlineHours.innerText = `${this.deadline} ч.`;
+        }
+        if(this.lifePart != undefined) {
+            this.partLifeEl = document.createElement('div');
+            this.contentBoxEl.appendChild(this.partLifeEl);
+            this.partLifeEl.setAttribute('class','part_life_element');
+            this.partLifeEl.innerText  = this.lifePart;
+        }
 		this.contentBoxEl.appendChild(this.nameEl);
 		this.contentBoxEl.appendChild(this.descriptionEl);
 		this.element.appendChild(this.rightEl);
-        this.rightEl.appendChild(this.deadlineEl);
-        this.rightEl.appendChild(this.buttonClean);
-        this.deadlineEl.appendChild(this.deadlineText);
-        this.deadlineEl.appendChild(this.deadlineHours);
+        this.rightEl.appendChild(this.buttonClean);       
         this.element.setAttribute('class','new_task_element');
 		this.checkEl.setAttribute('type','checkbox');
 		this.checkEl.setAttribute('class','task_checkbox');
 		this.checkEl.setAttribute('id',this.id);
-		this.partLifeEl.setAttribute('class','part_life_element');
 		this.nameEl.setAttribute('class','task_name_text');
 		this.descriptionEl.setAttribute('class', 'description_text');
 		this.priorityLifeEl.setAttribute('class', this.color);
 		this.contentBoxEl.setAttribute('class','content_task_box');
-        this.deadlineEl.setAttribute('class','deadline_el');
         this.rightEl.setAttribute('class','right_el');
         this.buttonClean.setAttribute('type', 'image');
         this.buttonClean.setAttribute('src', '.././accets/icontrash.svg');
         this.buttonClean.setAttribute('class','button_trash');
-    	this.partLifeEl.innerText  = this.lifePart;
 		this.nameEl.innerText = this.name;
 		this.descriptionEl.innerText = this.description;
-        this.deadlineText.innerText = 'Осталось';
-		this.deadlineHours.innerText = `${this.deadline} ч.`;
+        
 		if(this.checkbox == "checked") {
 			this.checkEl.setAttribute('checked','checked');
 		}
@@ -284,6 +289,16 @@ function checkStorage() {
 	arrayFromStorage = localStorage.getItem('tasksStorage');
 	arrayFromStorage = arrayFromStorage ? JSON.parse(arrayFromStorage) : [];
 }
+
+//Проверка зарегестрированного пользователя
+
+//add_task
+let userData = localStorage.getItem('user');
+if(userData) {
+    document.querySelector('.add_task').removeAttribute('disabled');
+}
+
+
 
 //Расчет даты дедлайна задачи
 
@@ -354,12 +369,16 @@ function setId() {
 	window.localStorage.setItem("idArray", JSON.stringify(idArray));
 }
 
-//подключение динамических чекбоксов
+//подключение динамических чекбоксов и кнопок удаления задач
 
 taskList.onclick = function(event) {
     let target = event.target;
-    if (target.type != 'checkbox') return;
+    if (target.type == 'checkbox'){
     setChecked(target);
+    }else if(target.class == 'button_trash'){
+    removeTask(target);
+    }
+
 }
 
 function setChecked(check) {
@@ -386,9 +405,14 @@ function setChecked(check) {
 }
 }
 
+// function removeTask(el){
+
+// }
+
 //кнопка "сохранить задачу" из формы добавления задачи
 
 saveTaskBtn.addEventListener('click', () =>{
+    if(taskName.value.trim() !== "" && taskDescription.value.trim() !== ""){
 	setPriorityColor();
 	setPartStr();
 	setDeadline(deadlineDate.value,deadlineTime.value);
@@ -401,6 +425,9 @@ saveTaskBtn.addEventListener('click', () =>{
 	taskDescription.value = '';
 	deadlineDate.value = '';
 	deadlineTime.value = '';
+    }else{
+        document.querySelector('.form_error').innerText = 'Поля "Название" и "Описание" обязательны для заполнения!'
+    }
 })
 
 

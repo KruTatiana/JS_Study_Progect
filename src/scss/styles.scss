@@ -386,3 +386,11 @@ input[type="radio"]:checked + .life_part__btn {
 .button_trash {
     width: 50%;
 }
+
+.form_error {
+    color: red;
+}
+
+.btn_close-custom{
+    background-color: $white;
+}
