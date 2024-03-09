@@ -90,9 +90,13 @@ $screen-xl-min: 2400px;
 // Код Насти
 
 .nav-link,
-.profile {
+.nickname_result {
     color: $darkBlue;
     margin-bottom: 0px;
+}
+
+.nav-link {
+    cursor: pointer;
 }
 
 .active-link {
@@ -141,6 +145,10 @@ $screen-xl-min: 2400px;
 .profile-img {
     width: 40px;
     height: 32px;
+}
+
+.disabled {
+    display: none !important;
 }
 
 // Код Тани
@@ -362,7 +370,8 @@ input[type="radio"]:checked + .life_part__btn {
     color: $blue4;
 }
 
-.task_name_text,.description_text {
+.task_name_text,
+.description_text {
     margin-top: 2%;
     margin-bottom: 0;
 }
