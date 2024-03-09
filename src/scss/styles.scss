@@ -146,6 +146,9 @@ $screen-xl-min: 2400px;
 .disabled {
     display: none !important;
 }
+.menu-container {
+    height: -webkit-fill-available;
+}
 
 // Код Тани
 
