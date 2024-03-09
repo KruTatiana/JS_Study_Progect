@@ -16,6 +16,9 @@ const deadlineDate = document.querySelector(".end_date");
 const deadlineTime = document.querySelector(".end_time");
 const todayDate = document.querySelector(".today_date");
 const taskList = document.querySelector(".tasks_list");
+const btnTasksCleaner = document.getElementById("btnTasksCleaner");
+const tasksLinks = document.getElementsByClassName("tasksLink");
+const menuListContainer = document.getElementById("menuListContainer");
 let ingridients = document.getElementById("ingridients");
 let sugar = document.getElementById("sugar");
 let iron = document.getElementById("iron");
@@ -24,6 +27,9 @@ let calories = document.getElementById("calories");
 let calcium = document.getElementById("calcium");
 let getFox = document.getElementById("getFox");
 let close = document.getElementById("close");
+
+// добавить заголовок на стринцу !!
+const title = document.getElementById("title");
 
 //Код Веры
 
@@ -34,19 +40,24 @@ function onBtnClick() {
 
     let caloriesResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (calories.textContent = Math.ceil(data.totalNutrients.ENERC_KCAL.quantity)));
+        .then((data) => (calories.textContent = Math.ceil(data.totalNutrients.ENERC_KCAL.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
     let sugarResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (sugar.textContent = Math.ceil(data.totalNutrients.SUGAR.quantity)));
-    let ironResult = fetch(API)
+        .then((data) => (sugar.textContent = Math.ceil(data.totalNutrients.SUGAR.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
+		let ironResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (iron.textContent = Math.ceil(data.totalNutrients.FE.quantity)));
-    let vitaminCResult = fetch(API)
+        .then((data) => (iron.textContent = Math.ceil(data.totalNutrients.FE.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
+		let vitaminCResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (vitaminC.textContent = Math.ceil(data.totalNutrients.VITC.quantity)));
-    let calciumCResult = fetch(API)
+        .then((data) => (vitaminC.textContent = Math.ceil(data.totalNutrients.VITC.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
+		let calciumCResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (calcium.textContent = Math.ceil(data.totalNutrients.CA.quantity)));
+        .then((data) => (calcium.textContent = Math.ceil(data.totalNutrients.CA.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
 }
 document.getElementById("button_find").addEventListener("click", onBtnClick);
 
@@ -63,13 +74,17 @@ document.getElementById("button_cleaner").addEventListener("click", onBtnClickCl
   function getRandomFox(){
   let API = `https://randomfox.ca/floof/`;
   
-  let randomFox = fetch(API).then((res) => res.json()).then((data) => getFox.src =data.image);
+  let randomFox = fetch(API)
+  .then((res) => res.json())
+  .then((data) => getFox.src =data.image)
+ .catch((err) => console.log('Не удалось получить данные'));
+
 	}
 	document.getElementById('seeFox').addEventListener('click', getRandomFox);
 function closeFox(){
 	getFox.src ='';
 }
-document.getElementById("close").addEventListener("click", closeFox);
+document.getElementById('close').addEventListener('click', closeFox);
 // Код Нади
 function makeQuote() {
     fetch("https://stoic.tekloon.net/stoic-quote")
@@ -91,75 +106,64 @@ window.addEventListener("load", () => {
 });
 
 function makeUsersList() {
-  let inputName = document.getElementById('task_name user_name');
-  let inputNickname = document.getElementById('task_name nick_name');
-  let randNumb = Math.ceil(Math.random()*3);
-  
-  let users = {
-    name: inputName.value,
-    nickname: inputNickname.value,
-    pictureNumber: randNumb,
-  };
-  let stringifyusers = JSON.stringify(users);
-  localStorage.setItem('user', stringifyusers);
-  localStorage.removeItem('tasksStorage');
-  localStorage.removeItem('idArray');
+    let inputName = document.getElementById("task_name user_name");
+    let inputNickname = document.getElementById("task_name nick_name");
+    let randNumb = Math.ceil(Math.random() * 3);
 
- console.log('Новый пользователь был записан в Local Storage.');
+    let users = {
+        name: inputName.value,
+        nickname: inputNickname.value,
+        pictureNumber: randNumb,
+    };
+    let stringifyusers = JSON.stringify(users);
+    localStorage.setItem("user", stringifyusers);
+    localStorage.removeItem("tasksStorage");
+    localStorage.removeItem("idArray");
 
- let pictureSet = document.querySelector('.profile-img');
-  let nicknameSet = document.querySelector('.nickname_result');
+    console.log("Новый пользователь был записан в Local Storage.");
 
-  let usersJSON = localStorage.getItem('user');
-  let usersObject = JSON.parse(usersJSON);
-  
-  nicknameSet.innerHTML = usersObject.nickname;
-  let userImg = `./accets/User${randNumb}.svg`;
-  pictureSet.setAttribute('src', userImg);
-  }
+    let pictureSet = document.querySelector(".profile-img");
+    let nicknameSet = document.querySelector(".nickname_result");
+
+    let usersJSON = localStorage.getItem("user");
+    let usersObject = JSON.parse(usersJSON);
+
+    nicknameSet.innerHTML = usersObject.nickname;
+    let userImg = `./accets/User${randNumb}.svg`;
+    pictureSet.setAttribute("src", userImg);
+}
 
 document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
 
-
-
 function setUserWhenLoadpage() {
-  let usersJSON = localStorage.getItem('user');
-  if (usersJSON) { 
-    let usersObject = JSON.parse(usersJSON);
-    let pictureSet = document.querySelector('.profile-img');
-    let nicknameSet = document.querySelector('.nickname_result');
-    nicknameSet.innerHTML = usersObject.nickname;
-    let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
-    pictureSet.setAttribute('src', userImg);
-  } else
-  {
-     new bootstrap.Modal(document.getElementById('registrationForm')).show(); 
-  } 
+    let usersJSON = localStorage.getItem("user");
+    if (usersJSON) {
+        let usersObject = JSON.parse(usersJSON);
+        let pictureSet = document.querySelector(".profile-img");
+        let nicknameSet = document.querySelector(".nickname_result");
+        nicknameSet.innerHTML = usersObject.nickname;
+        let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
+        pictureSet.setAttribute("src", userImg);
+    } else {
+        new bootstrap.Modal(document.getElementById("registrationForm")).show();
+    }
 }
 
 window.onload = setUserWhenLoadpage();
 
 // Код Насти
 
-const tasksLinks = document.getElementsByClassName("tasksLink");
-
-const menuListContainer = document.getElementById("menuListContainer");
-
-// добавить заголовок на стринцу !!
-const title = document.getElementById("title");
-
 menuListContainer.addEventListener("click", function (evt) {
     const eventTarget = evt.target;
-    // получание на стрианице группы задач
-    // получить коллекцию из всех задач tasks !!
-    // for (let i = 0; i < tasks.length; i += 1) {
-    // const task=tasks[i]
-    //     if (task.classList.contains(eventTarget.id)) {
-    //         task.classList.remove("disabled");
-    //     } else {
-    //         task.classList.add("disabled");
-    //     }
-    // }
+    const tasksList = document.getElementsByClassName("new_task_element");
+    for (let i = 0; i < tasksList.length; i += 1) {
+        const task = tasksList[i];
+        if (task.classList.contains(eventTarget.id)) {
+            task.classList.remove("disabled");
+        } else {
+            task.classList.add("disabled");
+        }
+    }
     // отображаем в меню выбранный раздел
     for (let i = 0; i < tasksLinks.length; i += 1) {
         if (tasksLinks[i].id === eventTarget.id) {
@@ -178,6 +182,11 @@ menuListContainer.addEventListener("click", function (evt) {
     // }
 });
 
+btnTasksCleaner.addEventListener("click", () => {
+    localStorage.removeItem("idArray");
+    localStorage.removeItem("tasksStorage");
+    taskList.innerHTML = "";
+});
 // Код Тани
 
 //вывод в список задач сегодняшней даты
@@ -191,25 +200,40 @@ document.getElementById("task_making_form").addEventListener("submit", function 
 
 let priorityColor;
 let partStr;
+let partValue;
 let deadline;
 let taskMemoryObj = {};
 let taskId;
 let arrayFromStorage;
-
+let priority;
 //класс для сборки карточек задач
 
 class taskCard {
-	constructor(name, description, deadline, color, lifepart, deadlineDate, deadlineTime, id, checkbox){
-		this.name = name;
-		this.description = description;
-		this.deadline = deadline;
-		this.color = color;
-		this.lifePart = lifepart;
-		this.deadlineDate = deadlineDate;
-		this.deadlineTime = deadlineTime;
-		this.id = id;
-		this.checkbox = checkbox;
-	}
+    constructor(
+        name,
+        description,
+        deadline,
+        color,
+        priority,
+        lifepart,
+        partValue,
+        deadlineDate,
+        deadlineTime,
+        id,
+        checkbox
+    ) {
+        this.name = name;
+        this.description = description;
+        this.deadline = deadline;
+        this.color = color;
+        this.priority = priority;
+        this.lifePart = lifepart;
+        this.partValue = partValue;
+        this.deadlineDate = deadlineDate;
+        this.deadlineTime = deadlineTime;
+        this.id = id;
+        this.checkbox = checkbox;
+    }
 
 	createTask(){
 		this.element = document.createElement('div');
@@ -274,21 +298,21 @@ class taskCard {
 		taskMemoryObj.deadlineTime = this.deadlineTime;
 		taskMemoryObj.id = this.id;
 
-		if(this.checkEl.checked == true){
-			taskMemoryObj.checkbox = "checked";
-		}
-	}
+        if (this.checkEl.checked == true) {
+            taskMemoryObj.checkbox = "checked";
+        }
+    }
 
-	// showTask(){
+    // showTask(){
 
-	// }
+    // }
 }
 
 //вызов JSON из LocalStorage с проверкой на наличие в нем данных
 
 function checkStorage() {
-	arrayFromStorage = localStorage.getItem('tasksStorage');
-	arrayFromStorage = arrayFromStorage ? JSON.parse(arrayFromStorage) : [];
+    arrayFromStorage = localStorage.getItem("tasksStorage");
+    arrayFromStorage = arrayFromStorage ? JSON.parse(arrayFromStorage) : [];
 }
 
 //Проверка зарегестрированного пользователя
@@ -313,9 +337,9 @@ function setDeadline(date, time) {
 //Сохранение пареметров задачи в LocalStorage
 
 function setTaskObjectToStorage() {
-	checkStorage();
-	arrayFromStorage.push(taskMemoryObj);
-	window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
+    checkStorage();
+    arrayFromStorage.push(taskMemoryObj);
+    window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
 }
 
 //функция для создания карточек задач при загрузке страницы
@@ -337,7 +361,8 @@ function setPriorityColor() {
     for (let i of priorityElements) {
         if (i.checked == true) {
             priorityColor = `${i.value}_lable`;
-			i.checked = '';
+            priority = i.value;
+            i.checked = "";
         }
     }
 }
@@ -350,7 +375,8 @@ function setPartStr() {
         if (el.checked == true) {
             let currentSpan = el.nextElementSibling;
             partStr = currentSpan.textContent;
-			el.checked ='';
+            partValue = el.value;
+            el.checked = "";
         }
     }
 }
@@ -358,21 +384,21 @@ function setPartStr() {
 //Функция для генерации уникального id для каждой задачи
 
 function setId() {
-	let idArray = localStorage.getItem('idArray');
-	idArray = idArray ? JSON.parse(idArray) : [];
-	if (idArray.length == 0) {
-		taskId = 'taskId1';
-	}else{
-		let num = idArray.length+1
-		taskId = `taskId${num}`;
-		}
-		idArray.push(taskId);
-	window.localStorage.setItem("idArray", JSON.stringify(idArray));
+    let idArray = localStorage.getItem("idArray");
+    idArray = idArray ? JSON.parse(idArray) : [];
+    if (idArray.length == 0) {
+        taskId = "taskId1";
+    } else {
+        let num = idArray.length + 1;
+        taskId = `taskId${num}`;
+    }
+    idArray.push(taskId);
+    window.localStorage.setItem("idArray", JSON.stringify(idArray));
 }
 
 //подключение динамических чекбоксов и кнопок удаления задач
 
-taskList.onclick = function(event) {
+taskList.onclick = function (event) {
     let target = event.target;
     if (target.type == 'checkbox'){
     setChecked(target);
@@ -385,25 +411,25 @@ taskList.onclick = function(event) {
 function setChecked(check) {
     let checkboxСond = check.checked;
     let checkboxId = check.id;
-    if (checkboxСond == true){
-	arrayFromStorage = localStorage.getItem('tasksStorage');
-	arrayFromStorage = JSON.parse(arrayFromStorage);
-	for (let obj of arrayFromStorage){
-		if (obj.id == checkboxId){
-			obj.checkbox = "checked";
-		}
-	window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
+    if (checkboxСond == true) {
+        arrayFromStorage = localStorage.getItem("tasksStorage");
+        arrayFromStorage = JSON.parse(arrayFromStorage);
+        for (let obj of arrayFromStorage) {
+            if (obj.id == checkboxId) {
+                obj.checkbox = "checked";
+            }
+            window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
+        }
+    } else if (checkboxСond == false) {
+        arrayFromStorage = localStorage.getItem("tasksStorage");
+        arrayFromStorage = JSON.parse(arrayFromStorage);
+        for (let obj of arrayFromStorage) {
+            if (obj.id == checkboxId) {
+                delete obj.checkbox;
+            }
+            window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
+        }
     }
-	}else if (checkboxСond == false){
-    arrayFromStorage = localStorage.getItem('tasksStorage');
-	arrayFromStorage = JSON.parse(arrayFromStorage);
-	for (let obj of arrayFromStorage){
-		if (obj.id == checkboxId){
-			delete obj.checkbox;
-		}
-	window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
-    }
-}
 }
 
 // function removeTask(el){
@@ -435,10 +461,8 @@ saveTaskBtn.addEventListener('click', () =>{
 //Clean LokalStorage
 
 const clearLocalStorage = () => {
-	window.localStorage.clear();
-	console.log('Local Storage очищен.');
+    window.localStorage.clear();
+    console.log("Local Storage очищен.");
 };
 
-document.querySelector('.b-18').addEventListener('click', clearLocalStorage);
-
-
+document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
