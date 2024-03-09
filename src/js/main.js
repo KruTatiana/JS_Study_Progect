@@ -22,7 +22,6 @@ let vitaminC = document.getElementById("vitaminC");
 let calories = document.getElementById("calories");
 let calcium = document.getElementById("calcium");
 let getFox = document.getElementById("getFox");
-let close = document.getElementById("close");
 // const priorityHigh = document.getElementById('priority_btn-high');
 // const priorityMedium = document.getElementById('priority_btn-medium');
 // const priorityLow = document.getElementById('priority_btn-low');
@@ -77,7 +76,7 @@ document.getElementById("button_cleaner").addEventListener("click", onBtnClickCl
 function closeFox(){
 	getFox.src ='';
 }
-document.getElementById("close").addEventListener("click", closeFox);
+document.getElementById('close').addEventListener('click', closeFox);
 // Код Нади
 function makeQuote() {
     fetch("https://stoic.tekloon.net/stoic-quote")
