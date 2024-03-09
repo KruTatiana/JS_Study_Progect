@@ -16,8 +16,7 @@
         <div class="row row-quote">
           <div class="col col-quote">
       <div class="quote__text" id="quote"></div>
-      <p>
-      <div class="author" id="author"></div></p>
+      <p> <div class="author" id="author"></div></p>
       </div></div></div>
             <!-- форма добавления задачи -->
             <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
@@ -25,21 +24,15 @@
           <div class="modal-content">
             <div class="modal-header modal_header-custom">
               <h3 class="modal-title fs-5" id="exampleModalLabel">Новая задача</h3>
-              <!-- <button
-                type="button"
-                class="btn-close btn_close-custom"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button> -->
             </div>
               <div class="modal-body">
                 <form id="task_making_form" name="taskMaking">
                     <input type="text" id="task_name" class= "form-control task_name" placeholder="Название" />
                     <textarea
-                      type="text"
                       id="task_description"
                       class="form-control task_description"
                       placeholder="Описание"
+                      maxlength="20"
                     ></textarea>
                   <div class="dead_line">
                     <p class="task_form__header">Срок выполнения</p>
@@ -94,31 +87,30 @@
             </div>
           </div>
         </div>
-      </div>
 
             <div
                 class="d-flex flex-column flex-shrink-0 p-3 bg-body-white menu-container"
             >
                 <p class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-                    <img src="" class="bi pe-none me-2 profile-img"/>
-                    <span class="fs-4 profile nickname_result">Профиль</span>
-                   <!-- <p class="nickname_result">Никнейм</p>-->
+                    <img src="" class="bi pe-none me-2 profile-img" alt="Иконка профиля пользователя"/>
+                    <span class="fs-4 nickname_result">Профиль</span>
                 </p>
                 <hr />
                 <ul class="nav nav-pills flex-column mb-auto" id="menuListContainer">
                     <li class="nav-item">
-                        <p class="nav-link tasksLink active-link" id="anyTask">Все задачи</p>
+                        <p class="nav-link tasksLink active-link" id="new_task_element">Все задачи</p>
                     </li>
                     <li>
-                        <p   class="nav-link tasksLink simpleLink" id="activeTask">Активные</p>
+                        <p   class="nav-link tasksLink simpleLink" id="active">Активные</p>
                     </li>
                     <li>
-                        <p   class="nav-link tasksLink simpleLink" id="completeTask">Завершенные</p>
+                        <p   class="nav-link tasksLink simpleLink" id="complete">Завершенные</p>
                     </li>
                     <li>
                         <p   class="nav-link tasksLink simpleLink" id="delayedTask">Отложенные</p>
+                        <hr />
                     </li>
-                    <hr />
+                    
                     <li>
                         <p
                             class="nav-link dropdown-toggle"
@@ -132,26 +124,26 @@
                         <div class="collapse" id="categoryCollapse">
                             <ul class="nav nav-pills flex-column mb-auto collapse-list">
                                 <li>
-                                    <p   class="nav-link tasksLink categoryLink" id="privateTask">Личное</p>
+                                    <p   class="nav-link tasksLink categoryLink" id="personal">Личное</p>
                                 </li>
                                 <li>
-                                    <p   class="nav-link tasksLink categoryLink" id="jobTask">Работа</p>
+                                    <p   class="nav-link tasksLink categoryLink" id="work">Работа</p>
                                 </li>
                                 <li>
-                                    <p   class="nav-link tasksLink categoryLink" id="studyTask">Учеба</p>
+                                    <p   class="nav-link tasksLink categoryLink" id="study">Учеба</p>
                                 </li>
                                 <li>
-                                    <p   class="nav-link tasksLink categoryLink" id="healthTask">
+                                    <p   class="nav-link tasksLink categoryLink" id="health">
                                         Здоровье
                                     </p>
                                 </li>
                                 <li>
-                                    <p   class="nav-link tasksLink categoryLink" id="financeTask">
+                                    <p   class="nav-link tasksLink categoryLink" id="finance">
                                         Финансы
                                     </p>
                                 </li>
                                 <li>
-                                    <p   class="nav-link tasksLink categoryLink" id="otherTask">Другое</p>
+                                    <p   class="nav-link tasksLink categoryLink" id="other">Другое</p>
                                 </li>
                             </ul>
                             <hr />
@@ -170,17 +162,17 @@
                         <div class="collapse" id="priorityCollapse">
                             <ul class="nav nav-pills flex-column mb-auto collapse-list">
                                 <li>
-                                    <p   class="nav-link tasksLink priorityLink" id="highPrioirtyTask">
+                                    <p   class="nav-link tasksLink priorityLink" id="priority_high">
                                         Высокий
                                     </p>
                                 </li>
                                 <li>
-                                    <p   class="nav-link tasksLink priorityLink" id="midPrioirtyTask">
+                                    <p   class="nav-link tasksLink priorityLink" id="priority_medium">
                                         Средний
                                     </p>
                                 </li>
                                 <li>
-                                    <p   class="nav-link tasksLink priorityLink" id="lowPrioirtyTask">
+                                    <p   class="nav-link tasksLink priorityLink" id="priority_low">
                                         Низкий
                                     </p>
                                 </li>
@@ -190,10 +182,9 @@
                 </ul>
 
                 <hr />
-                <button class="btn btn-primary btn-exit" type="button">Придумать кнопку</button>
+                <button class="btn btn-primary btn-exit" type="button" id="btnTasksCleaner">Удалить все задачи</button>
             </div>
 
-    </body>
       <!-- задачи -->
       <div class="tasks_container w-25 h-75 p-3 d-flex flex-column align-items-center">
         <div><h4>Сегодня</h4><div class="today_date"></div>
@@ -222,12 +213,6 @@
           <div class="modal-content">
             <div class="modal-header modal_header-custom">
               <h3 class="modal-title fs-5" id="exampleModalLabel">Войдите или зарегистрируйтесь</h3>
-              <button
-                type="button"
-                class="btn-close btn_close-custom"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
             </div>
               <div class="modal-body">
                 <form>
@@ -238,13 +223,12 @@
                       class="form-control task_name nickname"
                       placeholder="Ваш никнейм"
                     />
-                  <button class="save_user__btn btn">Сохранить</button>
+                  <button class="save_user__btn btn" data-bs-dismiss="modal">Сохранить</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
-      </div>
       <!-- рецепты-->
       <div id="edamam-badge" data-color="white"></div>
       <div class="container">
@@ -276,7 +260,7 @@
       </div>
       <button id="seeFox" type="button" class="btn btn-primary">Посмотреть лисичек</button>
       <button id="close" type="button" class="btn btn-primary">Закрыть</button>
-      <div><img src="" id="getFox">
+      <div><img src="" id="getFox" alt="Фото лисы">
       </div>
       <div id="ww_bd7162a4d6ed1" v='1.3' loc='auto' a='{"t":"responsive","lang":"ru","ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"#1976D2","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#FFFFFF","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","cl_odd":"#0000000a"}'>Установить <a href="https://weatherwidget.org/ru/" id="ww_bd7162a4d6ed1_u" target="_blank">HTML погодный информер для сайта</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_bd7162a4d6ed1"></script>
     </main>
