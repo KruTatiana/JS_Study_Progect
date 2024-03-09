@@ -16,6 +16,9 @@ const deadlineDate = document.querySelector(".end_date");
 const deadlineTime = document.querySelector(".end_time");
 const todayDate = document.querySelector(".today_date");
 const taskList = document.querySelector(".tasks_list");
+const btnTasksCleaner = document.getElementById("btnTasksCleaner");
+const tasksLinks = document.getElementsByClassName("tasksLink");
+const menuListContainer = document.getElementById("menuListContainer");
 let ingridients = document.getElementById("ingridients");
 let sugar = document.getElementById("sugar");
 let iron = document.getElementById("iron");
@@ -24,6 +27,9 @@ let calories = document.getElementById("calories");
 let calcium = document.getElementById("calcium");
 let getFox = document.getElementById("getFox");
 let close = document.getElementById("close");
+
+// добавить заголовок на стринцу !!
+const title = document.getElementById("title");
 
 //Код Веры
 
@@ -140,13 +146,6 @@ window.onload = setUserWhenLoadpage();
 
 // Код Насти
 
-const tasksLinks = document.getElementsByClassName("tasksLink");
-
-const menuListContainer = document.getElementById("menuListContainer");
-
-// добавить заголовок на стринцу !!
-const title = document.getElementById("title");
-
 menuListContainer.addEventListener("click", function (evt) {
     const eventTarget = evt.target;
     const tasksList = document.getElementsByClassName("new_task_element");
@@ -176,6 +175,11 @@ menuListContainer.addEventListener("click", function (evt) {
     // }
 });
 
+btnTasksCleaner.addEventListener("click", () => {
+    localStorage.removeItem("idArray");
+    localStorage.removeItem("tasksStorage");
+    taskList.innerHTML = "";
+});
 // Код Тани
 
 //вывод в список задач сегодняшней даты
