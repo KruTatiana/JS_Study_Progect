@@ -83,7 +83,7 @@ document.getElementById("button_cleaner").addEventListener("click", onBtnClickCl
 	document.getElementById('seeFox').addEventListener('click', getRandomFox);
 function closeFox(){
 	getFox.src ='';
-
+}
 document.getElementById('close').addEventListener('click', closeFox);
 // Код Нади
 function makeQuote() {
