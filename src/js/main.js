@@ -40,19 +40,24 @@ function onBtnClick() {
 
     let caloriesResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (calories.textContent = Math.ceil(data.totalNutrients.ENERC_KCAL.quantity)));
+        .then((data) => (calories.textContent = Math.ceil(data.totalNutrients.ENERC_KCAL.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
     let sugarResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (sugar.textContent = Math.ceil(data.totalNutrients.SUGAR.quantity)));
-    let ironResult = fetch(API)
+        .then((data) => (sugar.textContent = Math.ceil(data.totalNutrients.SUGAR.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
+		let ironResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (iron.textContent = Math.ceil(data.totalNutrients.FE.quantity)));
-    let vitaminCResult = fetch(API)
+        .then((data) => (iron.textContent = Math.ceil(data.totalNutrients.FE.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
+		let vitaminCResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (vitaminC.textContent = Math.ceil(data.totalNutrients.VITC.quantity)));
-    let calciumCResult = fetch(API)
+        .then((data) => (vitaminC.textContent = Math.ceil(data.totalNutrients.VITC.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
+		let calciumCResult = fetch(API)
         .then((res) => res.json())
-        .then((data) => (calcium.textContent = Math.ceil(data.totalNutrients.CA.quantity)));
+        .then((data) => (calcium.textContent = Math.ceil(data.totalNutrients.CA.quantity)))
+		.catch((err) => console.log ('Произошла ошибка при получении данных'));
 }
 document.getElementById("button_find").addEventListener("click", onBtnClick);
 
@@ -66,18 +71,20 @@ function onBtnClickCleaner() {
 }
 document.getElementById("button_cleaner").addEventListener("click", onBtnClickCleaner);
 
-function getRandomFox() {
-    let API = `https://randomfox.ca/floof/`;
+  function getRandomFox(){
+  let API = `https://randomfox.ca/floof/`;
+  
+  let randomFox = fetch(API)
+  .then((res) => res.json())
+  .then((data) => getFox.src =data.image)
+ .catch((err) => console.log('Не удалось получить данные'));
 
-    let randomFox = fetch(API)
-        .then((res) => res.json())
-        .then((data) => (getFox.src = data.image));
-}
-document.getElementById("seeFox").addEventListener("click", getRandomFox);
-function closeFox() {
-    getFox.src = "";
-}
-document.getElementById("close").addEventListener("click", closeFox);
+	}
+	document.getElementById('seeFox').addEventListener('click', getRandomFox);
+function closeFox(){
+	getFox.src ='';
+
+document.getElementById('close').addEventListener('click', closeFox);
 // Код Нади
 function makeQuote() {
     fetch("https://stoic.tekloon.net/stoic-quote")
