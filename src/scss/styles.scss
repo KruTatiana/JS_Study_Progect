@@ -64,7 +64,7 @@ $screen-xl-min: 2400px;
 
 .openRegistrationButton {
     border-style: none;
-    width: 100%;
+
     color: $black;
 }
 
@@ -90,13 +90,9 @@ $screen-xl-min: 2400px;
 // Код Насти
 
 .nav-link,
-.nickname_result {
+.profile {
     color: $darkBlue;
     margin-bottom: 0px;
-}
-
-.nav-link {
-    cursor: pointer;
 }
 
 .active-link {
@@ -138,16 +134,13 @@ $screen-xl-min: 2400px;
     font-size: 18px;
 }
 
+.menu-container {
+    width: 280px;
+    height: -webkit-fill-available;
+}
 .profile-img {
     width: 40px;
     height: 32px;
-}
-
-.disabled {
-    display: none !important;
-}
-.menu-container {
-    height: -webkit-fill-available;
 }
 
 // Код Тани
@@ -171,6 +164,7 @@ $screen-xl-min: 2400px;
 }
 
 .tasks_container {
+    width: 40%;
     margin: 5% 8% 3%;
     border: solid 2px $purple1;
     border-radius: 6px;
@@ -341,21 +335,23 @@ input[type="radio"]:checked + .life_part__btn {
 .new_task_element {
     display: flex;
     width: 100%;
+    margin-top: 5%;
     border: solid 2px $purple1;
     border-radius: 6px;
 }
 
 .task_checkbox {
-    width: 1.5em;
+    width: 10%;
     display: block;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 .content_task_box {
+    width: 50%;
     padding-top: 3%;
     padding-bottom: 3%;
-    margin-right: 8%;
+    margin-right: 2%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -369,12 +365,32 @@ input[type="radio"]:checked + .life_part__btn {
     color: $blue4;
 }
 
-.task_name_text,
-.description_text {
+.task_name_text,.description_text {
     margin-top: 2%;
     margin-bottom: 0;
 }
 
 .task_name_text {
     font-weight: bolder;
+}
+
+.right_el{
+    width: 20%;
+}
+
+.deadline_el{
+    width: 20%;
+    height: 50%;
+}
+
+.button_trash {
+    width: 50%;
+}
+
+.form_error {
+    color: red;
+}
+
+.btn_close-custom{
+    background-color: $white;
 }
