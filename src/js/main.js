@@ -25,6 +25,8 @@ let calcium = document.getElementById("calcium");
 let getFox = document.getElementById("getFox");
 let close = document.getElementById("close");
 
+
+
 //Код Веры
 
 function onBtnClick() {
@@ -413,10 +415,6 @@ function setChecked(check) {
 	    arrayFromStorage = JSON.parse(arrayFromStorage);
         console.log(arrayFromStorage);
         arrayFromStorage.forEach((obj,key) => {
-            console.log(typeof arrayFromStorage);
-            console.log(obj);
-            console.log(obj.id);
-            console.log(key);
             if(obj.id == taskId){
                 delete arrayFromStorage[key];
             }
