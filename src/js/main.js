@@ -453,6 +453,5 @@ const clearLocalStorage = () => {
 	console.log('Local Storage очищен.');
 };
 
-document.querySelector('.b-18').addEventListener('click', clearLocalStorage);
 
 
