@@ -69,19 +69,21 @@ function onBtnClickCleaner() {
 }
 document.getElementById("button_cleaner").addEventListener("click", onBtnClickCleaner);
 
-function getRandomFox() {
-    let API = `https://randomfox.ca/floof/`;
+  function getRandomFox(){
+  let API = `https://randomfox.ca/floof/`;
+  
+  let randomFox = fetch(API)
+  .then((res) => res.json())
+  .then((data) => getFox.src =data.image)
+ .catch((err) => console.log('Не удалось получить данные'));
 
-    let randomFox = fetch(API)
-        .then((res) => res.json())
-        .then((data) => (getFox.src = data.image))
-        .catch((err) => console.log("Не удалось получить данные"));
+	}
+	document.getElementById('seeFox').addEventListener('click', getRandomFox);
+function closeFox(){
+	getFox.src ='';
 }
-document.getElementById("seeFox").addEventListener("click", getRandomFox);
-function closeFox() {
-    getFox.src = "";
-}
-document.getElementById("close").addEventListener("click", closeFox);
+document.getElementById('close').addEventListener('click', closeFox);
+
 // Код Нади
 function makeQuote() {
     fetch("https://stoic.tekloon.net/stoic-quote")
