@@ -278,10 +278,6 @@ class taskCard {
 			taskMemoryObj.checkbox = "checked";
 		}
 	}
-
-	// showTask(){
-
-	// }
 }
 
 //вызов JSON из LocalStorage с проверкой на наличие в нем данных
@@ -323,9 +319,11 @@ function setTaskObjectToStorage() {
 function getTaskList() {
     checkStorage();
 	for (let obj of arrayFromStorage){
+        if(obj !== null){
             setDeadline(obj.deadlineDate, obj.deadlineTime);
 			let cardObject = new taskCard (obj.name, obj.description, deadline, obj.color, obj.lifePart, obj.deadlineDate, obj.deadlineTime, obj.id, obj.checkbox);
 			cardObject.createTask();
+        }
 		}
 	}
 getTaskList();
@@ -376,7 +374,7 @@ taskList.onclick = function(event) {
     let target = event.target;
     if (target.type == 'checkbox'){
     setChecked(target);
-    }else if(target.class == 'button_trash'){
+    }else if(target.type == 'image'){
     removeTask(target);
     }
 
@@ -406,9 +404,25 @@ function setChecked(check) {
 }
 }
 
-// function removeTask(el){
-
-// }
+    function removeTask(el){
+        let rightEl = el.parentNode;
+        let newTaskEl = rightEl.parentNode;
+        let idEl = newTaskEl.childNodes[1];
+        let taskId = idEl.id;
+        arrayFromStorage = localStorage.getItem('tasksStorage');
+	    arrayFromStorage = JSON.parse(arrayFromStorage);
+        console.log(arrayFromStorage);
+        arrayFromStorage.forEach((obj,key) => {
+            console.log(typeof arrayFromStorage);
+            console.log(obj);
+            console.log(obj.id);
+            console.log(key);
+            if(obj.id == taskId){
+                delete arrayFromStorage[key];
+            }
+        });
+        window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
+    }
 
 //кнопка "сохранить задачу" из формы добавления задачи
 
