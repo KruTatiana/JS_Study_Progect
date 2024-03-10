@@ -8,96 +8,6 @@
     <body>
         <header>
             <!-- меню -->
-        </header>
-
-        <main>
-            <!-- мотивационные фразы -->
-            <div class="container-fluid container-fluid-quote">
-        <div class="row row-quote">
-          <div class="col col-quote">
-      <div class="quote__text" id="quote"></div>
-      <p>
-      <div class="author" id="author"></div></p>
-      </div></div></div>
-            <!-- форма добавления задачи -->
-            <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header modal_header-custom">
-              <h3 class="modal-title fs-5" id="exampleModalLabel">Новая задача</h3>
-              <button
-                type="button"
-                class="btn-close btn_close-custom"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-              <div class="modal-body">
-                <form id="task_making_form" name="taskMaking">
-                    <input type="text" id="task_name" class= "form-control task_name" placeholder="Название" />
-                    <textarea
-                      type="text"
-                      id="task_description"
-                      class="form-control task_description"
-                      placeholder="Описание"
-                      maxlength="20"
-                    ></textarea>
-                    <div class="form_error"></div>
-                  <div class="dead_line">
-                    <p class="task_form__header">Срок выполнения</p>
-                    <input type="date" class="end_date help_text-grey" />
-                    <input type="time" class="end_time help_text-grey" />
-                  </div>
-                    <p class="task_form__header">Приоритет</p>
-                    <div class="d-flex flex-row justify-content-between">
-                    <label class="basis_btn" for="priority_btn-high">
-                      <input id="priority_btn-high" type="radio" class="radio_hide" name="prioritybtn" value="high" />
-                      <span class="custom-radio btn_high">Высокий</span>
-                    </label>
-                    <label class="basis_btn" for="priority_btn-medium">
-                      <input id="priority_btn-medium" type="radio" class="radio_hide" name="prioritybtn" value="medium" />
-                      <span class="custom-radio btn_medium">Средний</span>
-                    </label>
-                    <label class="basis_btn" for="priority_btn-low">
-                      <input id="priority_btn-low" type="radio" class="radio_hide" name="prioritybtn" value="low" />
-                      <span class="custom-radio btn_low">Низкий</span>
-                    </label>
-                  </div>
-                    <p class="task_form__header">Тип задачи</p>
-                    <div class="life_part__btns d-flex flex-row flex-wrap justify-content-between">
-                    <label class="basis_btn" for="part_btn-personal">
-                      <input id="part_btn-personal" type="radio" class="radio_hide" name="lifepartbtn" value="personal"/>
-                      <span class="custom-radio life_part__btn">Личное</span>
-                    </label>
-                    <label class="basis_btn" for="part_btn-work">
-                      <input id="part_btn-work" type="radio" class="radio_hide" name="lifepartbtn" value="work" />
-                      <span class="custom-radio life_part__btn">Работа</span>
-                    </label>
-                    <label class="basis_btn" for="part_btn-study">
-                      <input id="part_btn-study" type="radio" class="radio_hide" name="lifepartbtn" value="study" />
-                      <span class="custom-radio life_part__btn">Учеба</span>
-                    </label>
-                    <label class="basis_btn mt-2" for="part_btn-health">
-                      <input id="part_btn-health" type="radio" class="radio_hide" name="lifepartbtn" value="health" />
-                      <span class="custom-radio life_part__btn">Здоровье</span>
-                    </label>
-                    <label class="basis_btn mt-2" for="part_btn-finance">
-                      <input id="part_btn-finance" type="radio" class="radio_hide" name="lifepartbtn" value="finance" />
-                      <span class="custom-radio life_part__btn">Финансы</span>
-                    </label>
-                    <label class="basis_btn mt-2" for="part_btn-other">
-                      <input id="part_btn-other" type="radio" class="radio_hide" name="lifepartbtn" value="other" />
-                      <span class="custom-radio life_part__btn">Другое</span>
-                    </label>
-                  </div>
-                  <button class="save_task__btn btn">Сохранить</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
             <div
                 class="d-flex flex-column flex-shrink-0 p-3 bg-body-white menu-container"
             >
@@ -190,12 +100,19 @@
                         </div>
                     </li>
                 </ul>
-
                 <hr />
                 <button class="btn btn-primary btn-exit" type="button">Придумать кнопку</button>
             </div>
-
-    </body>
+        </header>
+        <main>
+    <!-- мотивационные фразы -->
+    <div class="container-fluid container-fluid-quote">
+      <div class="row row-quote">
+        <div class="col col-quote">
+    <div class="quote__text" id="quote"></div>
+    <p>
+    <div class="author" id="author"></div></p>
+    </div></div></div>
       <!-- задачи -->
       <div class="tasks_container h-75 p-3 d-flex flex-column align-items-center">
         <div><h4>Сегодня</h4><div class="today_date"></div>
@@ -211,37 +128,6 @@
       </button>
       <button class="b-18">Clean Storage</button>
     </div>
-      <!-- форма регистрации -->
-      <button
-      type="button"
-        class="btn btn-outline-primary openRegistrationButton tasks_container w-25 h-75 p-3 d-flex flex-column align-items-center"
-        data-bs-toggle="modal"
-        data-bs-target="#registrationForm"
-        id="openRegistration"
-      >
-        Открыть форму регистрации</button>
-      <div id="registrationForm" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header modal_header-custom">
-              <h3 class="modal-title fs-5" id="exampleModalLabel">Войдите или зарегистрируйтесь</h3>
-            </div>
-              <div class="modal-body">
-                <form>
-                    <input type="text" id="task_name user_name" class= "form-control task_name user_name" placeholder="Ваше имя" />
-                    <input
-                      type="text"
-                      id="task_name nick_name"
-                      class="form-control task_name nickname"
-                      placeholder="Ваш никнейм"
-                    />
-                  <button class="save_user__btn btn" data-bs-dismiss="modal">Сохранить</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- рецепты-->
       <div id="edamam-badge" data-color="white"></div>
       <div class="container">
@@ -278,5 +164,114 @@
       <div id="011d7b2e11d0978fa4537404553f34e4" class="ww-informers-box-854753"><p class="ww-informers-box-854754"><a href="https://world-weather.ru/pogoda/russia/moscow/14days/">world-weather.ru/pogoda/russia/moscow/14days/</a><br><a href="https://world-weather.ru/pogoda/russia/krasnoyarsk/">https://world-weather.ru/pogoda/russia/krasnoyarsk/</a></p></div><script async type="text/javascript" charset="utf-8" src="https://world-weather.ru/wwinformer.php?userid=011d7b2e11d0978fa4537404553f34e4"></script><style>.ww-informers-box-854754{-webkit-animation-name:ww-informers54;animation-name:ww-informers54;-webkit-animation-duration:1.5s;animation-duration:1.5s;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;font-size:12px;font-family:Arial;line-height:18px;text-align:center}@-webkit-keyframes ww-informers54{0%,80%{opacity:0}100%{opacity:1}}@keyframes ww-informers54{0%,80%{opacity:0}100%{opacity:1}}</style>
     </main>
     <footer></footer>
+    <!-- форма добавления задачи -->
+    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal_header-custom">
+            <h3 class="modal-title fs-5" id="exampleModalLabel">Новая задача</h3>
+            <button
+              type="button"
+              class="btn-close btn_close-custom"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+            <div class="modal-body">
+              <form id="task_making_form" name="taskMaking">
+                  <input type="text" id="task_name" class= "form-control task_name" placeholder="Название" />
+                  <textarea
+                    type="text"
+                    id="task_description"
+                    class="form-control task_description"
+                    placeholder="Описание"
+                    maxlength="20"
+                  ></textarea>
+                  <div class="form_error"></div>
+                <div class="dead_line">
+                  <p class="task_form__header">Срок выполнения</p>
+                  <input type="date" class="end_date help_text-grey" />
+                  <input type="time" class="end_time help_text-grey" />
+                </div>
+                  <p class="task_form__header">Приоритет</p>
+                  <div class="d-flex flex-row justify-content-between">
+                  <label class="basis_btn" for="priority_btn-high">
+                    <input id="priority_btn-high" type="radio" class="radio_hide" name="prioritybtn" value="high" />
+                    <span class="custom-radio btn_high">Высокий</span>
+                  </label>
+                  <label class="basis_btn" for="priority_btn-medium">
+                    <input id="priority_btn-medium" type="radio" class="radio_hide" name="prioritybtn" value="medium" />
+                    <span class="custom-radio btn_medium">Средний</span>
+                  </label>
+                  <label class="basis_btn" for="priority_btn-low">
+                    <input id="priority_btn-low" type="radio" class="radio_hide" name="prioritybtn" value="low" />
+                    <span class="custom-radio btn_low">Низкий</span>
+                  </label>
+                </div>
+                  <p class="task_form__header">Тип задачи</p>
+                  <div class="life_part__btns d-flex flex-row flex-wrap justify-content-between">
+                  <label class="basis_btn" for="part_btn-personal">
+                    <input id="part_btn-personal" type="radio" class="radio_hide" name="lifepartbtn" value="personal"/>
+                    <span class="custom-radio life_part__btn">Личное</span>
+                  </label>
+                  <label class="basis_btn" for="part_btn-work">
+                    <input id="part_btn-work" type="radio" class="radio_hide" name="lifepartbtn" value="work" />
+                    <span class="custom-radio life_part__btn">Работа</span>
+                  </label>
+                  <label class="basis_btn" for="part_btn-study">
+                    <input id="part_btn-study" type="radio" class="radio_hide" name="lifepartbtn" value="study" />
+                    <span class="custom-radio life_part__btn">Учеба</span>
+                  </label>
+                  <label class="basis_btn mt-2" for="part_btn-health">
+                    <input id="part_btn-health" type="radio" class="radio_hide" name="lifepartbtn" value="health" />
+                    <span class="custom-radio life_part__btn">Здоровье</span>
+                  </label>
+                  <label class="basis_btn mt-2" for="part_btn-finance">
+                    <input id="part_btn-finance" type="radio" class="radio_hide" name="lifepartbtn" value="finance" />
+                    <span class="custom-radio life_part__btn">Финансы</span>
+                  </label>
+                  <label class="basis_btn mt-2" for="part_btn-other">
+                    <input id="part_btn-other" type="radio" class="radio_hide" name="lifepartbtn" value="other" />
+                    <span class="custom-radio life_part__btn">Другое</span>
+                  </label>
+                </div>
+                <button class="save_task__btn btn">Сохранить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- форма регистрации -->
+    <button
+    type="button"
+      class="btn btn-outline-primary openRegistrationButton tasks_container w-25 h-75 p-3 d-flex flex-column align-items-center"
+      data-bs-toggle="modal"
+      data-bs-target="#registrationForm"
+      id="openRegistration"
+    >
+      Открыть форму регистрации</button>
+    <div id="registrationForm" class="modal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal_header-custom">
+            <h3 class="modal-title fs-5" id="exampleModalLabel">Войдите или зарегистрируйтесь</h3>
+          </div>
+            <div class="modal-body">
+              <form>
+                  <input type="text" id="task_name user_name" class= "form-control task_name user_name" placeholder="Ваше имя" />
+                  <input
+                    type="text"
+                    id="task_name nick_name"
+                    class="form-control task_name nickname"
+                    placeholder="Ваш никнейм"
+                  />
+                <button class="save_user__btn btn" data-bs-dismiss="modal">Сохранить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
