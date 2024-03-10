@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>To-Do Health</title>
   </head>
-  <body class="container-fluid">
-    <div class="row">
+  <body>
+    <div class="container-fluid row p-0 m-auto">
       <header
         class="col-3 d-flex flex-column flex-shrink-0 p-3 bg-body-white menu-container"
       >
         <!-- меню -->
-        <p
+        <div
           class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none"
         >
           <img src="" class="bi pe-none me-2 profile-img" />
@@ -25,7 +25,18 @@
           >
             Сменить пользователя
           </button>
-        </p>
+          <div class="button_hide">
+            <button
+              type="button"
+              class="btn btn-outline-primary openRegistrationButton tasks_container w-25 h-75 p-3 d-flex flex-column align-items-center"
+              data-bs-toggle="modal"
+              data-bs-target="#registrationForm"
+              id="openRegistration"
+            >
+              Открыть форму регистрации
+            </button>
+          </div>
+        </div>
         <hr />
         <ul class="nav nav-pills flex-column mb-auto" id="menuListContainer">
           <li class="nav-item">
@@ -144,7 +155,7 @@
           Удалить все задачи
         </button>
       </header>
-      <main class="col-9 d-flex flex-column justify-content-between">
+      <main class="col-9 d-flex flex-column justify-content-between flex-fill">
         <div class="row">
           <!-- мотивационные фразы -->
           <div class="col container-fluid container-fluid-quote">
@@ -159,7 +170,7 @@
         <div class="row">
           <!-- задачи -->
           <div
-            class="col-7 tasks_container w-25 h-75 p-3 d-flex flex-column align-items-center"
+            class="col-7 tasks_container w-25 p-3 d-flex flex-column align-items-center"
           >
             <div>
               <h4>Сегодня</h4>
@@ -174,9 +185,8 @@
             >
               Добавить задачу
             </button>
-            <button class="b-18">Clean Storage</button>
           </div>
-          <div class="col-5">
+          <div class="col-5 random-fox flex-fill">
             <button id="seeFox" type="button" class="btn btn-primary">
               Посмотреть лисичек
             </button>
@@ -187,11 +197,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="col">
+          <div class="col p-0">
             <!-- рецепты-->
             <div id="edamam-badge" data-color="white"></div>
-            <div class="container">
-              <div class="el e1-1">
+            <div class="d-flex flex-column">
+              <div class="el e1-1 mb-2">
                 <input type="text" id="ingridients" placeholder="1 apple" />
                 <button id="button_find" type="button" class="btn btn-primary">
                   Найти
@@ -228,7 +238,7 @@
           </div>
         </div>
       </main>
-      <footer class="row">
+      <footer class="row p-0 m-auto">
         <div
           class="col"
           id="ww_bd7162a4d6ed1"
@@ -395,43 +405,34 @@
           </div>
         </div>
       </div>
-    </div>
-    <!-- форма регистрации -->
-    <button
-      type="button"
-      class="btn btn-outline-primary openRegistrationButton tasks_container w-25 h-75 p-3 d-flex flex-column align-items-center"
-      data-bs-toggle="modal"
-      data-bs-target="#registrationForm"
-      id="openRegistration"
-    >
-      Открыть форму регистрации
-    </button>
-    <div id="registrationForm" class="modal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header modal_header-custom">
-            <h3 class="modal-title fs-5" id="exampleModalLabel">
-              Войдите или зарегистрируйтесь
-            </h3>
-          </div>
-          <div class="modal-body">
-            <form>
-              <input
-                type="text"
-                id="task_name user_name"
-                class="form-control task_name user_name"
-                placeholder="Ваше имя"
-              />
-              <input
-                type="text"
-                id="task_name nick_name"
-                class="form-control task_name nickname"
-                placeholder="Ваш никнейм"
-              />
-              <button class="save_user__btn btn" data-bs-dismiss="modal">
-                Сохранить
-              </button>
-            </form>
+      <!-- форма регистрации -->
+      <div id="registrationForm" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header modal_header-custom">
+              <h3 class="modal-title fs-5" id="exampleModalLabel">
+                Войдите или зарегистрируйтесь
+              </h3>
+            </div>
+            <div class="modal-body">
+              <form>
+                <input
+                  type="text"
+                  id="task_name user_name"
+                  class="form-control task_name user_name"
+                  placeholder="Ваше имя"
+                />
+                <input
+                  type="text"
+                  id="task_name nick_name"
+                  class="form-control task_name nickname"
+                  placeholder="Ваш никнейм"
+                />
+                <button class="save_user__btn btn" data-bs-dismiss="modal">
+                  Сохранить
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

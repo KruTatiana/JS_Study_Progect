@@ -39,6 +39,17 @@ $screen-xl-min: 2400px;
     width: 30vw;
 }
 
+.random-fox {
+    margin-top: 5%;
+}
+
+.random-fox>div>img{
+    height: 50%;
+    max-width: 100%;
+    margin: 5% 10% 5% 0;
+    padding-right: 10%;
+}
+
 // Код Нади
 .container-fluid-quote {
     padding-top: 4rem;
@@ -64,8 +75,11 @@ $screen-xl-min: 2400px;
 
 .openRegistrationButton {
     border-style: none;
-
     color: $black;
+}
+
+.button_hide{
+    display: none;
 }
 
 .btn-outline-primary:hover {
