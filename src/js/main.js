@@ -27,8 +27,6 @@ let calories = document.getElementById("calories");
 let calcium = document.getElementById("calcium");
 let getFox = document.getElementById("getFox");
 let close = document.getElementById("close");
-
-// добавить заголовок на стринцу !!
 const title = document.getElementById("title");
 
 //Код Веры
@@ -41,23 +39,23 @@ function onBtnClick() {
     let caloriesResult = fetch(API)
         .then((res) => res.json())
         .then((data) => (calories.textContent = Math.ceil(data.totalNutrients.ENERC_KCAL.quantity)))
-		.catch((err) => console.log ('Произошла ошибка при получении данных'));
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
     let sugarResult = fetch(API)
         .then((res) => res.json())
         .then((data) => (sugar.textContent = Math.ceil(data.totalNutrients.SUGAR.quantity)))
-		.catch((err) => console.log ('Произошла ошибка при получении данных'));
-		let ironResult = fetch(API)
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
+    let ironResult = fetch(API)
         .then((res) => res.json())
         .then((data) => (iron.textContent = Math.ceil(data.totalNutrients.FE.quantity)))
-		.catch((err) => console.log ('Произошла ошибка при получении данных'));
-		let vitaminCResult = fetch(API)
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
+    let vitaminCResult = fetch(API)
         .then((res) => res.json())
         .then((data) => (vitaminC.textContent = Math.ceil(data.totalNutrients.VITC.quantity)))
-		.catch((err) => console.log ('Произошла ошибка при получении данных'));
-		let calciumCResult = fetch(API)
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
+    let calciumCResult = fetch(API)
         .then((res) => res.json())
         .then((data) => (calcium.textContent = Math.ceil(data.totalNutrients.CA.quantity)))
-		.catch((err) => console.log ('Произошла ошибка при получении данных'));
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
 }
 document.getElementById("button_find").addEventListener("click", onBtnClick);
 
@@ -85,6 +83,7 @@ function closeFox(){
 	getFox.src ='';
 }
 document.getElementById('close').addEventListener('click', closeFox);
+
 // Код Нади
 function makeQuote() {
     fetch("https://stoic.tekloon.net/stoic-quote")
@@ -173,13 +172,13 @@ menuListContainer.addEventListener("click", function (evt) {
         }
     }
     // отображаем в заголовке выбранный раздел
-    // if (eventTarget.id === "anyTask" || eventTarget.classList.contains("categoryLink")) {
-    //     title.textContent = eventTarget.textContent;
-    // } else if (eventTarget.classList.contains("simpleLink")) {
-    //     title.textContent = eventTarget.textContent + " задачи";
-    // } else if (eventTarget.classList.contains("priorityLink")) {
-    //     title.textContent = eventTarget.textContent + " приоритет";
-    // }
+    if (eventTarget.id === "new_task_element" || eventTarget.classList.contains("categoryLink")) {
+        title.textContent = eventTarget.textContent;
+    } else if (eventTarget.classList.contains("simpleLink")) {
+        title.textContent = eventTarget.textContent + " задачи";
+    } else if (eventTarget.classList.contains("priorityLink")) {
+        title.textContent = eventTarget.textContent + " приоритет";
+    }
 });
 
 btnTasksCleaner.addEventListener("click", () => {
@@ -238,33 +237,52 @@ class taskCard {
     createTask() {
         this.element = document.createElement("div");
         this.priorityLifeEl = document.createElement("div");
-        this.partLifeEl = document.createElement("div");
         this.checkEl = document.createElement("input");
         this.contentBoxEl = document.createElement("div");
         this.nameEl = document.createElement("p");
         this.descriptionEl = document.createElement("p");
-        this.deadlineEl = document.createElement("div");
+        this.rightEl = document.createElement("div");
+        this.buttonClean = document.createElement("input");
         tasksList.appendChild(this.element);
         this.element.appendChild(this.priorityLifeEl);
         this.element.appendChild(this.checkEl);
         this.element.appendChild(this.contentBoxEl);
-        this.contentBoxEl.appendChild(this.partLifeEl);
+        if (!isNaN(this.deadline)) {
+            this.deadlineEl = document.createElement("div");
+            this.deadlineText = document.createElement("p");
+            this.deadlineHours = document.createElement("p");
+            this.rightEl.appendChild(this.deadlineEl);
+            this.deadlineEl.appendChild(this.deadlineText);
+            this.deadlineEl.appendChild(this.deadlineHours);
+            this.deadlineEl.setAttribute("class", "deadline_el");
+            this.deadlineText.innerText = "Осталось";
+            this.deadlineHours.innerText = `${this.deadline} ч.`;
+        }
+        if (this.lifePart != undefined) {
+            this.partLifeEl = document.createElement("div");
+            this.contentBoxEl.appendChild(this.partLifeEl);
+            this.partLifeEl.setAttribute("class", "part_life_element");
+            this.partLifeEl.innerText = this.lifePart;
+        }
         this.contentBoxEl.appendChild(this.nameEl);
         this.contentBoxEl.appendChild(this.descriptionEl);
-        this.element.appendChild(this.deadlineEl);
+        this.element.appendChild(this.rightEl);
+        this.rightEl.appendChild(this.buttonClean);
         this.element.setAttribute("class", `new_task_element ${this.partValue} priority_${this.priority}`);
+
         this.checkEl.setAttribute("type", "checkbox");
         this.checkEl.setAttribute("class", "task_checkbox");
         this.checkEl.setAttribute("id", this.id);
-        this.partLifeEl.setAttribute("class", "part_life_element");
         this.nameEl.setAttribute("class", "task_name_text");
         this.descriptionEl.setAttribute("class", "description_text");
         this.priorityLifeEl.setAttribute("class", this.color);
         this.contentBoxEl.setAttribute("class", "content_task_box");
-        this.partLifeEl.innerText = this.lifePart;
+        this.rightEl.setAttribute("class", "right_el");
+        this.buttonClean.setAttribute("type", "image");
+        this.buttonClean.setAttribute("src", ".././accets/icontrash.svg");
+        this.buttonClean.setAttribute("class", "button_trash");
         this.nameEl.innerText = this.name;
         this.descriptionEl.innerText = this.description;
-        this.deadlineEl.innerText = this.deadline;
         if (this.checkbox == "checked") {
             this.checkEl.setAttribute("checked", "checked");
             this.element.classList.add("complete");
@@ -310,13 +328,21 @@ function checkStorage() {
     arrayFromStorage = arrayFromStorage ? JSON.parse(arrayFromStorage) : [];
 }
 
+//Проверка зарегестрированного пользователя
+
+//add_task
+let userData = localStorage.getItem("user");
+if (userData) {
+    document.querySelector(".add_task").removeAttribute("disabled");
+}
+
 //Расчет даты дедлайна задачи
 
-function setDeadline() {
+function setDeadline(date, time) {
     let startDate = moment();
-    let taskDeadlinDate = moment(`${deadlineDate.value}T${deadlineTime.value}`);
+    let taskDeadlinDate = moment(`${date}T${time}`);
     deadline = taskDeadlinDate.diff(startDate, "hours");
-    console.log(deadline);
+    return deadline;
 }
 
 //Сохранение пареметров задачи в LocalStorage
@@ -327,26 +353,28 @@ function setTaskObjectToStorage() {
     window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
 }
 
-//функция для создания новой карточки задачи
+//функция для создания карточек задач при загрузке страницы
 
 function getTaskList() {
-    setDeadline();
     checkStorage();
     for (let obj of arrayFromStorage) {
-        let cardObject = new taskCard(
-            obj.name,
-            obj.description,
-            deadline,
-            obj.color,
-            obj.priority,
-            obj.lifePart,
-            obj.partValue,
-            obj.deadlineDate,
-            obj.deadlineTime,
-            obj.id,
-            obj.checkbox
-        );
-        cardObject.createTask();
+        if (obj !== null) {
+            setDeadline(obj.deadlineDate, obj.deadlineTime);
+            let cardObject = new taskCard(
+                obj.name,
+                obj.description,
+                deadline,
+                obj.color,
+                obj.priority,
+                obj.lifePart,
+                obj.partValue,
+                obj.deadlineDate,
+                obj.deadlineTime,
+                obj.id,
+                obj.checkbox
+            );
+            cardObject.createTask();
+        }
     }
 }
 getTaskList();
@@ -397,8 +425,11 @@ function setId() {
 
 taskList.onclick = function (event) {
     let target = event.target;
-    if (target.type != "checkbox") return;
-    setChecked(target);
+    if (target.type == "checkbox") {
+        setChecked(target);
+    } else if (target.type == "image") {
+        removeTask(target);
+    }
 };
 
 function setChecked(check) {
@@ -425,32 +456,56 @@ function setChecked(check) {
     }
 }
 
+function removeTask(el) {
+    let rightEl = el.parentNode;
+    let newTaskEl = rightEl.parentNode;
+    let idEl = newTaskEl.childNodes[1];
+    let taskId = idEl.id;
+    arrayFromStorage = localStorage.getItem("tasksStorage");
+    arrayFromStorage = JSON.parse(arrayFromStorage);
+    console.log(arrayFromStorage);
+    arrayFromStorage.forEach((obj, key) => {
+        console.log(typeof arrayFromStorage);
+        console.log(obj);
+        console.log(obj.id);
+        console.log(key);
+        if (obj.id == taskId) {
+            delete arrayFromStorage[key];
+        }
+    });
+    window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
+}
+
 //кнопка "сохранить задачу" из формы добавления задачи
 
 saveTaskBtn.addEventListener("click", () => {
-    setPriorityColor();
-    setPartStr();
-    setDeadline();
-    setId();
-    let taskObject = new taskCard(
-        taskName.value,
-        taskDescription.value,
-        deadline,
-        priorityColor,
-        priority,
-        partStr,
-        partValue,
-        deadlineDate.value,
-        deadlineTime.value,
-        taskId
-    );
-    taskObject.createTask();
-    taskObject.makeObj();
-    setTaskObjectToStorage();
-    taskName.value = "";
-    taskDescription.value = "";
-    deadlineDate.value = "";
-    deadlineTime.value = "";
+    if (taskName.value.trim() !== "" && taskDescription.value.trim() !== "") {
+        setPriorityColor();
+        setPartStr();
+        setDeadline(deadlineDate.value, deadlineTime.value);
+        setId();
+        let taskObject = new taskCard(
+            taskName.value,
+            taskDescription.value,
+            deadline,
+            priorityColor,
+            priority,
+            partStr,
+            partValue,
+            deadlineDate.value,
+            deadlineTime.value,
+            taskId
+        );
+        taskObject.createTask();
+        taskObject.makeObj();
+        setTaskObjectToStorage();
+        taskName.value = "";
+        taskDescription.value = "";
+        deadlineDate.value = "";
+        deadlineTime.value = "";
+    } else {
+        document.querySelector(".form_error").innerText = 'Поля "Название" и "Описание" обязательны для заполнения!';
+    }
 });
 
 //Clean LokalStorage
