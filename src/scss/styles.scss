@@ -35,16 +35,16 @@ $screen-xl-min: 2400px;
 
 // Код Веры
 
-#getRandomRecipes {
-    width: 30vw;
+#getFox {
+    max-width: 300px;
 }
 
 .random-fox {
     margin-top: 5%;
 }
 
-.random-fox>div>img{
-    height: 50%;
+.random-fox > div > img {
+    max-height: 50%;
     max-width: 100%;
     margin: 5% 10% 5% 0;
     padding-right: 10%;
@@ -78,7 +78,7 @@ $screen-xl-min: 2400px;
     color: $black;
 }
 
-.button_hide{
+.button_hide {
     display: none;
 }
 
@@ -104,9 +104,13 @@ $screen-xl-min: 2400px;
 // Код Насти
 
 .nav-link,
-.profile {
+.nickname_result {
     color: $darkBlue;
     margin-bottom: 0px;
+}
+
+.nav-link {
+    cursor: pointer;
 }
 
 .active-link {
@@ -134,7 +138,6 @@ $screen-xl-min: 2400px;
     background-color: $blue5;
     color: #fff;
 }
-
 .btn-exit:active,
 .active-link:active {
     background-color: $blue6 !important;
@@ -149,10 +152,6 @@ $screen-xl-min: 2400px;
     font-size: 18px;
 }
 
-.menu-container {
-    width: 280px;
-    height: -webkit-fill-available;
-}
 .profile-img {
     width: 40px;
     height: 32px;
@@ -160,10 +159,6 @@ $screen-xl-min: 2400px;
 
 .disabled {
     display: none !important;
-}
-
-.menu-container {
-    height: -webkit-fill-available;
 }
 
 // Код Тани
@@ -388,7 +383,8 @@ input[type="radio"]:checked + .life_part__btn {
     color: $blue4;
 }
 
-.task_name_text,.description_text {
+.task_name_text,
+.description_text {
     margin-top: 2%;
     margin-bottom: 0;
 }
@@ -397,11 +393,11 @@ input[type="radio"]:checked + .life_part__btn {
     font-weight: bolder;
 }
 
-.right_el{
+.right_el {
     width: 20%;
 }
 
-.deadline_el{
+.deadline_el {
     width: 20%;
     height: 50%;
 }
@@ -414,6 +410,6 @@ input[type="radio"]:checked + .life_part__btn {
     color: red;
 }
 
-.btn_close-custom{
+.btn_close-custom {
     background-color: $white;
 }
