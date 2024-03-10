@@ -27,8 +27,6 @@ let calories = document.getElementById("calories");
 let calcium = document.getElementById("calcium");
 let getFox = document.getElementById("getFox");
 let close = document.getElementById("close");
-
-// добавить заголовок на стринцу !!
 const title = document.getElementById("title");
 
 //Код Веры
@@ -172,13 +170,13 @@ menuListContainer.addEventListener("click", function (evt) {
         }
     }
     // отображаем в заголовке выбранный раздел
-    // if (eventTarget.id === "anyTask" || eventTarget.classList.contains("categoryLink")) {
-    //     title.textContent = eventTarget.textContent;
-    // } else if (eventTarget.classList.contains("simpleLink")) {
-    //     title.textContent = eventTarget.textContent + " задачи";
-    // } else if (eventTarget.classList.contains("priorityLink")) {
-    //     title.textContent = eventTarget.textContent + " приоритет";
-    // }
+    if (eventTarget.id === "new_task_element" || eventTarget.classList.contains("categoryLink")) {
+        title.textContent = eventTarget.textContent;
+    } else if (eventTarget.classList.contains("simpleLink")) {
+        title.textContent = eventTarget.textContent + " задачи";
+    } else if (eventTarget.classList.contains("priorityLink")) {
+        title.textContent = eventTarget.textContent + " приоритет";
+    }
 });
 
 btnTasksCleaner.addEventListener("click", () => {
