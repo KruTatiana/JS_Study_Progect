@@ -358,7 +358,6 @@ function setTaskObjectToStorage() {
 function getTaskList() {
     checkStorage();
     for (let obj of arrayFromStorage) {
-        if (obj !== null) {
             setDeadline(obj.deadlineDate, obj.deadlineTime);
             let cardObject = new taskCard(
                 obj.name,
@@ -374,7 +373,6 @@ function getTaskList() {
                 obj.checkbox
             );
             cardObject.createTask();
-        }
     }
 }
 getTaskList();
@@ -456,6 +454,8 @@ function setChecked(check) {
     }
 }
 
+//obj.id !== null
+
     function removeTask(el){
         let rightEl = el.parentNode;
         let newTaskEl = rightEl.parentNode;
@@ -463,12 +463,12 @@ function setChecked(check) {
         let taskId = idEl.id;
         arrayFromStorage = localStorage.getItem('tasksStorage');
 	    arrayFromStorage = JSON.parse(arrayFromStorage);
-        console.log(arrayFromStorage);
         arrayFromStorage.forEach((obj,key) => {
             if(obj.id == taskId){
                 delete arrayFromStorage[key];
             }
         });
+        // arrayFromStorage = arrayFromStorage.filter((obj,key) => obj === null);
         window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
     }
 
@@ -506,9 +506,9 @@ saveTaskBtn.addEventListener("click", () => {
 
 //Clean LokalStorage
 
-const clearLocalStorage = () => {
-    window.localStorage.clear();
-    console.log("Local Storage очищен.");
-};
+// const clearLocalStorage = () => {
+//     window.localStorage.clear();
+//     console.log("Local Storage очищен.");
+// };
 
-document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
+// document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
