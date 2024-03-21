@@ -44,10 +44,8 @@ $screen-xl-min: 2400px;
 }
 
 .random-fox > div > img {
-    max-height: 50%;
     max-width: 100%;
-    margin: 5% 10% 5% 0;
-    padding-right: 10%;
+    margin: 5% 5% 5% 0;
 }
 
 // Код Нади
@@ -182,14 +180,14 @@ $screen-xl-min: 2400px;
 }
 
 .tasks_container {
-    width: 40%;
-    margin: 5% 8% 3%;
+    margin-top: 5%;
+    margin-bottom: 3%;
     border: solid 2px $purple1;
     border-radius: 6px;
 }
 
 .add_task {
-    width: 80%;
+    width: 90%;
     border: solid 2px $purple1;
 }
 
@@ -269,7 +267,7 @@ input[type="radio"]:checked + .btn_high {
 }
 
 .high_lable {
-    width: 10%;
+    width: 5%;
     border: none;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -289,7 +287,7 @@ input[type="radio"]:checked + .btn_medium {
 }
 
 .medium_lable {
-    width: 10%;
+    width: 5%;
     border: none;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -308,7 +306,7 @@ input[type="radio"]:checked + .btn_low {
 }
 
 .low_lable {
-    width: 10%;
+    width: 5%;
     border: none;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -346,7 +344,7 @@ input[type="radio"]:checked + .life_part__btn {
 }
 
 .tasks_list {
-    width: 80%;
+    width: 90%;
     margin-bottom: 4%;
 }
 
@@ -354,6 +352,7 @@ input[type="radio"]:checked + .life_part__btn {
     display: flex;
     width: 100%;
     margin-top: 5%;
+    padding-right: 2%;
     border: solid 2px $purple1;
     border-radius: 6px;
 }
@@ -394,16 +393,22 @@ input[type="radio"]:checked + .life_part__btn {
 }
 
 .right_el {
-    width: 20%;
+    width: 30%;
 }
 
 .deadline_el {
-    width: 20%;
+    width: 100%;
     height: 50%;
 }
 
+.deadline_el p {
+    margin-bottom: 0;
+}
+
 .button_trash {
-    width: 50%;
+    display: block;
+    width: 40%;
+    margin: 7% auto;
 }
 
 .form_error {

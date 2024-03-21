@@ -29,6 +29,8 @@ let getFox = document.getElementById("getFox");
 let close = document.getElementById("close");
 const title = document.getElementById("title");
 
+// window.localStorage.clear();
+
 //Код Веры
 
 function onBtnClick() {
@@ -279,7 +281,7 @@ class taskCard {
         this.contentBoxEl.setAttribute("class", "content_task_box");
         this.rightEl.setAttribute("class", "right_el");
         this.buttonClean.setAttribute("type", "image");
-        this.buttonClean.setAttribute("src", ".././accets/icontrash.svg");
+        this.buttonClean.setAttribute("src", ".././accets/Icontrash.svg");
         this.buttonClean.setAttribute("class", "button_trash");
         this.nameEl.innerText = this.name;
         this.descriptionEl.innerText = this.description;
@@ -354,10 +356,11 @@ function setTaskObjectToStorage() {
 }
 
 //функция для создания карточек задач при загрузке страницы
-
+//добавить проверку null
 function getTaskList() {
     checkStorage();
     for (let obj of arrayFromStorage) {
+        if(obj !== null){
             setDeadline(obj.deadlineDate, obj.deadlineTime);
             let cardObject = new taskCard(
                 obj.name,
@@ -373,6 +376,7 @@ function getTaskList() {
                 obj.checkbox
             );
             cardObject.createTask();
+        }
     }
 }
 getTaskList();
