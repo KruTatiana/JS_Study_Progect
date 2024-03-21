@@ -355,23 +355,21 @@ function setTaskObjectToStorage() {
 function getTaskList() {
     checkStorage();
     for (let obj of arrayFromStorage) {
-        if(obj !== null){
-            setDeadline(obj.deadlineDate, obj.deadlineTime);
-            let cardObject = new taskCard(
-                obj.name,
-                obj.description,
-                deadline,
-                obj.color,
-                obj.priority,
-                obj.lifePart,
-                obj.partValue,
-                obj.deadlineDate,
-                obj.deadlineTime,
-                obj.id,
-                obj.checkbox
-            );
-            cardObject.createTask();
-        }
+        setDeadline(obj.deadlineDate, obj.deadlineTime);
+        let cardObject = new taskCard(
+            obj.name,
+            obj.description,
+            deadline,
+            obj.color,
+            obj.priority,
+            obj.lifePart,
+            obj.partValue,
+            obj.deadlineDate,
+            obj.deadlineTime,
+            obj.id,
+            obj.checkbox
+        );
+        cardObject.createTask();
     }
 }
 getTaskList();
