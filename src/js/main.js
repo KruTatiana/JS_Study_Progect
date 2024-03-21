@@ -317,10 +317,6 @@ class taskCard {
             taskMemoryObj.checkbox = "checked";
         }
     }
-
-    // showTask(){
-
-    // }
 }
 
 //вызов JSON из LocalStorage с проверкой на наличие в нем данных
@@ -356,7 +352,6 @@ function setTaskObjectToStorage() {
 }
 
 //функция для создания карточек задач при загрузке страницы
-//добавить проверку null
 function getTaskList() {
     checkStorage();
     for (let obj of arrayFromStorage) {
@@ -458,8 +453,6 @@ function setChecked(check) {
     }
 }
 
-//obj.id !== null
-
     function removeTask(el){
         let rightEl = el.parentNode;
         let newTaskEl = rightEl.parentNode;
@@ -468,12 +461,13 @@ function setChecked(check) {
         arrayFromStorage = localStorage.getItem('tasksStorage');
 	    arrayFromStorage = JSON.parse(arrayFromStorage);
         arrayFromStorage.forEach((obj,key) => {
-            if(obj.id == taskId){
-                delete arrayFromStorage[key];
+            if(obj.id == taskId) {
+                arrayFromStorage.splice(key,1);
             }
         });
-        // arrayFromStorage = arrayFromStorage.filter((obj,key) => obj === null);
         window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
+        tasksList.innerHTML = '';
+        getTaskList();
     }
 
 //кнопка "сохранить задачу" из формы добавления задачи

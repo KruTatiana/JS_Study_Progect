@@ -14,7 +14,7 @@
         <div
           class="d-flex flex-row align-items-center text-decoration-none ps-3 ps-sm-3 ps-md-0"
         >
-          <div class="me-3 d-flex flex-column">
+          <div class="d-flex flex-column">
             <img
               src=""
               class="bi pe-none profile-img"
@@ -171,7 +171,7 @@
           <div class="d-flex flex-column flex-sm-column flex-md-row">
             <!-- задачи -->
             <div
-              class="col-12 col-sm-12 col-md-9 col-lg-4 tasks_container p-3 me-0 me-sm-0 me-md-3 d-flex flex-column align-items-center"
+              class="col-12 col-sm-12 col-md-5 col-lg-4 tasks_container p-3 me-0 me-sm-0 me-md-3 d-flex flex-column align-items-center"
             >
               <div>
                 <h4>Сегодня</h4>
@@ -212,7 +212,7 @@
                     placeholder="1 apple"
                   />
                   <div
-                    class="d-flex d-md-block justify-content-around col-12 col-sm-12 col-md-5"
+                    class="d-flex d-md-block justify-content-around col-12 col-sm-12 col-md-8"
                   >
                     <button
                       id="button_find"
@@ -224,32 +224,34 @@
                     <button
                       id="button_cleaner"
                       type="button"
-                      class="btn btn-primary col-5 col-sm-5 col-md-4"
+                      class="btn btn-primary col-5 col-sm-5 col-md-6 col-lg-6"
                     >
                       Очистить форму
                     </button>
                   </div>
                 </div>
-                <table class="table">
-                  <thead>
-                    <tr class="table-info">
-                      <th scope="col">sugar (g)</th>
-                      <th scope="col">iron (mg)</th>
-                      <th scope="col">vitaminC (mg)</th>
-                      <th scope="col">Calories</th>
-                      <th scope="col">Calcium (mg)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th id="sugar" scope="row">0</th>
-                      <th id="iron" scope="row">0</th>
-                      <th id="vitaminC" scope="row">0</th>
-                      <th id="calories" scope="row">0</th>
-                      <th id="calcium" scope="row">0</th>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr class="table-info">
+                        <th scope="col">sugar (g)</th>
+                        <th scope="col">iron (mg)</th>
+                        <th scope="col">vitaminC (mg)</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col">Calcium (mg)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th id="sugar" scope="row">0</th>
+                        <th id="iron" scope="row">0</th>
+                        <th id="vitaminC" scope="row">0</th>
+                        <th id="calories" scope="row">0</th>
+                        <th id="calcium" scope="row">0</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
