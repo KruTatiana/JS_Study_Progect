@@ -4,9 +4,20 @@
 // Шрифты
 
 // Переменные для цвета
+$black: black;
+$white: #ffffff;
+$purple1: #c4c8ff;
+$purple2: #939cff;
+$purple3: #6271ff;
+$blue1: #3145ff;
+$blue2: #001aff;
+$blue3: #00189d;
+$blue4: #00165d;
+$blue5: #0018be;
+$blue6: #0019df;
+$darkBlue: #00153c;
 
 // Переменные для общих стилей
-
 
 // Дополнительные размеры экранов
 
@@ -20,22 +31,391 @@ $screen-l-min: 1200px;
 // Large desctops
 $screen-xl-min: 2400px;
 
-
 // глобальные стили
-
 
 // Код Веры
 
+#getFox {
+    max-width: 300px;
+}
 
+.random-fox {
+    margin-top: 5%;
+}
 
-// Код Нади 
+.random-fox > div > img {
+    max-width: 100%;
+    margin: 5% 5% 5% 0;
+}
 
+// Код Нади
+.container-fluid-quote {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    background-color: $blue4;
+    background: linear-gradient(90deg, $blue4 0%, $blue3 0%, rgba(0, 212, 255, 1) 100%);
+}
 
+.row-quote {
+    max-width: 95%;
+    margin: 0 auto;
+}
 
+.quote__text {
+    color: $white;
+    text-align: center;
+}
+
+.author {
+    color: $white;
+    text-align: center;
+}
+
+.openRegistrationButton {
+    border-style: none;
+    color: $black;
+}
+
+.button_hide {
+    display: none;
+}
+
+.btn-outline-primary:hover {
+    background-color: $purple3;
+    color: $black;
+}
+
+.save_user__btn {
+    width: 100%;
+    margin-top: 5%;
+    height: 3em;
+    background-color: $blue3;
+    color: $white;
+}
+
+.save_user__btn:hover {
+    outline: none;
+    background-color: $blue4;
+    color: $white;
+}
 
 // Код Насти
 
+.nav-link,
+.nickname_result {
+    color: $darkBlue;
+    margin-bottom: 0px;
+}
 
+.nav-link {
+    cursor: pointer;
+}
 
+.active-link {
+    background-color: $blue3;
+    color: #fff;
+}
+
+.nav-link:hover,
+.profile:hover {
+    color: $blue3;
+}
+
+.nav-link:active {
+    color: $blue5;
+}
+
+.btn-exit {
+    background-color: $blue3;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.btn-exit:hover,
+.active-link:hover {
+    background-color: $blue5;
+    color: #fff;
+}
+.btn-exit:active,
+.active-link:active {
+    background-color: $blue6 !important;
+    color: #fff;
+}
+
+.collapse-list {
+    margin-left: 40px;
+}
+
+#menuListContainer {
+    font-size: 18px;
+}
+
+.profile-img {
+    width: 40px;
+    height: 32px;
+}
+
+.disabled {
+    display: none !important;
+}
 
 // Код Тани
+
+.radio_hide {
+    display: none;
+}
+
+.custom-radio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 2rem;
+    border: 2px solid;
+    border-radius: 6px;
+    cursor: pointer;
+    color: $blue4;
+    justify-content: center;
+    align-items: center;
+}
+
+.tasks_container {
+    margin-top: 5%;
+    margin-bottom: 3%;
+    border: solid 2px $purple1;
+    border-radius: 6px;
+}
+
+.add_task {
+    width: 90%;
+    border: solid 2px $purple1;
+}
+
+.add_task:hover {
+    outline: none;
+    background-color: $purple3;
+}
+
+.btn_close-custom {
+    background-color: $white;
+}
+
+.modal_header-custom {
+    background-color: $blue3;
+    color: $white;
+}
+
+.task_form__header {
+    margin-top: 5%;
+    color: $blue3;
+}
+
+.task_name,
+.task_description {
+    margin-top: 5%;
+    border-color: $purple2;
+    border-width: 2px;
+    outline: none;
+}
+
+.task_name {
+    height: 3rem;
+}
+
+.task_description {
+    overflow: hidden;
+    height: 3rem;
+    padding-top: 0.6rem;
+}
+
+.task_name:focus,
+.task_description:focus {
+    box-shadow: none;
+    border-color: $blue3;
+}
+
+.help_text-grey,
+.task_name::placeholder,
+.task_description::placeholder {
+    color: $purple1;
+}
+
+.end_date,
+.end_time {
+    outline: none;
+    border: solid $purple2 2px;
+    border-radius: 6px;
+    height: 40px;
+    text-align: center;
+}
+
+.end_time {
+    margin-left: 3%;
+    width: 90px;
+}
+
+.btn_high {
+    width: 100%;
+    border-color: $blue3;
+}
+
+.btn_high:hover,
+input[type="radio"]:checked + .btn_high {
+    border-color: none;
+    background-color: $blue3;
+    color: $white;
+}
+
+.high_lable {
+    width: 5%;
+    border: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background-color: $blue3;
+}
+
+.btn_medium {
+    width: 100%;
+    border-color: $blue2;
+}
+
+.btn_medium:hover,
+input[type="radio"]:checked + .btn_medium {
+    border-color: none;
+    background-color: $blue2;
+    color: $white;
+}
+
+.medium_lable {
+    width: 5%;
+    border: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background-color: $blue2;
+}
+
+.btn_low {
+    width: 100%;
+    border-color: $purple3;
+}
+
+.btn_low:hover,
+input[type="radio"]:checked + .btn_low {
+    border-color: none;
+    background-color: $purple3;
+}
+
+.low_lable {
+    width: 5%;
+    border: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background-color: $purple3;
+}
+
+.life_part__btn {
+    width: 100%;
+    margin-top: 2%;
+    border-color: $purple2;
+}
+
+.life_part__btn:hover,
+input[type="radio"]:checked + .life_part__btn {
+    border-color: none;
+    background-color: $purple2;
+}
+
+.save_task__btn {
+    width: 100%;
+    margin-top: 5%;
+    height: 3em;
+    background-color: $blue3;
+    color: $white;
+}
+
+.save_task__btn:hover {
+    outline: none;
+    background-color: $blue4;
+    color: $white;
+}
+
+.basis_btn {
+    flex-basis: 28%;
+}
+
+.tasks_list {
+    width: 90%;
+    margin-bottom: 4%;
+}
+
+.new_task_element {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+    padding-right: 2%;
+    border: solid 2px $purple1;
+    border-radius: 6px;
+}
+
+.task_checkbox {
+    width: 10%;
+    display: block;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.content_task_box {
+    width: 50%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.part_life_element {
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: $purple2;
+    border-radius: 6px;
+    color: $blue4;
+}
+
+.task_name_text,
+.description_text {
+    margin-top: 2%;
+    margin-bottom: 0;
+}
+
+.task_name_text {
+    font-weight: bolder;
+}
+
+.right_el {
+    width: 30%;
+}
+
+.deadline_el {
+    width: 100%;
+    height: 50%;
+}
+
+.deadline_el p {
+    margin-bottom: 0;
+}
+
+.button_trash {
+    display: block;
+    width: 40%;
+    max-height: 35%;
+    margin: 7% auto;
+}
+
+.form_error {
+    color: red;
+}
+
+.btn_close-custom {
+    background-color: $white;
+}
