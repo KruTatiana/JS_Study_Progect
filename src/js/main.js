@@ -29,6 +29,8 @@ let getFox = document.getElementById("getFox");
 let close = document.getElementById("close");
 const title = document.getElementById("title");
 
+// window.localStorage.clear();
+
 //Код Веры
 
 function onBtnClick() {
@@ -279,7 +281,7 @@ class taskCard {
         this.contentBoxEl.setAttribute("class", "content_task_box");
         this.rightEl.setAttribute("class", "right_el");
         this.buttonClean.setAttribute("type", "image");
-        this.buttonClean.setAttribute("src", ".././accets/icontrash.svg");
+        this.buttonClean.setAttribute("src", ".././accets/Icontrash.svg");
         this.buttonClean.setAttribute("class", "button_trash");
         this.nameEl.innerText = this.name;
         this.descriptionEl.innerText = this.description;
@@ -315,10 +317,6 @@ class taskCard {
             taskMemoryObj.checkbox = "checked";
         }
     }
-
-    // showTask(){
-
-    // }
 }
 
 //вызов JSON из LocalStorage с проверкой на наличие в нем данных
@@ -354,27 +352,24 @@ function setTaskObjectToStorage() {
 }
 
 //функция для создания карточек задач при загрузке страницы
-
 function getTaskList() {
     checkStorage();
     for (let obj of arrayFromStorage) {
-        if (obj !== null) {
-            setDeadline(obj.deadlineDate, obj.deadlineTime);
-            let cardObject = new taskCard(
-                obj.name,
-                obj.description,
-                deadline,
-                obj.color,
-                obj.priority,
-                obj.lifePart,
-                obj.partValue,
-                obj.deadlineDate,
-                obj.deadlineTime,
-                obj.id,
-                obj.checkbox
-            );
-            cardObject.createTask();
-        }
+        setDeadline(obj.deadlineDate, obj.deadlineTime);
+        let cardObject = new taskCard(
+            obj.name,
+            obj.description,
+            deadline,
+            obj.color,
+            obj.priority,
+            obj.lifePart,
+            obj.partValue,
+            obj.deadlineDate,
+            obj.deadlineTime,
+            obj.id,
+            obj.checkbox
+        );
+        cardObject.createTask();
     }
 }
 getTaskList();
@@ -456,25 +451,22 @@ function setChecked(check) {
     }
 }
 
-function removeTask(el) {
-    let rightEl = el.parentNode;
-    let newTaskEl = rightEl.parentNode;
-    let idEl = newTaskEl.childNodes[1];
-    let taskId = idEl.id;
-    arrayFromStorage = localStorage.getItem("tasksStorage");
-    arrayFromStorage = JSON.parse(arrayFromStorage);
-    console.log(arrayFromStorage);
-    arrayFromStorage.forEach((obj, key) => {
-        console.log(typeof arrayFromStorage);
-        console.log(obj);
-        console.log(obj.id);
-        console.log(key);
-        if (obj.id == taskId) {
-            delete arrayFromStorage[key];
-        }
-    });
-    window.localStorage.setItem("tasksStorage", JSON.stringify(arrayFromStorage));
-}
+    function removeTask(el){
+        let rightEl = el.parentNode;
+        let newTaskEl = rightEl.parentNode;
+        let idEl = newTaskEl.childNodes[1];
+        let taskId = idEl.id;
+        arrayFromStorage = localStorage.getItem('tasksStorage');
+	    arrayFromStorage = JSON.parse(arrayFromStorage);
+        arrayFromStorage.forEach((obj,key) => {
+            if(obj.id == taskId) {
+                arrayFromStorage.splice(key,1);
+            }
+        });
+        window.localStorage.setItem('tasksStorage', JSON.stringify(arrayFromStorage));
+        tasksList.innerHTML = '';
+        getTaskList();
+    }
 
 //кнопка "сохранить задачу" из формы добавления задачи
 
@@ -510,9 +502,9 @@ saveTaskBtn.addEventListener("click", () => {
 
 //Clean LokalStorage
 
-const clearLocalStorage = () => {
-    window.localStorage.clear();
-    console.log("Local Storage очищен.");
-};
+// const clearLocalStorage = () => {
+//     window.localStorage.clear();
+//     console.log("Local Storage очищен.");
+// };
 
-document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
+// document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
