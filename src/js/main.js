@@ -28,177 +28,6 @@ let calcium = document.getElementById("calcium");
 let getFox = document.getElementById("getFox");
 let close = document.getElementById("close");
 const title = document.getElementById("title");
-
-// window.localStorage.clear();
-
-//Код Веры
-
-function onBtnClick() {
-    let ingridientsValue = ingridients.value;
-    //const API = 'https://api.edamam.com/api/nutrition-data?app_id=d7be0f59&app_key=7670b7efd74aa8278e4343bfd8644a49&nutrition-type=cooking&ingr=1%20onion'
-    let API = `https://api.edamam.com/api/nutrition-data?app_id=d7be0f59&app_key=7670b7efd74aa8278e4343bfd8644a49&nutrition-type=cooking&ingr=1%20${ingridientsValue}`;
-
-    let caloriesResult = fetch(API)
-        .then((res) => res.json())
-        .then((data) => (calories.textContent = Math.ceil(data.totalNutrients.ENERC_KCAL.quantity)))
-        .catch((err) => console.log("Произошла ошибка при получении данных"));
-    let sugarResult = fetch(API)
-        .then((res) => res.json())
-        .then((data) => (sugar.textContent = Math.ceil(data.totalNutrients.SUGAR.quantity)))
-        .catch((err) => console.log("Произошла ошибка при получении данных"));
-    let ironResult = fetch(API)
-        .then((res) => res.json())
-        .then((data) => (iron.textContent = Math.ceil(data.totalNutrients.FE.quantity)))
-        .catch((err) => console.log("Произошла ошибка при получении данных"));
-    let vitaminCResult = fetch(API)
-        .then((res) => res.json())
-        .then((data) => (vitaminC.textContent = Math.ceil(data.totalNutrients.VITC.quantity)))
-        .catch((err) => console.log("Произошла ошибка при получении данных"));
-    let calciumCResult = fetch(API)
-        .then((res) => res.json())
-        .then((data) => (calcium.textContent = Math.ceil(data.totalNutrients.CA.quantity)))
-        .catch((err) => console.log("Произошла ошибка при получении данных"));
-}
-document.getElementById("button_find").addEventListener("click", onBtnClick);
-
-function onBtnClickCleaner() {
-    calories.textContent = 0;
-    sugar.textContent = 0;
-    iron.textContent = 0;
-    vitaminC.textContent = 0;
-    calcium.textContent = 0;
-    ingridients.value = "";
-}
-document.getElementById("button_cleaner").addEventListener("click", onBtnClickCleaner);
-
-  function getRandomFox(){
-  let API = `https://randomfox.ca/floof/`;
-  
-  let randomFox = fetch(API)
-  .then((res) => res.json())
-  .then((data) => getFox.src =data.image)
- .catch((err) => console.log('Не удалось получить данные'));
-
-	}
-	document.getElementById('seeFox').addEventListener('click', getRandomFox);
-function closeFox(){
-	getFox.src ='';
-}
-document.getElementById('close').addEventListener('click', closeFox);
-
-// Код Нади
-function makeQuote() {
-    fetch("https://stoic.tekloon.net/stoic-quote")
-        .then((res) => {
-            return res.json();
-        })
-        .then((res) => {
-            let quote = document.getElementById("quote");
-            let author = document.getElementById("author");
-            quote.textContent = res.quote;
-            author.textContent = res.author;
-        })
-        .catch((err) => {
-            console.log("Произошла ошибка");
-        });
-}
-window.addEventListener("load", () => {
-    makeQuote();
-});
-
-function makeUsersList() {
-    let inputName = document.getElementById("task_name user_name");
-    let inputNickname = document.getElementById("task_name nick_name");
-    let randNumb = Math.ceil(Math.random() * 3);
-
-    let users = {
-        name: inputName.value,
-        nickname: inputNickname.value,
-        pictureNumber: randNumb,
-    };
-    let stringifyusers = JSON.stringify(users);
-    localStorage.setItem("user", stringifyusers);
-    localStorage.removeItem("tasksStorage");
-    localStorage.removeItem("idArray");
-
-    console.log("Новый пользователь был записан в Local Storage.");
-
-    let pictureSet = document.querySelector(".profile-img");
-    let nicknameSet = document.querySelector(".nickname_result");
-
-    let usersJSON = localStorage.getItem("user");
-    let usersObject = JSON.parse(usersJSON);
-
-    nicknameSet.innerHTML = usersObject.nickname;
-    let userImg = `./accets/User${randNumb}.svg`;
-    pictureSet.setAttribute("src", userImg);
-}
-
-document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
-
-function setUserWhenLoadpage() {
-    let usersJSON = localStorage.getItem("user");
-    if (usersJSON) {
-        let usersObject = JSON.parse(usersJSON);
-        let pictureSet = document.querySelector(".profile-img");
-        let nicknameSet = document.querySelector(".nickname_result");
-        nicknameSet.innerHTML = usersObject.nickname;
-        let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
-        pictureSet.setAttribute("src", userImg);
-    } else {
-        new bootstrap.Modal(document.getElementById("registrationForm")).show();
-    }
-}
-
-window.onload = setUserWhenLoadpage();
-
-// Код Насти
-
-menuListContainer.addEventListener("click", function (evt) {
-    const eventTarget = evt.target;
-    const tasksList = document.getElementsByClassName("new_task_element");
-    for (let i = 0; i < tasksList.length; i += 1) {
-        const task = tasksList[i];
-        if (task.classList.contains(eventTarget.id)) {
-            task.classList.remove("disabled");
-        } else {
-            task.classList.add("disabled");
-        }
-    }
-    // отображаем в меню выбранный раздел
-    for (let i = 0; i < tasksLinks.length; i += 1) {
-        if (tasksLinks[i].id === eventTarget.id) {
-            tasksLinks[i].classList.add("active-link");
-        } else {
-            tasksLinks[i].classList.remove("active-link");
-        }
-    }
-    // отображаем в заголовке выбранный раздел
-    if (eventTarget.id === "new_task_element" || eventTarget.classList.contains("categoryLink")) {
-        title.textContent = eventTarget.textContent;
-    } else if (eventTarget.classList.contains("simpleLink")) {
-        title.textContent = eventTarget.textContent + " задачи";
-    } else if (eventTarget.classList.contains("priorityLink")) {
-        title.textContent = eventTarget.textContent + " приоритет";
-    }
-});
-
-btnTasksCleaner.addEventListener("click", () => {
-    localStorage.removeItem("idArray");
-    localStorage.removeItem("tasksStorage");
-    taskList.innerHTML = "";
-});
-// Код Тани
-
-//вывод в список задач сегодняшней даты
-
-todayDate.innerText = moment().format("LL");
-document.getElementById("task_making_form").addEventListener("submit", function (event) {
-    event.preventDefault();
-});
-
-//глобальные переменные
-
 let priorityColor;
 let partStr;
 let partValue;
@@ -207,6 +36,7 @@ let taskMemoryObj = {};
 let taskId;
 let arrayFromStorage;
 let priority;
+
 //класс для сборки карточек задач
 
 class taskCard {
@@ -319,6 +149,181 @@ class taskCard {
     }
 }
 
+//Функция для получения состава продуктов
+
+function onBtnClick() {
+    let ingridientsValue = ingridients.value;
+    let API = `https://api.edamam.com/api/nutrition-data?app_id=d7be0f59&app_key=7670b7efd74aa8278e4343bfd8644a49&nutrition-type=cooking&ingr=1%20${ingridientsValue}`;
+
+    let caloriesResult = fetch(API)
+        .then((res) => res.json())
+        .then((data) => (calories.textContent = Math.ceil(data.totalNutrients.ENERC_KCAL.quantity)))
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
+    let sugarResult = fetch(API)
+        .then((res) => res.json())
+        .then((data) => (sugar.textContent = Math.ceil(data.totalNutrients.SUGAR.quantity)))
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
+    let ironResult = fetch(API)
+        .then((res) => res.json())
+        .then((data) => (iron.textContent = Math.ceil(data.totalNutrients.FE.quantity)))
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
+    let vitaminCResult = fetch(API)
+        .then((res) => res.json())
+        .then((data) => (vitaminC.textContent = Math.ceil(data.totalNutrients.VITC.quantity)))
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
+    let calciumCResult = fetch(API)
+        .then((res) => res.json())
+        .then((data) => (calcium.textContent = Math.ceil(data.totalNutrients.CA.quantity)))
+        .catch((err) => console.log("Произошла ошибка при получении данных"));
+}
+document.getElementById("button_find").addEventListener("click", onBtnClick);
+
+//Очистить форму с продуктами
+
+function onBtnClickCleaner() {
+    calories.textContent = 0;
+    sugar.textContent = 0;
+    iron.textContent = 0;
+    vitaminC.textContent = 0;
+    calcium.textContent = 0;
+    ingridients.value = "";
+}
+document.getElementById("button_cleaner").addEventListener("click", onBtnClickCleaner);
+
+//Функция для показа лисичек
+
+function getRandomFox(){
+    let API = `https://randomfox.ca/floof/`;
+    
+    let randomFox = fetch(API)
+    .then((res) => res.json())
+    .then((data) => getFox.src =data.image)
+    .catch((err) => console.log('Не удалось получить данные'));
+
+	}
+	document.getElementById('seeFox').addEventListener('click', getRandomFox);
+
+    function closeFox(){
+    	getFox.src ='';
+    }
+document.getElementById('close').addEventListener('click', closeFox);
+
+//Функция для мотивирующих фраз
+
+function makeQuote() {
+    fetch("https://stoic.tekloon.net/stoic-quote")
+        .then((res) => {
+            return res.json();
+        })
+        .then((res) => {
+            let quote = document.getElementById("quote");
+            let author = document.getElementById("author");
+            quote.textContent = res.quote;
+            author.textContent = res.author;
+        })
+        .catch((err) => {
+            console.log("Произошла ошибка");
+        });
+}
+window.addEventListener("load", () => {
+    makeQuote();
+});
+
+//Функция для списка пользователей в Local Storage
+
+function makeUsersList() {
+    let inputName = document.getElementById("task_name user_name");
+    let inputNickname = document.getElementById("task_name nick_name");
+    let randNumb = Math.ceil(Math.random() * 3);
+
+    let users = {
+        name: inputName.value,
+        nickname: inputNickname.value,
+        pictureNumber: randNumb,
+    };
+    let stringifyusers = JSON.stringify(users);
+    localStorage.setItem("user", stringifyusers);
+    localStorage.removeItem("tasksStorage");
+    localStorage.removeItem("idArray");
+
+    console.log("Новый пользователь был записан в Local Storage.");
+
+    let pictureSet = document.querySelector(".profile-img");
+    let nicknameSet = document.querySelector(".nickname_result");
+
+    let usersJSON = localStorage.getItem("user");
+    let usersObject = JSON.parse(usersJSON);
+
+    nicknameSet.innerHTML = usersObject.nickname;
+    let userImg = `./accets/User${randNumb}.svg`;
+    pictureSet.setAttribute("src", userImg);
+}
+
+document.querySelector(".save_user__btn").addEventListener("click", makeUsersList);
+
+//Вывод пользователя на страницу
+
+function setUserWhenLoadpage() {
+    let usersJSON = localStorage.getItem("user");
+    if (usersJSON) {
+        let usersObject = JSON.parse(usersJSON);
+        let pictureSet = document.querySelector(".profile-img");
+        let nicknameSet = document.querySelector(".nickname_result");
+        nicknameSet.innerHTML = usersObject.nickname;
+        let userImg = `./accets/User${usersObject.pictureNumber}.svg`;
+        pictureSet.setAttribute("src", userImg);
+    } else {
+        new bootstrap.Modal(document.getElementById("registrationForm")).show();
+    }
+}
+
+window.onload = setUserWhenLoadpage();
+
+//Меню для сортировки задач
+
+menuListContainer.addEventListener("click", function (evt) {
+    const eventTarget = evt.target;
+    const tasksList = document.getElementsByClassName("new_task_element");
+    for (let i = 0; i < tasksList.length; i += 1) {
+        const task = tasksList[i];
+        if (task.classList.contains(eventTarget.id)) {
+            task.classList.remove("disabled");
+        } else {
+            task.classList.add("disabled");
+        }
+    }
+    // отображаем в меню выбранный раздел
+    for (let i = 0; i < tasksLinks.length; i += 1) {
+        if (tasksLinks[i].id === eventTarget.id) {
+            tasksLinks[i].classList.add("active-link");
+        } else {
+            tasksLinks[i].classList.remove("active-link");
+        }
+    }
+    // отображаем в заголовке выбранный раздел
+    if (eventTarget.id === "new_task_element" || eventTarget.classList.contains("categoryLink")) {
+        title.textContent = eventTarget.textContent;
+    } else if (eventTarget.classList.contains("simpleLink")) {
+        title.textContent = eventTarget.textContent + " задачи";
+    } else if (eventTarget.classList.contains("priorityLink")) {
+        title.textContent = eventTarget.textContent + " приоритет";
+    }
+});
+
+btnTasksCleaner.addEventListener("click", () => {
+    localStorage.removeItem("idArray");
+    localStorage.removeItem("tasksStorage");
+    taskList.innerHTML = "";
+});
+
+//вывод в список задач сегодняшней даты
+
+todayDate.innerText = moment().format("LL");
+document.getElementById("task_making_form").addEventListener("submit", function (event) {
+    event.preventDefault();
+});
+
+
 //вызов JSON из LocalStorage с проверкой на наличие в нем данных
 
 function checkStorage() {
@@ -326,9 +331,8 @@ function checkStorage() {
     arrayFromStorage = arrayFromStorage ? JSON.parse(arrayFromStorage) : [];
 }
 
-//Проверка зарегестрированного пользователя
+//Проверка зарегестрированного пользователя для активации добавления задачи
 
-//add_task
 let userData = localStorage.getItem("user");
 if (userData) {
     document.querySelector(".add_task").removeAttribute("disabled");
@@ -427,6 +431,8 @@ taskList.onclick = function (event) {
     }
 };
 
+//Фиксация выполненных задач
+
 function setChecked(check) {
     let checkboxСond = check.checked;
     let checkboxId = check.id;
@@ -450,6 +456,8 @@ function setChecked(check) {
         }
     }
 }
+
+//Удаление задачи кнопкой на самой задаче
 
     function removeTask(el){
         let rightEl = el.parentNode;
@@ -499,12 +507,3 @@ saveTaskBtn.addEventListener("click", () => {
         document.querySelector(".form_error").innerText = 'Поля "Название" и "Описание" обязательны для заполнения!';
     }
 });
-
-//Clean LokalStorage
-
-// const clearLocalStorage = () => {
-//     window.localStorage.clear();
-//     console.log("Local Storage очищен.");
-// };
-
-// document.querySelector(".b-18").addEventListener("click", clearLocalStorage);
