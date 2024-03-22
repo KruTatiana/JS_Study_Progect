@@ -17,24 +17,6 @@ $blue5: #0018be;
 $blue6: #0019df;
 $darkBlue: #00153c;
 
-// Переменные для общих стилей
-
-// Дополнительные размеры экранов
-
-$screen-sm-min: 576px;
-// Small tablets (portrait view)
-$screen-md-min: 768px;
-// Tablets and small desktops
-$screen-lg-min: 992px;
-// Large tablets and desktops
-$screen-l-min: 1200px;
-// Large desctops
-$screen-xl-min: 2400px;
-
-// глобальные стили
-
-// Код Веры
-
 #getFox {
     max-width: 300px;
 }
@@ -47,8 +29,7 @@ $screen-xl-min: 2400px;
     max-width: 100%;
     margin: 5% 5% 5% 0;
 }
-
-// Код Нади
+ 
 .container-fluid-quote {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -99,8 +80,6 @@ $screen-xl-min: 2400px;
     color: $white;
 }
 
-// Код Насти
-
 .nav-link,
 .nickname_result {
     color: $darkBlue;
@@ -131,11 +110,13 @@ $screen-xl-min: 2400px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
 .btn-exit:hover,
 .active-link:hover {
     background-color: $blue5;
     color: #fff;
 }
+
 .btn-exit:active,
 .active-link:active {
     background-color: $blue6 !important;
@@ -158,8 +139,6 @@ $screen-xl-min: 2400px;
 .disabled {
     display: none !important;
 }
-
-// Код Тани
 
 .radio_hide {
     display: none;
