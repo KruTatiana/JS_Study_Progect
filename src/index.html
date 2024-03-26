@@ -164,37 +164,39 @@
             </div>
           </div>
         </div>
-        <div>
-          <div class="row">
-            <p class="col-5 h3 m-2" id="title">Все задачи</p>
-          </div>
-          <div class="d-flex flex-column flex-sm-column flex-md-row">
-            <!-- задачи -->
-            <div
-              class="col-12 col-sm-12 col-md-5 col-lg-4 tasks_container p-3 me-0 me-sm-0 me-md-3 d-flex flex-column align-items-center"
-            >
-              <div>
-                <h4>Сегодня</h4>
-                <div class="today_date"></div>
-              </div>
-              <div class="tasks_list"></div>
-              <button
-                class="add_task btn"
-                data-bs-toggle="modal"
-                data-bs-target="#taskModal"
-                disabled
-              >
-                Добавить задачу
-              </button>
+        <div class="h-100 d-flex flex-column">
+          <div class="mb-auto">
+            <div class="row">
+              <p class="col-5 h3 m-2" id="title">Все задачи</p>
             </div>
-            <div class="col-12 col-sm-12 col-md-3 random-fox flex-fill">
-              <button id="seeFox" type="button" class="btn btn-primary">
-                Посмотреть лисичек
-              </button>
-              <button id="close" type="button" class="btn btn-primary">
-                Закрыть
-              </button>
-              <div><img src="" id="getFox" /></div>
+            <div class="d-flex flex-column flex-sm-column flex-md-row">
+              <!-- задачи -->
+              <div
+                class="col-12 col-sm-12 col-md-5 col-lg-4 tasks_container p-3 me-0 me-sm-0 me-md-3 d-flex flex-column align-items-center"
+              >
+                <div>
+                  <h4>Сегодня</h4>
+                  <div class="today_date"></div>
+                </div>
+                <div class="tasks_list"></div>
+                <button
+                  class="add_task btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#taskModal"
+                  disabled
+                >
+                  Добавить задачу
+                </button>
+              </div>
+              <div class="col-12 col-sm-12 col-md-3 random-fox flex-fill">
+                <button id="seeFox" type="button" class="btn btn-primary">
+                  Посмотреть лисичек
+                </button>
+                <button id="close" type="button" class="btn btn-primary">
+                  Закрыть
+                </button>
+                <div><img src="" id="getFox" /></div>
+              </div>
             </div>
           </div>
           <div class="row">
