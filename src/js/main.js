@@ -111,7 +111,7 @@ class taskCard {
         this.contentBoxEl.setAttribute("class", "content_task_box");
         this.rightEl.setAttribute("class", "right_el");
         this.buttonClean.setAttribute("type", "image");
-        this.buttonClean.setAttribute("src", "./accets/Icontrash.svg");
+        this.buttonClean.setAttribute("src", "./accets/icontrash.svg");
         this.buttonClean.setAttribute("class", "button_trash");
         this.nameEl.innerText = this.name;
         this.descriptionEl.innerText = this.description;
