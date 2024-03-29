@@ -13,7 +13,7 @@
 <br />
 <div align="center">
   <a href="https://krutatiana.github.io/JS_Study_Project/">
-    <img src="./readme_assets/Logo_image.jpg" alt="Logo" width="100" height="100">
+    <img src="./readme_assets/img/Logo_image.jpg" alt="Logo" width="100" height="100">
   </a>
   </div>
 
